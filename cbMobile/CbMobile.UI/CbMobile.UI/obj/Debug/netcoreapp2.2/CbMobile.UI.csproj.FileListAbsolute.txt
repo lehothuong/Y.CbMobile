@@ -1,0 +1,15 @@
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.deps.json
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.runtimeconfig.json
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.runtimeconfig.dev.json
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.dll
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.pdb
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.xml
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csprojAssemblyReference.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csproj.CoreCompileInputs.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.RazorAssemblyInfo.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.RazorAssemblyInfo.cs
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.AssemblyInfoInputs.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.AssemblyInfo.cs
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.RazorTargetAssemblyInfo.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.dll
+C:\C#\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.pdb

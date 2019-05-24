@@ -1,0 +1,12 @@
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.deps.json
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.dll
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.pdb
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Domain.dll
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Domain.pdb
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.csprojAssemblyReference.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.csproj.CoreCompileInputs.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.AssemblyInfoInputs.cache
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.AssemblyInfo.cs
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.csproj.CopyComplete
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.dll
+C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.pdb
