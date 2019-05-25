@@ -6,6 +6,7 @@ import { routes } from "./js/routes";
 import jQuery from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/Style/bundle.css";
 global.jQuery = jQuery;
 global.$ = jQuery;
 
