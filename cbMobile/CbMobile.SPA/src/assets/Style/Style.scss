@@ -1,24 +1,30 @@
-@import "./Mixins.scss";
+@import "./mixins";
 @import "./variables";
 
 body {
+  background: #f0f0f0;
   font-size: 14px;
   font-family: "Segoe UI";
 }
+
 .navbar-light .navbar-nav .nav-link {
   color: #000;
 }
+
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #000;
 }
+
 a {
   color: #000;
+
   &:hover {
     color: #000;
     text-decoration: none;
   }
 }
+
 .bg-color-red {
   background-color: #ff3300;
 }
@@ -27,6 +33,7 @@ a {
   border-color: transparent;
   box-shadow: none;
 }
+
 .header {
   background-color: #ff3300;
   box-shadow: rgba(50, 50, 50, 0.33) 0px 5px 7px 0px;
@@ -34,9 +41,11 @@ a {
 
 .search {
   position: relative;
+
   input {
     border: none;
   }
+
   &::after {
     font-family: "FontAwesome";
     content: "\f002";
@@ -50,11 +59,13 @@ a {
 
 .menuHeader {
   background-color: #fff;
+
   .fa {
     &::before {
       font-size: 30px;
     }
   }
+
   p {
     margin-bottom: 0 !important;
   }
@@ -78,28 +89,160 @@ a {
 
 .navbar {
   padding: 0;
+
   .nav-link {
     padding: 5px 10px;
   }
+
   .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: 0; // remove the gap so it doesn't close
   }
+
   .active {
     .nav-p {
       color: #ff3300;
     }
   }
+
   .nav-p {
     transition: all ease 0.2s;
     font-weight: 500;
   }
+
   .nav-item {
     margin-right: 0.5rem;
+
     &:hover {
       .nav-p {
         color: #ff3300;
       }
     }
+  }
+}
+
+.slick-prev {
+  left: 15px;
+}
+.slick-next {
+  right: 15px;
+}
+.slick-next:before {
+  content: "\f105";
+}
+.slick-prev:before {
+  content: "\f104";
+}
+.slick-prev:before,
+.slick-next:before {
+  color: #fff;
+  font-family: "FontAwesome";
+  display: block;
+  position: static;
+  background-color: transparent;
+  line-height: 48px;
+  width: 100%;
+  font-size: 40px;
+  opacity: 1;
+}
+.slick-prev,
+.slick-next {
+  display: none;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.slickOption {
+  &:hover {
+    .slick-prev,
+    .slick-next {
+      display: block;
+    }
+  }
+}
+
+.img-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img-16-9 {
+  @include aspect-ratio(16, 9);
+}
+
+.linkHomeBoxNews {
+  &:hover {
+    .titleBoxNews {
+      color: #ff3300;
+    }
+  }
+}
+
+.homeBoxNews {
+  border-bottom: 1px solid #efefef;
+  background: #fff;
+  .infoBoxNewsHome {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .titleBoxNews {
+    @include ellips-text(14px, 1.3, 2);
+    font-weight: 600;
+    margin-bottom: 0;
+    transition: all ease 0.2s;
+  }
+  .postDateTime {
+    font-size: 12px;
+    color: #999;
+  }
+}
+
+.headerTitleNews {
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid #efefef;
+  background: #fff;
+  p {
+    float: left;
+    padding: 10px 20px 10px 10px;
+    background: #f30;
+    line-height: 1.3em;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    margin: 0;
   }
 }

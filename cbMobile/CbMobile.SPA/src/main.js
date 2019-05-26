@@ -6,13 +6,14 @@ import { routes } from "./js/routes";
 import jQuery from "jquery";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/Style/bundle.css";
+import Slick from "vue-slick";
+import "./assets/Style/Style.css";
 global.jQuery = jQuery;
 global.$ = jQuery;
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
-// Vue.use(bootstrap);
+Vue.use(Slick);
 
 const router = new VueRouter({
   routes,
@@ -22,5 +23,6 @@ const router = new VueRouter({
 new Vue({
   el: "#app",
   router: router,
+  components: { Slick },
   render: h => h(MainApp)
 });
