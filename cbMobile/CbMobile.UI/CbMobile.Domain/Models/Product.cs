@@ -12,5 +12,7 @@ namespace CbMobileDomain.Models
         public string AvatarUrl { get; set; }
         public string FullDescription { get; set; }
         public decimal Value { get; set; }
+        public int ManufacturerId { get; set; }
+        public Manufacturer Manufacturer { get; set; }
     }
 }

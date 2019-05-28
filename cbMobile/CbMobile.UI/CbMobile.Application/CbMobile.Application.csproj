@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CbMobile.Database\CbMobile.Database.csproj" />
+    <ProjectReference Include="..\CbMobile.Domain\CbMobile.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

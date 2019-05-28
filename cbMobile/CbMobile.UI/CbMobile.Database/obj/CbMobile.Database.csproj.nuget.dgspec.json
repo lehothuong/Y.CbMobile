@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj": {}
+    "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj": {}
   },
   "projects": {
-    "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj": {
+    "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj",
+        "projectUniqueName": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj",
         "projectName": "CbMobile.Database",
-        "projectPath": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj",
+        "projectPath": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Database\\CbMobile.Database.csproj",
         "packagesPath": "C:\\Users\\LE THUONG\\.nuget\\packages\\",
-        "outputPath": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Database\\obj\\",
+        "outputPath": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Database\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj": {
-                "projectPath": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj"
+              "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj": {
+                "projectPath": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj"
               }
             }
           }
@@ -53,6 +53,14 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -68,14 +76,14 @@
         }
       }
     },
-    "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj": {
+    "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj",
+        "projectUniqueName": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj",
         "projectName": "CbMobile.Domain",
-        "projectPath": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj",
+        "projectPath": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\CbMobile.Domain.csproj",
         "packagesPath": "C:\\Users\\LE THUONG\\.nuget\\packages\\",
-        "outputPath": "C:\\C#\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\obj\\",
+        "outputPath": "C:\\C#\\Y.CbMobile\\cbMobile\\CbMobile.UI\\CbMobile.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
