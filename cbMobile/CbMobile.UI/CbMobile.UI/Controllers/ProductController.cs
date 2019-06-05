@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CbMobileApplication.Service.Product;
+using CbMobileDomain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,11 @@ namespace CbMobile.UI.Controllers
         {
             _productAppService = productAppService;
         }
-
-        //public ActionResult<IEnumerable<string>> Get()
-        //{
-        //    return 0;
-        //}
+        [HttpGet]
+        public IActionResult GetProduct()
+        {
+            var model = _productAppService.GetProduct();
+            return Ok(model);
+        }
     }
 }

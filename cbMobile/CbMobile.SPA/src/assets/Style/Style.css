@@ -208,6 +208,44 @@ h6 {
   bottom: 0;
 }
 
+.img-3-4 {
+  position: relative;
+}
+
+.img-3-4:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 133.33333%;
+}
+
+.img-3-4 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-1-1 {
+  position: relative;
+}
+
+.img-1-1:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+
+.img-1-1 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
 .linkHomeBoxNews:hover .titleBoxNews {
   color: #ff3300;
 }
@@ -275,5 +313,21 @@ h6 {
   text-align: center;
   position: relative;
   margin: 0;
+}
+
+.nameProductInHomeHot {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: 18.2px;
+  /* Fallback for non-webkit */
+  font-size: 14px;
+  line-height: 1.3;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 /*# sourceMappingURL=Style.css.map */

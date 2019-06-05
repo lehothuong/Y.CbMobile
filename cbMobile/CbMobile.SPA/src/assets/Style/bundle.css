@@ -1,4 +1,5 @@
 body {
+  background: #f0f0f0;
   font-size: 14px;
   font-family: "Segoe UI";
 }
@@ -160,8 +161,173 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 .slickOption:hover .slick-prev,
 .slickOption:hover .slick-next {
   display: block;
+}
+
+.img-background {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.img-16-9 {
+  position: relative;
+}
+
+.img-16-9:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.img-16-9 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-3-4 {
+  position: relative;
+}
+
+.img-3-4:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 133.33333%;
+}
+
+.img-3-4 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-1-1 {
+  position: relative;
+}
+
+.img-1-1:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+
+.img-1-1 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.linkHomeBoxNews:hover .titleBoxNews {
+  color: #ff3300;
+}
+
+.homeBoxNews {
+  border-bottom: 1px solid #efefef;
+  background: #fff;
+}
+
+.homeBoxNews .infoBoxNewsHome {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.homeBoxNews .titleBoxNews {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: 36.4px;
+  /* Fallback for non-webkit */
+  font-size: 14px;
+  line-height: 1.3;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  margin-bottom: 0;
+  -webkit-transition: all ease 0.2s;
+  transition: all ease 0.2s;
+}
+
+.homeBoxNews .postDateTime {
+  font-size: 12px;
+  color: #999;
+}
+
+.headerTitleNews {
+  display: block;
+  overflow: hidden;
+  border-bottom: 1px solid #efefef;
+  background: #fff;
+}
+
+.headerTitleNews p {
+  float: left;
+  padding: 10px 20px 10px 10px;
+  background: #f30;
+  line-height: 1.3em;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  margin: 0;
+}
+
+.nameProductInHomeHot {
+  display: block;
+  /* Fallback for non-webkit */
+  display: -webkit-box;
+  max-width: 400px;
+  height: 18.2px;
+  /* Fallback for non-webkit */
+  font-size: 14px;
+  line-height: 1.3;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 /*# sourceMappingURL=bundle.css.map */

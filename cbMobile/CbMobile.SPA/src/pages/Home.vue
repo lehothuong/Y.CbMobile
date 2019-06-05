@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row mb-lg-4">
       <div class="col-lg-8">
         <Banner></Banner>
       </div>
@@ -8,15 +8,18 @@
         <HomeNews></HomeNews>
       </div>
     </div>
+    <ProductInHome></ProductInHome>
   </div>
 </template>
 <script>
 import Banner from "../components/Banner";
 import HomeNews from "../components/HomeNews";
+import ProductInHome from "../components/ProductInHome";
 export default {
   components: {
     Banner,
-    HomeNews
+    HomeNews,
+    ProductInHome
   }
 };
 </script>

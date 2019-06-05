@@ -7,6 +7,6 @@ namespace CbMobileApplication.Service.Product
 {
     public interface IProductAppService
     {
-        IEnumerable<ManufacturerViewModel> GetProduct();
+        IEnumerable<ProductViewModel> GetProduct();
     }
 }

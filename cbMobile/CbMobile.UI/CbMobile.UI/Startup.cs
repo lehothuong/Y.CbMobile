@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,7 @@ namespace CbMobile.UI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -36,7 +38,23 @@ namespace CbMobile.UI
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
-            services.AddSingleton<IProductAppService, ProductAppService>();
+            services.AddScoped<IProductAppService, ProductAppService>();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder
+                        .AllowAnyOrigin() //TODO: Will be replaced by above when Microsoft releases microsoft.aspnetcore.cors 2.0 - https://github.com/aspnet/CORS/pull/94
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory(MyAllowSpecificOrigins));
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(p =>
             {
@@ -64,6 +82,7 @@ namespace CbMobile.UI
             app.UseCookiePolicy();
             app.UseMvc();
             app.UseSwagger();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseSwaggerUI(p =>
             {
                 p.SwaggerEndpoint("/swagger/v1/swagger.json", "Core API");

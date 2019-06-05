@@ -8,6 +8,7 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Slick from "vue-slick";
 import "./assets/Style/Style.css";
+import "../node_modules/slick-carousel/slick/slick.css";
 global.jQuery = jQuery;
 global.$ = jQuery;
 

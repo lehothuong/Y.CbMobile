@@ -15,21 +15,16 @@ namespace CbMobileApplication.Service.Product
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<ManufacturerViewModel> GetProduct()
+        public IEnumerable<ProductViewModel> GetProduct()
         {
-            var model = _dbContext.Manufacturers
-                .Include(x => x.Products)
-                .Select(x => new ManufacturerViewModel
+            var model = _dbContext.Products
+                .Where(x => x.Hot == true && x.Status == true)
+                .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Products = x.Products.Select(y => new ProductViewModel
-                    {
-                        Name = y.Name,
-                        ShortDescription = y.ShortDescription,
-                        AvatarUrl = y.AvatarUrl,
-                        FullDescription = y.FullDescription
-                    })
+                    AvatarUrl = x.AvatarUrl,
+                    Value = x.Value,
                 })
                 .ToList();
             return model;
