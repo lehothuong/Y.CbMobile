@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CbMobile.Application.Service.CategoryProduct;
+using CbMobile.Application.Service.Manufacturer;
 using CbMobile.Database;
 using CbMobileApplication.Service.Product;
 using Microsoft.AspNetCore.Builder;
@@ -39,7 +41,8 @@ namespace CbMobile.UI
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
             services.AddScoped<IProductAppService, ProductAppService>();
-
+            services.AddScoped<ICategoryProductAppService, CategoryProductAppService>();
+            services.AddScoped<IManufacturerAppService, ManufacturerAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

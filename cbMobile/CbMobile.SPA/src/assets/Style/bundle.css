@@ -178,6 +178,10 @@ h6 {
   line-height: 1.2;
 }
 
+.bold {
+  text-transform: uppercase !important;
+}
+
 .slickOption:hover .slick-prev,
 .slickOption:hover .slick-next {
   display: block;

@@ -9,17 +9,20 @@
       </div>
     </div>
     <ProductInHome></ProductInHome>
+    <ProductPhoneHome></ProductPhoneHome>
   </div>
 </template>
 <script>
 import Banner from "../components/Banner";
 import HomeNews from "../components/HomeNews";
 import ProductInHome from "../components/ProductInHome";
+import ProductPhoneHome from "../components/ProductPhoneHome";
 export default {
   components: {
     Banner,
     HomeNews,
-    ProductInHome
+    ProductInHome,
+    ProductPhoneHome
   }
 };
 </script>

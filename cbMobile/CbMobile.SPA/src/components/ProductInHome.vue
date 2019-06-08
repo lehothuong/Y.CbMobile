@@ -3,7 +3,7 @@
     <div class="titleProductInHome">Giá sốc cuối tuần</div>
     <div class="gallery">
       <div v-for="(item,index) in products" :key="index">
-        <router-link class="slickOption" to="/">
+        <router-link class="slickOption" to="/" :title="item.name">
           <div
             class="img-background img-1-1"
             :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
@@ -18,7 +18,7 @@
   </div>
 </template>
 <script>
-import { Axios } from "../api/axios";
+import ProductAppService from "../api/product";
 export default {
   data() {
     return {
@@ -38,12 +38,10 @@ export default {
         this.$refs.slick.reSlick();
       });
     },
-    getProduct() {
-      Axios.get("/api/Product")
-        .then(response => {
-          this.products = response.data;
-        })
-        .catch(e => {});
+    getProductInHomeHot() {
+      ProductAppService.getProductInHomeHot().then(resp => {
+        this.products = resp.data;
+      });
     }
   },
   updated() {
@@ -72,7 +70,7 @@ export default {
   created() {},
   mounted() {
     setTimeout(() => {
-      this.getProduct();
+      this.getProductInHomeHot();
     }, 300);
   }
 };
