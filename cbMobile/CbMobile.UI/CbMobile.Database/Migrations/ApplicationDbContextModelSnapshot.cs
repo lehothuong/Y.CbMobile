@@ -15,11 +15,39 @@ namespace CbMobile.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CbMobileDomain.Models.Manufacturer", b =>
+            modelBuilder.Entity("CbMobile.Domain.Models.Categories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ParentId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.CategoryProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoryProducts");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.Manufacturer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -36,7 +64,7 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Manufacturers");
                 });
 
-            modelBuilder.Entity("CbMobileDomain.Models.Order", b =>
+            modelBuilder.Entity("CbMobile.Domain.Models.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +83,7 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("CbMobileDomain.Models.OrderProduct", b =>
+            modelBuilder.Entity("CbMobile.Domain.Models.OrderProduct", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +102,32 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("OrderProducts");
                 });
 
-            modelBuilder.Entity("CbMobileDomain.Models.Product", b =>
+            modelBuilder.Entity("CbMobile.Domain.Models.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AvatarUrl");
+
+                    b.Property<string>("BannerUrl");
+
+                    b.Property<int>("CategoriesId");
+
+                    b.Property<string>("FullDescription");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("ShortDescription");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoriesId");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,6 +140,8 @@ namespace CbMobile.Database.Migrations
                     b.Property<string>("CameraAfter");
 
                     b.Property<string>("CameraHead");
+
+                    b.Property<int>("CategoryProductId");
 
                     b.Property<string>("FullDescription");
 
@@ -113,6 +168,8 @@ namespace CbMobile.Database.Migrations
                     b.Property<decimal>("Value");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryProductId");
 
                     b.HasIndex("ManufacturerId");
 
@@ -280,9 +337,22 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CbMobileDomain.Models.Product", b =>
+            modelBuilder.Entity("CbMobile.Domain.Models.Post", b =>
                 {
-                    b.HasOne("CbMobileDomain.Models.Manufacturer", "Manufacturer")
+                    b.HasOne("CbMobile.Domain.Models.Categories", "Categories")
+                        .WithMany("Posts")
+                        .HasForeignKey("CategoriesId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.Product", b =>
+                {
+                    b.HasOne("CbMobile.Domain.Models.CategoryProduct", "CategoryProduct")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CbMobile.Domain.Models.Manufacturer", "Manufacturer")
                         .WithMany("Products")
                         .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade);

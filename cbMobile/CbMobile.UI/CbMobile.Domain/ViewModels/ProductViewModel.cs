@@ -1,4 +1,4 @@
-﻿using CbMobileDomain.Models;
+﻿using CbMobile.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +14,8 @@ namespace CbMobile.Domain.ViewModels
         public string FullDescription { get; set; }
         public decimal Value { get; set; }
         public int ManufacturerId { get; set; }
+        public int CategoryProductId { get; set; }
         public Manufacturer Manufacturer { get; set; }
+        public CategoryProduct CategoryProduct { get; set; }
     }
 }

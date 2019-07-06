@@ -39,7 +39,7 @@ export default {
       });
     },
     getProductInHomeHot() {
-      ProductAppService.getProductInHomeHot().then(resp => {
+      ProductAppService.getProductHotInHome().then(resp => {
         this.products = resp.data;
       });
     }

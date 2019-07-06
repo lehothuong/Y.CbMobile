@@ -8,5 +8,6 @@ namespace CbMobileApplication.Service.Product
     public interface IProductAppService
     {
         IEnumerable<ProductViewModel> GetProduct();
+        IEnumerable<CategoryProductViewModel> GetPhoneProductInHome();
     }
 }

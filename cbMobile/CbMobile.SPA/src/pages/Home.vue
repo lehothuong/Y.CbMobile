@@ -1,15 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row mb-lg-4">
-      <div class="col-lg-8">
-        <Banner></Banner>
+  <div class="bgContent pb-lg-3">
+    <div class="container">
+      <div class="row mb-lg-4">
+        <div class="col-lg-8">
+          <Banner></Banner>
+        </div>
+        <div class="col-lg-4">
+          <HomeNews></HomeNews>
+        </div>
       </div>
-      <div class="col-lg-4">
-        <HomeNews></HomeNews>
-      </div>
+      <ProductInHome></ProductInHome>
+      <ProductPhoneHome></ProductPhoneHome>
     </div>
-    <ProductInHome></ProductInHome>
-    <ProductPhoneHome></ProductPhoneHome>
   </div>
 </template>
 <script>

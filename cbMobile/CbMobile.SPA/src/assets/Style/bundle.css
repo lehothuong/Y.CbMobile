@@ -8,12 +8,22 @@ body {
   color: #000;
 }
 
+.col-lg-25 {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: 0 0 20% !important;
+          flex: 0 0 20% !important;
+  max-width: 20% !important;
+  position: relative;
+  width: 100%;
+}
+
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
   color: #000;
 }
 
 a {
+  display: block;
   color: #000;
 }
 
@@ -178,8 +188,12 @@ h6 {
   line-height: 1.2;
 }
 
-.bold {
-  text-transform: uppercase !important;
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+
+.pl-lg-075 {
+  padding-left: 0.75rem !important;
 }
 
 .slickOption:hover .slick-prev,
@@ -333,5 +347,96 @@ h6 {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
+}
+
+#footer {
+  background-color: #fff;
+}
+
+#footer .footerSubscribe .form-control {
+  font-size: 14px;
+}
+
+#footer .footerSubscribe .form-control:focus {
+  border-color: #f30;
+}
+
+#footer input {
+  border-right: none;
+  height: 40px;
+}
+
+#footer .inputGroupBtn {
+  white-space: nowrap;
+}
+
+#footer .list-menu {
+  margin-bottom: 15px;
+  line-height: 1.71429em;
+}
+
+#footer .footerSocial ul li {
+  margin-right: 0.75rem;
+}
+
+#footer .footerSocial ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  width: 40px;
+  color: #fff;
+  background-color: #e5e5e5;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px;
+  position: relative;
+}
+
+#footer .footerSocial .twitter a {
+  background-color: #1da1f2;
+}
+
+#footer .footerSocial .facebook a {
+  background-color: #3b5998;
+}
+
+#footer .footerSocial .pinterest a {
+  background-color: #bd081c;
+}
+
+#footer .footerSocial .google a {
+  background-color: #dd4b39;
+}
+
+#footer .footerSocial .instagram a {
+  background-color: #1e88e5;
+}
+
+.btn.btnDefault {
+  background-color: #f30;
+  color: #fff;
+  border: 1px solid #f30;
+  height: 40px;
+  border-radius: 0;
+}
+
+.btn:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.overNewsContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 2rem;
+  color: #fff;
 }
 /*# sourceMappingURL=bundle.css.map */

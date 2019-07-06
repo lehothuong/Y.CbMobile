@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace CbMobileDomain.Models
+namespace CbMobile.Domain.Models
 {
     public class Order
     {

@@ -12,22 +12,19 @@
     </div>
     <div class="showAllProduct">
       <div class="row mx-0">
-        <div class="col-lg-2 px-0">
-          <div></div>
-          <!-- <div class="gallery text-center">
-            <div v-for="(item,index) in products" :key="index">
-            <router-link class="borderRight borderBottom" to="/">
+        <div class="col-lg-25 px-0" v-for="(item,index) in productPhoneInHome" :key="index">
+          <div class="listProduct text-center">
+            <router-link class="borderRight borderBottom p-3" to="/">
               <div
                 class="img-background img-1-1"
-                style="background-image:url('/src/assets/Images/samsung.png')"
+                :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
               ></div>
-              <p class="nameProductInHomeHot mt-lg-3 mb-0">Samsung Galaxy S10e</p>
+              <p class="nameProductInHomeHot mt-lg-3 mb-0">{{item.name}}</p>
               <div class="priceProductInHomeHot mt-lg-2">
-                <p class="realPrice">15.990.000₫</p>
+                <p class="realPrice">{{item.value}}</p>
               </div>
             </router-link>
-            </div>
-          </div>-->
+          </div>
         </div>
       </div>
     </div>
@@ -35,10 +32,12 @@
 </template>
 <script>
 import ManufacturerAppService from "../api/manufacturer";
+import ProductAppService from "../api/product";
 export default {
   data() {
     return {
-      manufacturers: []
+      manufacturers: [],
+      productPhoneInHome: {}
     };
   },
   methods: {
@@ -46,9 +45,15 @@ export default {
       ManufacturerAppService.getManufacturerInHome().then(resp => {
         this.manufacturers = resp.data;
       });
+    },
+    getPhoneProductInHome() {
+      ProductAppService.getPhoneProductInHome().then((resp, data) => {
+        this.productPhoneInHome = resp.data.find(element => element).products;
+      });
     }
   },
   mounted() {
+    this.getPhoneProductInHome();
     this.getManufacturerInHome();
   }
 };
@@ -94,14 +99,15 @@ export default {
 .borderBottom {
   border-bottom: 1px solid #eee;
 }
-.gallery {
+.listProduct {
   a {
     transition: box-shadow ease 0.2s;
     &:hover {
-      -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+      -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
       box-sizing: border-box;
       z-index: 1;
+      position: relative;
     }
   }
 }

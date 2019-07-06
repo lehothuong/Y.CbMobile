@@ -3,18 +3,18 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-2">
-          <img src="../assets/Images/logo.png" class="logo w-100">
+          <img src="../assets/Images/logo.png" class="logo w-100" />
         </div>
         <div class="col-lg-3">
           <div class="search">
-            <input class="form-control" placeholder="Tìm kiếm">
+            <input class="form-control" placeholder="Tìm kiếm" />
           </div>
         </div>
         <div class="col-lg-7 menuHeader">
           <nav class="navbar navbar-expand-lg navbar-light">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                   <router-link class="nav-link" to="/">
                     <div class="text-center">
                       <i class="fa fa-mobile" aria-hidden="true"></i>
@@ -23,7 +23,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/">
+                  <router-link class="nav-link" to="/about-us">
                     <div class="text-center">
                       <i class="fa fa-tablet" aria-hidden="true"></i>
                       <p class="nav-p">Giới thiệu</p>
@@ -61,12 +61,12 @@
                   </div>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link pointer">
+                  <router-link class="nav-link pointer" to="/news">
                     <div class="text-center">
                       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                       <p class="nav-p dropdown-toggle">Tin tức</p>
                     </div>
-                  </a>
+                  </router-link>
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Action</a>
                     <a class="dropdown-item" href="#">Another action</a>

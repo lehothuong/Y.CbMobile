@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CbMobile.Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CbMobileDomain.Models
+namespace CbMobile.Domain.Models
 {
     public class Product
     {
@@ -24,5 +25,8 @@ namespace CbMobileDomain.Models
         public string BatteryCapacity { get; set; }
         public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
-    }
+        public int CategoryProductId { get; set; }
+        public CategoryProduct CategoryProduct { get; set; }
+    }   
+
 }

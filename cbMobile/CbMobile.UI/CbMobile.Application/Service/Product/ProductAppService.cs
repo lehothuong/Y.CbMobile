@@ -1,4 +1,5 @@
-﻿using CbMobile.Database;
+﻿using CbMobile.Application;
+using CbMobile.Database;
 using CbMobile.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -25,6 +26,27 @@ namespace CbMobileApplication.Service.Product
                     Name = x.Name,
                     AvatarUrl = x.AvatarUrl,
                     Value = x.Value,
+                })
+                .ToList();
+            return model;
+        }
+        public IEnumerable<CategoryProductViewModel> GetPhoneProductInHome()
+        {
+            var model = _dbContext.CategoryProducts
+                .Include(x => x.Products)
+                .Where(x => x.Id == (int)CategoryProductType.SmartPhone)
+                .Select(x => new CategoryProductViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Products = x.Products.Select(y => new ProductViewModel
+                    {
+                        Name = y.Name,
+                        ShortDescription = y.ShortDescription,
+                        AvatarUrl = y.AvatarUrl,
+                        FullDescription = y.FullDescription,
+                        Value = y.Value
+                    })
                 })
                 .ToList();
             return model;

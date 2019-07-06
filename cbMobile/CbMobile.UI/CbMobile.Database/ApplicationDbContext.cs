@@ -1,4 +1,4 @@
-﻿using CbMobileDomain.Models;
+﻿using CbMobile.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,5 +15,8 @@ namespace CbMobile.Database
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<CategoryProduct> CategoryProducts { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }
