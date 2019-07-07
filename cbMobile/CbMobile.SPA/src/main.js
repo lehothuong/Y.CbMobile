@@ -1,13 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Vuex from "vuex";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/Style/Style.css";
+// import "./assets/Style/Style.css";
 import Slick from "vue-slick";
 import "../node_modules/slick-carousel/slick/slick.css";
 import { routes } from "./js/routes";
 import jQuery from "jquery";
-import "bootstrap";
 global.jQuery = jQuery;
 global.$ = jQuery;
 import MainApp from "./layouts/MainApp.vue";

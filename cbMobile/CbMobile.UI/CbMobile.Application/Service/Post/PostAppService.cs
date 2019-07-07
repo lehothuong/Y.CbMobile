@@ -32,5 +32,22 @@ namespace CbMobileApplication.Service.Post
                 .ToList();
             return model;
         }
+
+        public IEnumerable<PostViewModel> GetAllNews()
+        {
+            var model = _dbContext.Posts
+                .Include(x => x.Categories)
+                .Where(x => x.CategoriesId == (int)CategoryPostType.News)
+                .Select(x => new PostViewModel
+                {
+                    BannerUrl = x.BannerUrl,
+                    Name = x.Name,
+                    CreateDate = x.CreateDate,
+                    ShortDescription = x.ShortDescription,
+                    FullDescription = x.FullDescription,
+                })
+                .ToList();
+            return model;
+        }
     }
 }

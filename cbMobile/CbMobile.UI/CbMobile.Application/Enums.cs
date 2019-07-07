@@ -11,6 +11,7 @@ namespace CbMobile.Application
 
     public enum CategoryPostType
     {
-        Topic = 1
+        Topic = 1,
+        News = 2
     }
 }

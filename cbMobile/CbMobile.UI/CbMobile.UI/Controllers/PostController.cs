@@ -25,5 +25,12 @@ namespace CbMobile.UI.Controllers
             var model = _postAppService.GetAboutUs();
             return Ok(model);
         }
+        [HttpGet]
+        [Route("GetAllNews")]
+        public IActionResult GetAllNews()
+        {
+            var model = _postAppService.GetAllNews();
+            return Ok(model);
+        }
     }
 }

@@ -19,7 +19,6 @@ export default {
   methods: {
     getAboutUs() {
       PostAppService.getAboutUs().then(resp => {
-        console.log(resp.data);
         this.topics = resp.data;
       });
     }

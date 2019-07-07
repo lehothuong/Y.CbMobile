@@ -114,6 +114,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("CategoriesId");
 
+                    b.Property<DateTime>("CreateDate");
+
                     b.Property<string>("FullDescription");
 
                     b.Property<string>("Name");

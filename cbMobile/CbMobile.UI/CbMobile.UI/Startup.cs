@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CbMobile.Application.Service.CategoryProduct;
 using CbMobile.Application.Service.Manufacturer;
 using CbMobile.Database;
+using CbMobileApplication.Service.CategoryPost;
 using CbMobileApplication.Service.Post;
 using CbMobileApplication.Service.Product;
 using Microsoft.AspNetCore.Builder;
@@ -45,6 +46,7 @@ namespace CbMobile.UI
             services.AddScoped<ICategoryProductAppService, CategoryProductAppService>();
             services.AddScoped<IManufacturerAppService, ManufacturerAppService>();
             services.AddScoped<IPostAppService, PostAppService>();
+            services.AddScoped<ICategoryPostAppService, CategoryPostAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

@@ -12,6 +12,7 @@ namespace CbMobile.Domain.ViewModels
         public string FullDescription { get; set; }
         public string AvatarUrl { get; set; }
         public string BannerUrl { get; set; }
+        public DateTime CreateDate { get; set; }
         public int CategoriesId { get; set; }
         public Categories Categories { get; set; }
     }
