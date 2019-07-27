@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CbMobileApplication.Service.Product;
+using CbMobile.Application.Service.Product;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +29,18 @@ namespace CbMobile.UI.Controllers
         public IActionResult GetPhoneProductInHome()
         {
             var model = _productAppService.GetPhoneProductInHome();
+            return Ok(model);
+        }
+        [HttpGet("GetDetails")]
+        public ActionResult GetDetails(int id)
+        {
+            var model = _productAppService.GetDetails(id);
+            return Ok(model);
+        }
+        [HttpGet("GetGenericProduct")]
+        public ActionResult GetGenericProduct(int id)
+        {
+            var model = _productAppService.GetGenericProduct(id);
             return Ok(model);
         }
     }

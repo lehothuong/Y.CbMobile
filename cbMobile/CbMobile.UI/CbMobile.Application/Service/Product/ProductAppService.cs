@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CbMobileApplication.Service.Product
+namespace CbMobile.Application.Service.Product
 {
     public class ProductAppService : IProductAppService
     {
@@ -49,6 +49,44 @@ namespace CbMobileApplication.Service.Product
                     })
                 })
                 .ToList();
+            return model;
+        }
+        public ProductViewModel GetDetails(int id)
+        {
+            var model = _dbContext
+                .Products
+                .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                return new ProductViewModel()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Value = model.Value,
+                    AvatarUrl = model.AvatarUrl,
+                    FullDescription = model.FullDescription,
+                    CategoryProductId = model.CategoryProductId,
+                    ManufacturerId = model.ManufacturerId,
+                };
+            }
+            throw new KeyNotFoundException();
+        }
+
+        public IEnumerable<ProductViewModel> GetGenericProduct(int id)
+        {
+            var model = _dbContext
+                 .Products
+                 .Where(x => x.CategoryProductId == id)
+                 .Select(x => new ProductViewModel
+                 {
+                     Id = x.Id,
+                     Name = x.Name,
+                     ShortDescription = x.ShortDescription,
+                     AvatarUrl = x.AvatarUrl,
+                     FullDescription = x.FullDescription,
+                     Value = x.Value
+                 })
+                 .ToList();
             return model;
         }
     }

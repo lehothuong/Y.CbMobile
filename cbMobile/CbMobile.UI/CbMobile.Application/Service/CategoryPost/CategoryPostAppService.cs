@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CbMobileApplication.Service.CategoryPost
+namespace CbMobile.Application.Service.CategoryPost
 {
     public class CategoryPostAppService : ICategoryPostAppService
     {
@@ -16,7 +16,6 @@ namespace CbMobileApplication.Service.CategoryPost
         {
             _dbContext = dbContext;
         }
-
         public IEnumerable<CategoryPostViewModel> GetCategoryNewMenu()
         {
             var model = _dbContext.Categories

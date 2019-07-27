@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CbMobileApplication.Service.CategoryPost
+namespace CbMobile.Application.Service.CategoryPost
 {
     public interface ICategoryPostAppService
     {

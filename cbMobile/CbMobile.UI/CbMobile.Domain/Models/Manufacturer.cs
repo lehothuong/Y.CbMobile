@@ -11,5 +11,6 @@ namespace CbMobile.Domain.Models
         public string ShortDescription { get; set; }
         public string AvatarUrl { get; set; }
         public ICollection<Product> Products { get; set; }
+        public ICollection<OrderManuFacturer> OrderManuFacturers { get; set; }
     }
 }

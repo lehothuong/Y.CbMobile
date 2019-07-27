@@ -3,7 +3,7 @@
     <div class="titleProductInHome">Giá sốc cuối tuần</div>
     <div class="gallery">
       <div v-for="(item,index) in products" :key="index">
-        <router-link class="slickOption" to="/" :title="item.name">
+        <router-link class="slickOption" v-bind:to="'/details/' + item.id " :title="item.name">
           <div
             class="img-background img-1-1"
             :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"

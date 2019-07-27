@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CbMobileApplication.Service.Product
+namespace CbMobile.Application.Service.Product
 {
     public interface IProductAppService
     {
         IEnumerable<ProductViewModel> GetProduct();
         IEnumerable<CategoryProductViewModel> GetPhoneProductInHome();
+        ProductViewModel GetDetails(int id);
+        IEnumerable<ProductViewModel> GetGenericProduct(int id);
     }
 }

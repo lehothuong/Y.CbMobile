@@ -38,26 +38,7 @@
                     </div>
                   </a>
                   <div class="dropdown-menu megamenu">
-                    <div class="row">
-                      <div class="col-sm-6 col-lg-4">
-                        <h5>Links</h5>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                      <div class="col-sm-6 col-lg-4">
-                        <h5>Links</h5>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                      </div>
-                      <div class="col-sm-6 col-lg-4">
-                        <h5>Paragraph</h5>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam impedit itaque minus distinctio possimus reiciendis et repellat. Voluptate, temporibus veniam et praesentium alias, maxime repudiandae aliquid, natus omnis animi iste!</p>
-                      </div>
-                    </div>
+                    <Megamenu></Megamenu>
                   </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -90,3 +71,12 @@
     </div>
   </div>
 </template>
+<script>
+import Megamenu from "../components/Megamenu";
+export default {
+  components: {
+    Megamenu
+  }
+};
+</script>
+

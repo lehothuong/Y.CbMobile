@@ -28,5 +28,9 @@ namespace CbMobile.Application.Service.Manufacturer
                 .ToList();
             return model;
         }
+        //public ManufacturerViewModel GetManuFacturerById(int id)
+        //{
+        //    var model = _dbContext.
+        //}
     }
 }

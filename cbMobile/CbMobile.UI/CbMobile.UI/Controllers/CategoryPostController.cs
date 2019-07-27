@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CbMobileApplication.Service;
-using CbMobileApplication.Service.CategoryPost;
+using CbMobile.Application.Service;
+using CbMobile.Application.Service.CategoryPost;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +21,7 @@ namespace CbMobile.UI.Controllers.CategoryPost
 
         [HttpGet]
         [Route("GetCategoryNewMenu")]
-        public IActionResult GetCategoryNewMenu()
+        public ActionResult GetCategoryNewMenu()
         {
             var model = _categoryPostAppService.GetCategoryNewMenu();
             return Ok(model);

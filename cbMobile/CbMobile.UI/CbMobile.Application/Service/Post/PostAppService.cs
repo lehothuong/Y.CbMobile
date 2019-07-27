@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CbMobileApplication.Service.Post
+namespace CbMobile.Application.Service.Post
 {
     public class PostAppService : IPostAppService
     {

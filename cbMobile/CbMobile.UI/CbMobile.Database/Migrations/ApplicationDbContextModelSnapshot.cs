@@ -83,6 +83,25 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("CbMobile.Domain.Models.OrderManuFacturer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryProductId");
+
+                    b.Property<int>("ManufacturerID");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryProductId");
+
+                    b.HasIndex("ManufacturerID");
+
+                    b.ToTable("OrderManuFacturers");
+                });
+
             modelBuilder.Entity("CbMobile.Domain.Models.OrderProduct", b =>
                 {
                     b.Property<int>("Id")
@@ -337,6 +356,19 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.OrderManuFacturer", b =>
+                {
+                    b.HasOne("CbMobile.Domain.Models.CategoryProduct", "CategoryProducts")
+                        .WithMany("OrderManuFacturers")
+                        .HasForeignKey("CategoryProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CbMobile.Domain.Models.Manufacturer", "Manufacturers")
+                        .WithMany("OrderManuFacturers")
+                        .HasForeignKey("ManufacturerID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Post", b =>
