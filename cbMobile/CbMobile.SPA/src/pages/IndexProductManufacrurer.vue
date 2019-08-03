@@ -4,6 +4,7 @@
       class="d-flex justify-content-between align-items-center borderInfoProduct paddingInfoProduct"
     >
       <h6 class="mb-0 text-uppercase font-weight-500">Điện thoại</h6>
+
       <div class="d-flex categoryPhone">
         <!-- <div v-for="(item,index) in manufacturers" :key="index">
           <router-link to="/">{{item.name}}</router-link>
@@ -33,24 +34,31 @@
 <script>
 import ProductAppService from "../api/product";
 export default {
+  props: ["idCategory"],
   data() {
     return {
       products: {},
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      idCategory: this.$route.params.idCategory
     };
   },
   methods: {
-    getIndexProductById() {
-      ProductAppService.getIndexProductById(this.id).then(resp => {
-        this.products = resp.data;
-      });
+    getIndexManufactureById() {
+      ProductAppService.getIndexManufactureById(this.id, this.idCategory).then(
+        resp => {
+          this.products = resp.data;
+        }
+      );
     }
   },
   mounted() {
-    this.getIndexProductById();
+    this.getIndexManufactureById();
   },
   created() {
-    this.getIndexProductById();
+    if (this.$route.query.debug) {
+      this.debug = this.$route.query.debug;
+    }
+    this.getIndexManufactureById();
   }
 };
 </script>

@@ -89,5 +89,41 @@ namespace CbMobile.Application.Service.Product
                  .ToList();
             return model;
         }
+        public IEnumerable<ProductViewModel> GetIndexProductById(int id)
+        {
+            var model = _dbContext
+                 .Products
+                 .Include(x => x.CategoryProduct)
+                 .Where(x => x.CategoryProductId == id)
+                 .Select(x => new ProductViewModel
+                 {
+                     Id = x.Id,
+                     Name = x.Name,
+                     ShortDescription = x.ShortDescription,
+                     AvatarUrl = x.AvatarUrl,
+                     FullDescription = x.FullDescription,
+                     Value = x.Value
+                 })
+                 .ToList();
+            return model;
+        }
+        public IEnumerable<ProductViewModel> GetIndexManufactureById(int id, int idCategory)
+        {
+            var model = _dbContext
+                 .Products
+                 .Include(x => x.CategoryProduct)
+                 .Where(x => x.ManufacturerId == id && x.CategoryProductId == idCategory)
+                 .Select(x => new ProductViewModel
+                 {
+                     Id = x.Id,
+                     Name = x.Name,
+                     ShortDescription = x.ShortDescription,
+                     AvatarUrl = x.AvatarUrl,
+                     FullDescription = x.FullDescription,
+                     Value = x.Value
+                 })
+                 .ToList();
+            return model;
+        }
     }
 }

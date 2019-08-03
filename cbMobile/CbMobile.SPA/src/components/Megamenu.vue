@@ -1,11 +1,15 @@
 <template>
   <div class="row">
     <div class="col-sm-6 col-lg-4" v-for="(item,index) in categoryProduct" :key="index">
-      <h5 class="titleCategoryProduct">{{item.name}}</h5>
-      <!-- <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>-->
+      <router-link v-bind:to="'/products/' + item.id ">
+        <h5 class="titleCategoryProduct">{{item.name}}</h5>
+      </router-link>
+      <div v-for="(items,index) in item.orderManufacturers" :key="index">
+        <router-link
+          :to="{name: 'productManufacrurers', params:{id : items.manufacturers.id}, query: { idCategory : item.id }}"
+          class="itemCategoryProduct"
+        >{{items.manufacturers.name}}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -21,9 +25,12 @@ export default {
     getMenuCategoryProduct() {
       CategoryProductAppService.getMenuCategoryProduct().then(resp => {
         this.categoryProduct = resp.data;
-        console.log(this.categoryProduct);
       });
     }
+  },
+
+  created() {
+    this.getMenuCategoryProduct();
   },
   mounted() {
     this.getMenuCategoryProduct();

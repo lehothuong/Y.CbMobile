@@ -11,5 +11,7 @@ namespace CbMobile.Application.Service.Product
         IEnumerable<CategoryProductViewModel> GetPhoneProductInHome();
         ProductViewModel GetDetails(int id);
         IEnumerable<ProductViewModel> GetGenericProduct(int id);
+        IEnumerable<ProductViewModel> GetIndexProductById(int id);
+        IEnumerable<ProductViewModel> GetIndexManufactureById(int id, int idCategory);
     }
 }

@@ -671,4 +671,10 @@ p {
 .detailProduct .el-tabs__active-bar {
   background-color: #222;
 }
+
+.titleCategoryProduct {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
 /*# sourceMappingURL=bundle.css.map */

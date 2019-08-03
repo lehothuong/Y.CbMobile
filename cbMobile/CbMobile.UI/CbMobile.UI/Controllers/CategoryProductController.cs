@@ -32,7 +32,7 @@ namespace CbMobile.UI.Controllers
         [Route("GetManuFacturerById")]
         public IActionResult GetManuFacturerById(int id)
         {
-            var model = _categoryProductAppService.GetManuFacturerById(id);
+            var model = _manufacturerAppService.GetManuFacturerById(id);
             return Ok(model);
         }
     }

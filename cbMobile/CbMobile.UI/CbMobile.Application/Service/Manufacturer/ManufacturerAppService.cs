@@ -1,5 +1,6 @@
 ﻿using CbMobile.Database;
 using CbMobile.Domain.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,27 @@ namespace CbMobile.Application.Service.Manufacturer
                 .ToList();
             return model;
         }
-        //public ManufacturerViewModel GetManuFacturerById(int id)
-        //{
-        //    var model = _dbContext.
-        //}
+        public List<ManufacturerViewModel> GetManuFacturerById(int id)
+        {
+            var manuFacturerIds = _dbContext
+                 .OrderManuFacturers
+                 .Where(x => x.CategoryProductId == id)
+                 .Select(x => new
+                 {
+                    ManufacturerID = x.ManufacturerID
+                 })
+                 .ToList();
+
+            var modelManuFacturers = _dbContext
+                 .Manufacturers
+                 .Where(x => manuFacturerIds.Select(p => p.ManufacturerID).Contains(x.Id))
+                 .Select(x => new ManufacturerViewModel {
+                     Id = x.Id,
+                     Name = x.Name,
+                 })
+                 .ToList();
+            return modelManuFacturers;
+        }
+
     }
 }

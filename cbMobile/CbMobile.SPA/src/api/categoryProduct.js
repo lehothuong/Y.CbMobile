@@ -6,6 +6,14 @@ export const CategoryProductAppService = {
         return resp;
       }
     );
+  },
+
+  getManuFacturerById(id) {
+    return Axios.get("/api/CategoryProduct/getManuFacturerById", {
+      params: { id: id }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

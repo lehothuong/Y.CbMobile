@@ -19,10 +19,15 @@ namespace CbMobile.Application.Service.CategoryProduct
         {
             var model = _dbContext
                   .CategoryProducts
+                  .Include(x => x.OrderManuFacturers)
                   .Select(x => new CategoryProductViewModel
                   {
                       Id = x.Id,
                       Name = x.Name,
+                      OrderManufacturers = x.OrderManuFacturers.Select(y => new OrderManufacturerViewModel {
+                          ManufacturerID = y.ManufacturerID,
+                          Manufacturers = y.Manufacturers
+                      })
                   })
                   .ToList();
             return model;

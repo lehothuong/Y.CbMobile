@@ -43,5 +43,17 @@ namespace CbMobile.UI.Controllers
             var model = _productAppService.GetGenericProduct(id);
             return Ok(model);
         }
+        [HttpGet("GetIndexProductById")]
+        public ActionResult GetIndexProductById(int id)
+        {
+            var model = _productAppService.GetIndexProductById(id);
+            return Ok(model);
+        }
+        [HttpGet("GetIndexManufactureById")]
+        public ActionResult GetIndexManufactureById(int id,int idCategory)
+        {
+            var model = _productAppService.GetIndexManufactureById(id, idCategory);
+            return Ok(model);
+        }
     }
 }

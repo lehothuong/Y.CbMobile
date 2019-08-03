@@ -23,6 +23,20 @@ export const ProductAppService = {
     }).then(resp => {
       return resp;
     });
+  },
+  getIndexProductById(id) {
+    return Axios.get("/api/Product/GetIndexProductById", {
+      params: { id: id }
+    }).then(resp => {
+      return resp;
+    });
+  },
+  getIndexManufactureById(id, idCategory) {
+    return Axios.get("/api/Product/GetIndexManufactureById", {
+      params: { id: id, idCategory: idCategory }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

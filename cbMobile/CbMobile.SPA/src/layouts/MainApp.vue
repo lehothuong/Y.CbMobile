@@ -2,7 +2,7 @@
   <div id="app">
     <Header></Header>
     <div class="content">
-      <router-view :key="$route.fullPath"></router-view>
+      <router-view :key="$route.fullPath" ref="router"></router-view>
     </div>
     <Footer v-bind:isActive="isActive"></Footer>
   </div>
