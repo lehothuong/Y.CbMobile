@@ -37,6 +37,13 @@ export const ProductAppService = {
     }).then(resp => {
       return resp;
     });
+  },
+  getCategoryProductById(id) {
+    return Axios.get("/api/CategoryProduct/GetCategoryProductById", {
+      params: { id: id }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

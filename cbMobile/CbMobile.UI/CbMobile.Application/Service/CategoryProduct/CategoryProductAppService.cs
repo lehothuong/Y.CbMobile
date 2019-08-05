@@ -32,5 +32,19 @@ namespace CbMobile.Application.Service.CategoryProduct
                   .ToList();
             return model;
         }
+        public CategoryProductViewModel GetCategoryProductById(int id)
+        {
+            var model = _dbContext
+                 .CategoryProducts
+                 .FirstOrDefault(x => x.Id == id);
+            if(model != null)
+            {
+                return new CategoryProductViewModel()
+                {
+                    Name = model.Name,
+                };
+            }
+            throw new KeyNotFoundException();
+        }
     }
 }

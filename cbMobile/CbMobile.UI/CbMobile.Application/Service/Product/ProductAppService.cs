@@ -41,6 +41,7 @@ namespace CbMobile.Application.Service.Product
                     Name = x.Name,
                     Products = x.Products.Select(y => new ProductViewModel
                     {
+                        Id = y.Id,
                         Name = y.Name,
                         ShortDescription = y.ShortDescription,
                         AvatarUrl = y.AvatarUrl,

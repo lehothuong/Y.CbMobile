@@ -3,7 +3,7 @@
     <div class="titleProductInHome">Giá sốc cuối tuần</div>
     <div class="gallery">
       <div v-for="(item,index) in products" :key="index">
-        <router-link to="/" class="slickOption" :title="item.name">
+        <router-link v-bind:to="'/details/' + item.id " class="slickOption" :title="item.name">
           <div
             class="img-background img-1-1"
             :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
@@ -22,7 +22,8 @@ import ProductAppService from "../api/product";
 export default {
   data() {
     return {
-      products: []
+      products: [],
+      id: this.$route.params.id
     };
   },
   methods: {

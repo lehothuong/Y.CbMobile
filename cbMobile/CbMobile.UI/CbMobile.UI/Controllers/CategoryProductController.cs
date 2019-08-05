@@ -29,8 +29,15 @@ namespace CbMobile.UI.Controllers
             return Ok(model);
         }
         [HttpGet]
+        [Route("GetCategoryProductById")]
+        public IActionResult GetCategoryProductById(int id)
+        {
+            var model = _categoryProductAppService.GetCategoryProductById(id);
+            return Ok(model);
+        }
+        [HttpGet]
         [Route("GetManuFacturerById")]
-        public IActionResult GetManuFacturerById(int id)
+        public IActionResult GetManufacturerById(int id)
         {
             var model = _manufacturerAppService.GetManuFacturerById(id);
             return Ok(model);

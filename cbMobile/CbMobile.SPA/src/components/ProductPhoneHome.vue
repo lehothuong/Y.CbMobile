@@ -14,7 +14,7 @@
       <div class="row mx-0">
         <div class="col-lg-25 px-0" v-for="(item,index) in productPhoneInHome" :key="index">
           <div class="listProduct text-center">
-            <router-link class="borderRight borderBottom p-3" to="/">
+            <router-link class="borderRight borderBottom p-3" v-bind:to="'/details/' + item.id ">
               <div
                 class="img-background img-1-1"
                 :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
@@ -37,7 +37,8 @@ export default {
   data() {
     return {
       manufacturers: [],
-      productPhoneInHome: {}
+      productPhoneInHome: {},
+      id: this.$route.params.id
     };
   },
   methods: {

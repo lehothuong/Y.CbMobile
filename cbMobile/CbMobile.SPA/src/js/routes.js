@@ -28,11 +28,6 @@ export const routes = [
     component: IndexProduct
   },
   {
-    path: "/products/:id",
-    name: "products",
-    component: IndexProduct
-  },
-  {
     path: "/productManufacrurers/:id",
     name: "productManufacrurers",
     component: IndexProductManufacrurer,

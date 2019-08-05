@@ -3,7 +3,7 @@
     <div
       class="d-flex justify-content-between align-items-center borderInfoProduct paddingInfoProduct"
     >
-      <h6 class="mb-0 text-uppercase font-weight-500">Điện thoại</h6>
+      <h6 class="mb-0 text-uppercase font-weight-500">{{categoryProducts.name}}</h6>
       <div class="d-flex categoryPhone">
         <!-- <div v-for="(item,index) in manufacturers" :key="index">
           <router-link to="/">{{item.name}}</router-link>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       products: {},
+      categoryProducts: {},
       id: this.$route.params.id
     };
   },
@@ -44,13 +45,20 @@ export default {
       ProductAppService.getIndexProductById(this.id).then(resp => {
         this.products = resp.data;
       });
+    },
+    getCategoryProductById() {
+      ProductAppService.getCategoryProductById(this.id).then(resp => {
+        this.categoryProducts = resp.data;
+      });
     }
   },
   mounted() {
     this.getIndexProductById();
+    this.getCategoryProductById();
   },
   created() {
     this.getIndexProductById();
+    this.getCategoryProductById();
   }
 };
 </script>

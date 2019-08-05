@@ -9,5 +9,6 @@ namespace CbMobile.Application.Service.Manufacturer
     {
         IEnumerable<ManufacturerViewModel> GetManufacturerInHome();
         List<ManufacturerViewModel> GetManuFacturerById(int id);
+        ManufacturerViewModel GetManufacturerById(int id);
     }
 }

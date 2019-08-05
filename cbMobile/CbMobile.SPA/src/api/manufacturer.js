@@ -4,6 +4,13 @@ export const ManufacturerAppService = {
     return Axios.get("/api/Manufacturer").then(resp => {
       return resp;
     });
+  },
+  getManufacturerById(id) {
+    return Axios.get("/api/Manufacturer/GetManufacturerById", {
+      params: { id: id }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

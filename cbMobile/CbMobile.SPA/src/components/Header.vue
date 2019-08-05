@@ -3,7 +3,9 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-2">
-          <img src="../assets/Images/logo.png" class="logo w-100" />
+          <router-link class="nav-link" to="/">
+            <img src="../assets/Images/logo.png" class="logo w-100" />
+          </router-link>
         </div>
         <div class="col-lg-3">
           <div class="search">
@@ -49,10 +51,7 @@
                     </div>
                   </router-link>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <MenuNews></MenuNews>
                   </div>
                 </li>
                 <li class="nav-item">
@@ -73,9 +72,11 @@
 </template>
 <script>
 import Megamenu from "../components/Megamenu";
+import MenuNews from "../components/MenuNews";
 export default {
   components: {
-    Megamenu
+    Megamenu,
+    MenuNews
   }
 };
 </script>

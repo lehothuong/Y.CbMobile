@@ -50,6 +50,19 @@ namespace CbMobile.Application.Service.Manufacturer
                  .ToList();
             return modelManuFacturers;
         }
-
+        public ManufacturerViewModel GetManufacturerById(int id)
+        {
+            var model = _dbContext
+                 .Manufacturers
+                 .FirstOrDefault(x => x.Id == id);
+            if(model != null)
+            {
+                return new ManufacturerViewModel()
+                {
+                    Name = model.Name
+                };
+            }
+            throw new KeyNotFoundException();
+        }
     }
 }
