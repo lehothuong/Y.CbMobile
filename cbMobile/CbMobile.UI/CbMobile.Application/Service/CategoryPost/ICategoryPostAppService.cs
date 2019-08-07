@@ -8,5 +8,6 @@ namespace CbMobile.Application.Service.CategoryPost
     public interface ICategoryPostAppService
     {
         IEnumerable<CategoryPostViewModel> GetCategoryNewMenu();
+        IEnumerable<CategoryPostViewModel> GetListById(int id);
     }
 }

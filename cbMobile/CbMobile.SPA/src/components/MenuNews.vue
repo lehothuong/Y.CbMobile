@@ -1,11 +1,11 @@
 <template>
   <div>
-    <a
-      class="dropdown-item"
-      href="#"
-      v-for="(item,index) in postCategories"
-      :key="index"
-    >{{item.name}}</a>
+    <div v-for="(item,index) in postCategories" :key="index">
+      <router-link
+        class="dropdown-item"
+        :to="{name : 'tin-tuc', params: { id : item.id }}"
+      >{{item.name}}</router-link>
+    </div>
   </div>
 </template>
 <script>

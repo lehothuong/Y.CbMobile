@@ -9,5 +9,8 @@ namespace CbMobile.Application.Service.Post
     {
         IEnumerable<PostViewModel> GetAboutUs();
         IEnumerable<PostViewModel> GetAllNews();
+        IEnumerable<PostViewModel> GetNewTechnology();
+        PostViewModel GetDetails(int id);
+
     }
 }

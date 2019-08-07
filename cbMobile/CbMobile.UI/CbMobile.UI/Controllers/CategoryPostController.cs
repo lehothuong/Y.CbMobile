@@ -18,12 +18,18 @@ namespace CbMobile.UI.Controllers.CategoryPost
         {
             _categoryPostAppService = categoryPostAppService;
         }
-
         [HttpGet]
         [Route("GetCategoryNewMenu")]
         public ActionResult GetCategoryNewMenu()
         {
             var model = _categoryPostAppService.GetCategoryNewMenu();
+            return Ok(model);
+        }
+        [HttpGet]
+        [Route("GetListById")]
+        public ActionResult GetListById(int id)
+        {
+            var model = _categoryPostAppService.GetListById(id);
             return Ok(model);
         }
     }

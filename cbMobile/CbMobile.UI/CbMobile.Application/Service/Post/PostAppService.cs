@@ -49,5 +49,43 @@ namespace CbMobile.Application.Service.Post
                 .ToList();
             return model;
         }
+
+        public IEnumerable<PostViewModel> GetNewTechnology()
+        {
+            var model = _dbContext.Posts
+                .Include(x => x.Categories)
+                .Where(x => x.CategoriesId == (int)CategoryPostTypeNews.NewsTechnology)
+                .Take(3)
+                .Select(x => new PostViewModel
+                {
+                    Id = x.Id,
+                    BannerUrl = x.BannerUrl,
+                    Name = x.Name,
+                    CreateDate = x.CreateDate,
+                    ShortDescription = x.ShortDescription,
+                    FullDescription = x.FullDescription,
+                    CategoriesId = x.CategoriesId
+                })
+                .ToList();
+            return model;
+        }
+        public PostViewModel GetDetails(int id)
+        {
+            var model = _dbContext
+                 .Posts
+                 .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                return new PostViewModel()
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    CreateDate = model.CreateDate,
+                    ShortDescription = model.ShortDescription,
+                    FullDescription = model.FullDescription,
+                };
+            }
+            throw new KeyNotFoundException();
+        }
     }
 }

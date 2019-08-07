@@ -19,6 +19,14 @@ namespace CbMobile.UI.Controllers
         }
 
         [HttpGet]
+        [Route("GetDetailNews")]
+        public ActionResult GetDetailNews(int id)
+        {
+            var model = _postAppService.GetDetails(id);
+            return Ok(model);
+        }
+
+        [HttpGet]
         [Route("GetAboutUs")]
         public IActionResult GetAboutUs()
         {
@@ -30,6 +38,13 @@ namespace CbMobile.UI.Controllers
         public IActionResult GetAllNews()
         {
             var model = _postAppService.GetAllNews();
+            return Ok(model);
+        }
+        [HttpGet]
+        [Route("GetNewTechnology")]
+        public IActionResult GetNewTechnology()
+        {
+            var model = _postAppService.GetNewTechnology();
             return Ok(model);
         }
     }

@@ -10,6 +10,6 @@ namespace CbMobile.Domain.ViewModels
         public int Id { get; set; }
         public int ParentId { get; set; }
         public string Name { get; set; }
-        public ICollection<Post> Posts { get; set; }
+        public IEnumerable<PostViewModel> Posts { get; set; }
     }
 }

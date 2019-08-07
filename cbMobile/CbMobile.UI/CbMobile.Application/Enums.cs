@@ -14,4 +14,9 @@ namespace CbMobile.Application
         Topic = 1,
         News = 2
     }
+
+    public enum CategoryPostTypeNews
+    {
+        NewsTechnology = 3,
+    }
 }

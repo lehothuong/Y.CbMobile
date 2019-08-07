@@ -676,5 +676,28 @@ p {
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 500;
+  -webkit-transition: 0.4s ease all;
+  transition: 0.4s ease all;
+}
+
+.titleCategoryProduct:hover {
+  color: #f30;
+}
+
+.itemCategoryProduct {
+  font-size: 14px;
+  -webkit-transition: 0.4s ease all;
+  transition: 0.4s ease all;
+  line-height: 1.7;
+}
+
+.itemCategoryProduct:hover {
+  color: #f30;
+}
+
+.postByTitle {
+  font-size: 12px;
+  color: #b2b2b2;
+  margin: 8px 0;
 }
 /*# sourceMappingURL=bundle.css.map */

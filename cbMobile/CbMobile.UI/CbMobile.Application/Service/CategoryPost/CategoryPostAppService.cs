@@ -22,9 +22,32 @@ namespace CbMobile.Application.Service.CategoryPost
                 .Where(x => x.ParentId == (int)CategoryPostType.News)
                 .Select(x => new CategoryPostViewModel
                 {
+                    Id = x.Id,
                     Name = x.Name,
                 })
                 .ToList();
+            return model;
+        }
+        public IEnumerable<CategoryPostViewModel> GetListById(int id)
+        {
+            var model = _dbContext
+                 .Categories
+                 .Include(x => x.Posts)
+                 .Where(x => x.Id == id)
+                 .Select(x => new CategoryPostViewModel
+                 {
+                     Name = x.Name,
+                     Posts = x.Posts.Select(y => new PostViewModel
+                     {
+                         Id = y.Id,
+                         BannerUrl = y.BannerUrl,
+                         Name = y.Name,
+                         CreateDate = y.CreateDate,
+                         ShortDescription = y.ShortDescription,
+                         FullDescription = y.FullDescription,
+                     })
+                 })
+                 .ToList();
             return model;
         }
     }
