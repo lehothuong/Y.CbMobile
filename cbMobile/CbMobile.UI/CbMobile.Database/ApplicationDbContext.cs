@@ -19,5 +19,6 @@ namespace CbMobile.Database
         public DbSet<OrderManuFacturer> OrderManuFacturers { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Post> Posts { get; set; }
+        public DbSet<Location> Locations { get; set; }
     }
 }

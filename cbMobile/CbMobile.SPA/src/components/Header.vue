@@ -55,7 +55,7 @@
                   </div>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/">
+                  <router-link class="nav-link" to="/lien-he">
                     <div class="text-center">
                       <i class="fa fa-clock-o" aria-hidden="true"></i>
                       <p class="nav-p">Liên hệ</p>

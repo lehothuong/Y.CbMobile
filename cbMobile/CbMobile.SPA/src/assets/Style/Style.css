@@ -438,6 +438,17 @@ h6 {
   border-radius: 0;
 }
 
+.btn.btnSendContact {
+  line-height: 1.3;
+  background-color: #f30;
+  color: #fff;
+  border: 1px solid #f30;
+  height: 40px;
+  border-radius: 999px;
+  font-size: 14px;
+  padding: 10px 20px;
+}
+
 .btn.btnPlus {
   background-color: transparent;
   font-size: 22px;
@@ -567,6 +578,14 @@ h6 {
 
 .color-red {
   color: #f30;
+}
+
+.color-black {
+  color: #000 !important;
+}
+
+.color-black-1 {
+  color: #36424b !important;
 }
 
 .zoomerContainer {
@@ -741,5 +760,33 @@ p {
 
 iframe {
   border-width: 0;
+}
+
+.contact .infoContact {
+  color: #666666;
+}
+
+.contact .el-form-item__label {
+  font-weight: 700;
+}
+
+.contact .el-form-item__label:before {
+  display: none;
+}
+
+.contact .el-form-item__label:after {
+  content: "*";
+  color: #f56c6c;
+  margin-left: 4px;
+}
+
+.textContact {
+  color: #707e89;
+}
+
+.el-form-item__label {
+  text-align: left;
+  float: none;
+  line-height: 30px;
 }
 /*# sourceMappingURL=Style.css.map */

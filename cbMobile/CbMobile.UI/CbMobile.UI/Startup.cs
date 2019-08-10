@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using CbMobile.Application.Service.Location;
 
 namespace CbMobile.UI
 {
@@ -47,6 +48,7 @@ namespace CbMobile.UI
             services.AddScoped<IManufacturerAppService, ManufacturerAppService>();
             services.AddScoped<IPostAppService, PostAppService>();
             services.AddScoped<ICategoryPostAppService, CategoryPostAppService>();
+            services.AddScoped<ILocationAppService, LocationAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

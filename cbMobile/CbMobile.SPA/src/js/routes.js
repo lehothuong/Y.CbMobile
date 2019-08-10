@@ -5,6 +5,7 @@ import DetailProduct from "../pages/DetailProduct.vue";
 import IndexProduct from "../pages/IndexProduct.vue";
 import IndexProductManufacrurer from "../pages/IndexProductManufacrurer.vue";
 import DetailNews from "../pages/DetailNews.vue";
+import ContactUs from "../pages/ContactUs.vue";
 export const routes = [
   {
     path: "/",
@@ -33,6 +34,11 @@ export const routes = [
     path: "/products/:id",
     name: "products",
     component: IndexProduct
+  },
+  {
+    path: "/lien-he",
+    name: "contactus",
+    component: ContactUs
   },
   {
     path: "/productManufacrurers/:id",
