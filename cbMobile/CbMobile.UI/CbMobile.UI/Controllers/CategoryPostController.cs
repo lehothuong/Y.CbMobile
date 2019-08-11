@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CbMobile.Application.Service;
-using CbMobile.Application.Service.CategoryPost;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CbMobile.UI.Controllers.CategoryPost
+namespace CbMobile.UI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

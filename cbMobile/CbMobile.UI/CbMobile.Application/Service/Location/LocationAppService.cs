@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CbMobile.Application.Service.Location
+namespace CbMobile.Application.Service
 {
     public class LocationAppService : ILocationAppService
     {

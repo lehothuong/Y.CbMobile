@@ -22,7 +22,8 @@ import {
   Form,
   FormItem,
   Input,
-  Button
+  Button,
+  Notification
 } from "element-ui";
 
 Vue.component(RadioGroup.name, RadioGroup);
@@ -31,6 +32,7 @@ Vue.component(Form.name, Form);
 Vue.component(FormItem.name, FormItem);
 Vue.component(Input.name, Input);
 Vue.component(Button.name, Button);
+Vue.component(Notification.name, Notification);
 
 Vue.use(VueRouter);
 Vue.use(Vuex);

@@ -12,7 +12,8 @@ export const routes = [
     component: Home
   },
   {
-    path: "/about-us",
+    path: "/gioi-thieu",
+    name: "gioi-thieu",
     component: AboutUs
   },
   {

@@ -26,6 +26,7 @@ export default {
       id: this.$route.params.id
     };
   },
+
   methods: {
     next() {
       this.$refs.slick.next();
@@ -68,7 +69,9 @@ export default {
       ]
     });
   },
-  created() {},
+  created() {
+    console.log(this.$route);
+  },
   mounted() {
     setTimeout(() => {
       this.getProductInHomeHot();

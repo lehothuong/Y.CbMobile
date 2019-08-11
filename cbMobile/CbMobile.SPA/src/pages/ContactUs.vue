@@ -73,6 +73,7 @@
 <script>
 import GoogleMap from "../components/GoogleMap";
 import LocationAppService from "../api/location";
+import ContactAppService from "../api/contact";
 export default {
   components: {
     GoogleMap
@@ -85,6 +86,7 @@ export default {
         phoneNumber: 0,
         content: ""
       },
+      result: "",
       rules: {
         name: [
           {
@@ -137,9 +139,23 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert("submit!");
+          ContactAppService.postContact(this.contact).then(resp => {
+            this.result = resp.data;
+            this.$notify({
+              title: "Thành công!",
+              message: "Cảm ơn bạn đã liên hệ với chúng tôi",
+              type: "success",
+              offset: 100
+            });
+            this.$refs[formName].resetFields();
+          });
         } else {
-          console.log("error submit!!");
+          this.$notify({
+            title: "Không thành công!",
+            message: "Liên hệ không thành công",
+            title: "Error",
+            offset: 100
+          });
           return false;
         }
       });

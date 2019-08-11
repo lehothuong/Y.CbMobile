@@ -25,7 +25,7 @@
                   </router-link>
                 </li>
                 <li class="nav-item">
-                  <router-link class="nav-link" to="/about-us">
+                  <router-link class="nav-link" to="/gioi-thieu">
                     <div class="text-center">
                       <i class="fa fa-tablet" aria-hidden="true"></i>
                       <p class="nav-p">Giới thiệu</p>

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CbMobile.Application.Service.CategoryProduct
+namespace CbMobile.Application.Service
 {
     public class CategoryProductAppService : ICategoryProductAppService
     {

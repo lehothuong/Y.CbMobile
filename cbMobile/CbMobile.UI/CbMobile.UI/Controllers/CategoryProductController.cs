@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CbMobile.Application.Service.CategoryProduct;
-using CbMobile.Application.Service.Manufacturer;
+using CbMobile.Application.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CbMobile.UI.Controllers

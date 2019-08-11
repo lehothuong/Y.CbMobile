@@ -52,10 +52,7 @@ export default {
       });
     }
   },
-  mounted() {
-    this.getIndexProductById();
-    this.getCategoryProductById();
-  },
+
   created() {
     this.getIndexProductById();
     this.getCategoryProductById();

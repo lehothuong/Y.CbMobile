@@ -57,9 +57,6 @@ export default {
       });
     }
   },
-  mounted() {
-    this.getIndexManufactureById();
-  },
   created() {
     this.getIndexManufactureById();
     this.getManufacturerById();

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CbMobile.Application.Service.CategoryProduct
+namespace CbMobile.Application.Service
 {
     public interface ICategoryProductAppService
     {

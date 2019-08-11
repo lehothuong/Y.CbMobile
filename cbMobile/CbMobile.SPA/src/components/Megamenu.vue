@@ -31,9 +31,6 @@ export default {
 
   created() {
     this.getMenuCategoryProduct();
-  },
-  mounted() {
-    this.getMenuCategoryProduct();
   }
 };
 </script>

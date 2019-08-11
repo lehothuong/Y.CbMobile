@@ -203,9 +203,6 @@ export default {
   },
   created() {
     this.getDetailProduct(this.id);
-  },
-  mounted() {
-    this.getDetailProduct(this.id);
   }
 };
 </script>

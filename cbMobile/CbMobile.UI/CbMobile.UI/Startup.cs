@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CbMobile.Application.Service.CategoryProduct;
-using CbMobile.Application.Service.Manufacturer;
+using CbMobile.Application.Service;
 using CbMobile.Database;
-using CbMobile.Application.Service.CategoryPost;
-using CbMobile.Application.Service.Post;
-using CbMobile.Application.Service.Product;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +16,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
-using CbMobile.Application.Service.Location;
 
 namespace CbMobile.UI
 {
@@ -49,6 +44,7 @@ namespace CbMobile.UI
             services.AddScoped<IPostAppService, PostAppService>();
             services.AddScoped<ICategoryPostAppService, CategoryPostAppService>();
             services.AddScoped<ILocationAppService, LocationAppService>();
+            services.AddScoped<IContactAppService, ContactAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

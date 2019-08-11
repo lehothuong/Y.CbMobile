@@ -20,5 +20,6 @@ namespace CbMobile.Database
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
