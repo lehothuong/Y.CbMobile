@@ -11,6 +11,8 @@ C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Da
 C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.dll
 C:\C#\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.pdb
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.deps.json
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.runtimeconfig.json
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.runtimeconfig.dev.json
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.dll
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.pdb
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Domain.dll
@@ -22,5 +24,3 @@ C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.csproj.CopyComplete
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.dll
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\obj\Debug\netcoreapp2.2\CbMobile.Database.pdb
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.runtimeconfig.json
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.Database\bin\Debug\netcoreapp2.2\CbMobile.Database.runtimeconfig.dev.json

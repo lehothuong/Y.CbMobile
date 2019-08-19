@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CbMobile.Domain.Models
 {
-    public class CategoryProduct
+    public class CategoryProduct : BaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

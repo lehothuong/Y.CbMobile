@@ -1,3 +1,21 @@
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: slategray;
+}
+
+::-webkit-scrollbar-track {
+  background: #b8c0c8;
+}
+
+body {
+  scrollbar-face-color: slategray;
+  scrollbar-track-color: #b8c0c8;
+}
+
 body {
   font-size: 14px;
   font-family: "Segoe UI";
@@ -253,6 +271,25 @@ h6 {
 }
 
 .img-3-4 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-18-9 {
+  position: relative;
+}
+
+.img-18-9:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 50%;
+}
+
+.img-18-9 > .content {
   position: absolute;
   top: 0;
   left: 0;

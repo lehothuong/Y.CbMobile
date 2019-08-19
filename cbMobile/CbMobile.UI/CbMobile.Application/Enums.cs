@@ -19,4 +19,9 @@ namespace CbMobile.Application
     {
         NewsTechnology = 3,
     }
+
+    public static class BannerCategoryType
+    {
+         public static string HomeTopBanner = "Home Top Banner";
+    }
 }

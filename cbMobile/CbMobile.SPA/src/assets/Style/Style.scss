@@ -1,6 +1,8 @@
 @import "./mixins";
 @import "./variables";
 
+@include scrollbars(.5em, slategray);
+
 body {
   font-size: 14px;
   font-family: "Segoe UI";
@@ -236,6 +238,10 @@ h6 {
 
 .img-3-4 {
   @include aspect-ratio(3, 4);
+}
+
+.img-18-9{
+  @include aspect-ratio(18, 9);
 }
 
 .img-1-1 {
@@ -672,3 +678,5 @@ iframe {
   float: none;
   line-height: 30px;
 }
+
+

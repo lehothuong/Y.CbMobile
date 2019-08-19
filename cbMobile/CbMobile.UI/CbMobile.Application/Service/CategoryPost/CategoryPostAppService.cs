@@ -42,7 +42,6 @@ namespace CbMobile.Application.Service
                          Id = y.Id,
                          BannerUrl = y.BannerUrl,
                          Name = y.Name,
-                         CreateDate = y.CreateDate,
                          ShortDescription = y.ShortDescription,
                          FullDescription = y.FullDescription,
                      })

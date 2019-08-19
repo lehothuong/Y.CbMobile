@@ -26,6 +26,7 @@ namespace CbMobile.Application.Service
                 {
                     Name = x.Name,
                     ShortDescription = x.ShortDescription,
+                    CreateDate = x.CreatedDate,
                     FullDescription = x.FullDescription,
                     AvatarUrl = x.AvatarUrl
                 })
@@ -42,7 +43,7 @@ namespace CbMobile.Application.Service
                 {
                     BannerUrl = x.BannerUrl,
                     Name = x.Name,
-                    CreateDate = x.CreateDate,
+                    CreateDate = x.CreatedDate,
                     ShortDescription = x.ShortDescription,
                     FullDescription = x.FullDescription,
                 })
@@ -61,7 +62,7 @@ namespace CbMobile.Application.Service
                     Id = x.Id,
                     BannerUrl = x.BannerUrl,
                     Name = x.Name,
-                    CreateDate = x.CreateDate,
+                    CreateDate = x.CreatedDate,
                     ShortDescription = x.ShortDescription,
                     FullDescription = x.FullDescription,
                     CategoriesId = x.CategoriesId
@@ -80,7 +81,7 @@ namespace CbMobile.Application.Service
                 {
                     Id = model.Id,
                     Name = model.Name,
-                    CreateDate = model.CreateDate,
+                    CreateDate = model.CreatedDate,
                     ShortDescription = model.ShortDescription,
                     FullDescription = model.FullDescription,
                 };

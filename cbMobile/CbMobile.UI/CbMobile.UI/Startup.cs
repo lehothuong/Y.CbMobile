@@ -45,6 +45,7 @@ namespace CbMobile.UI
             services.AddScoped<ICategoryPostAppService, CategoryPostAppService>();
             services.AddScoped<ILocationAppService, LocationAppService>();
             services.AddScoped<IContactAppService, ContactAppService>();
+            services.AddScoped<IBannerAppService, BannerAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

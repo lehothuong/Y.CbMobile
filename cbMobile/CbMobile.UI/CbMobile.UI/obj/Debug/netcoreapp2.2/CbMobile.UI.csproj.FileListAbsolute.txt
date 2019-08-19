@@ -19,6 +19,12 @@ C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobi
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.dll
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.pdb
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.UI.xml
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Application.dll
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Database.dll
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Domain.dll
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Application.pdb
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Database.pdb
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Domain.pdb
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csprojAssemblyReference.cache
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csproj.CoreCompileInputs.cache
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.RazorAssemblyInfo.cache
@@ -26,12 +32,6 @@ C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobi
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.AssemblyInfoInputs.cache
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.AssemblyInfo.cs
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.RazorTargetAssemblyInfo.cache
+C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csproj.CopyComplete
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.dll
 C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.pdb
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Database.dll
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Domain.dll
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Database.pdb
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Domain.pdb
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\obj\Debug\netcoreapp2.2\CbMobile.UI.csproj.CopyComplete
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Application.dll
-C:\C#\Y.CbMobile\cbMobile\CbMobile.UI\CbMobile.UI\bin\Debug\netcoreapp2.2\CbMobile.Application.pdb

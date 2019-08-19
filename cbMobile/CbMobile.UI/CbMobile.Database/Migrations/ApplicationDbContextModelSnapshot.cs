@@ -15,9 +15,42 @@ namespace CbMobile.Database.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CbMobile.Domain.Models.Banner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BannerCategory");
+
+                    b.Property<string>("BannerUrl");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banners");
+                });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Categories", b =>
                 {
@@ -25,9 +58,23 @@ namespace CbMobile.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("Name");
 
                     b.Property<int>("ParentId");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -40,7 +87,21 @@ namespace CbMobile.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("Name");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -55,11 +116,25 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("Content");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -74,13 +149,27 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("Email");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("PhoneNumber");
 
+                    b.Property<bool>("Published");
+
                     b.Property<string>("ShortDescription");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -95,9 +184,23 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("AvatarUrl");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("Name");
 
+                    b.Property<bool>("Published");
+
                     b.Property<string>("ShortDescription");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -114,9 +217,23 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("City");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("OrderRef");
 
                     b.Property<string>("PostCode");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -131,7 +248,21 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("CategoryProductId");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<int>("ManufacturerID");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -150,9 +281,23 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("Amount");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<int>("OrderId");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.Property<decimal>("Value");
 
@@ -173,13 +318,25 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("CategoriesId");
 
-                    b.Property<DateTime>("CreateDate");
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
 
                     b.Property<string>("FullDescription");
 
                     b.Property<string>("Name");
 
+                    b.Property<bool>("Published");
+
                     b.Property<string>("ShortDescription");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.HasKey("Id");
 
@@ -204,6 +361,14 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("CategoryProductId");
 
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
                     b.Property<string>("FullDescription");
 
                     b.Property<string>("GPU");
@@ -218,6 +383,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<bool>("Published");
+
                     b.Property<int>("Ram");
 
                     b.Property<string>("Screen");
@@ -225,6 +392,10 @@ namespace CbMobile.Database.Migrations
                     b.Property<string>("ShortDescription");
 
                     b.Property<bool>("Status");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
 
                     b.Property<decimal>("Value");
 
