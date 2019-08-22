@@ -69,9 +69,7 @@ export default {
       ]
     });
   },
-  created() {
-    console.log(this.$route);
-  },
+  created() {},
   mounted() {
     setTimeout(() => {
       this.getProductInHomeHot();

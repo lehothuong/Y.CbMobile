@@ -1,8 +1,9 @@
 import { Axios } from "../api/axios";
 export const ContactAppService = {
   postContact(contact) {
-    console.log(contact);
-    return Axios.post("/api/Contact/PostContact", contact);
+    return Axios.post("/api/Contact/PostContact", contact).then(resp => {
+      return resp;
+    });
   }
 };
 

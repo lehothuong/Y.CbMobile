@@ -22,7 +22,6 @@ export default {
       CategoryProductAppService.getManuFacturerById(this.idCategory).then(
         resp => {
           this.manuFacturers = resp.data;
-          console.log(this.idCategory);
         }
       );
     }

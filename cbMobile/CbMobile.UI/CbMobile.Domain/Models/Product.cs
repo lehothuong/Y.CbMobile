@@ -27,6 +27,7 @@ namespace CbMobile.Domain.Models
         public Manufacturer Manufacturer { get; set; }
         public int CategoryProductId { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
+        public IEnumerable<Review> Reivews { get; set; }
     }   
 
 }

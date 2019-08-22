@@ -24,7 +24,7 @@ namespace CbMobile.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var model = _contactAppService.PostContact(contact);
+                var model =  _contactAppService.PostContact(contact);
                 return NoContent();
             }
             return NotFound();

@@ -9,6 +9,8 @@ import { routes } from "./js/routes";
 import jQuery from "jquery";
 import StarRating from "vue-star-rating";
 import ProductZoomer from "vue-product-zoomer";
+var VueScrollTo = require("vue-scrollto");
+
 Vue.component("star-rating", StarRating);
 Vue.use(Element);
 global.jQuery = jQuery;
@@ -23,7 +25,12 @@ import {
   FormItem,
   Input,
   Button,
-  Notification
+  Notification,
+  Dialog,
+  Option,
+  Select,
+  TabPane,
+  Tabs
 } from "element-ui";
 
 Vue.component(RadioGroup.name, RadioGroup);
@@ -33,8 +40,21 @@ Vue.component(FormItem.name, FormItem);
 Vue.component(Input.name, Input);
 Vue.component(Button.name, Button);
 Vue.component(Notification.name, Notification);
+Vue.component(Dialog.name, Dialog);
+Vue.component(Option.name, Option);
+Vue.component(Select.name, Select);
+Vue.component(TabPane.name, TabPane);
+Vue.component(Tabs.name, Tabs);
 
 Vue.use(VueRouter);
+Vue.use(VueScrollTo, {
+  container: "body",
+  duration: 1000,
+  easing: "ease",
+  offset: 0,
+  force: true,
+  cancelable: true
+});
 Vue.use(Vuex);
 Vue.use(Slick);
 Vue.use(ProductZoomer);

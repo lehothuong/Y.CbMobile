@@ -1,7 +1,7 @@
 @import "./mixins";
 @import "./variables";
 
-@include scrollbars(.5em, slategray);
+@include scrollbars(0.5em, slategray);
 
 body {
   font-size: 14px;
@@ -240,12 +240,16 @@ h6 {
   @include aspect-ratio(3, 4);
 }
 
-.img-18-9{
+.img-18-9 {
   @include aspect-ratio(18, 9);
 }
 
 .img-1-1 {
   @include aspect-ratio(1, 1);
+}
+
+.titleReview {
+  font-size: 1.125rem;
 }
 
 .linkHomeBoxNews {
@@ -393,6 +397,20 @@ h6 {
     border-radius: 999px;
     font-size: 14px;
     padding: 10px 20px;
+  }
+
+  &.btnSendReview {
+    line-height: 1.3;
+    background-color: #f30;
+    color: #fff;
+    border: 1px solid #f30;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &.btnPlus {
@@ -678,5 +696,3 @@ iframe {
   float: none;
   line-height: 30px;
 }
-
-

@@ -12,12 +12,13 @@
           <span>
             <star-rating
               :show-rating="false"
-              v-model="rating"
+              :read-only="true"
+              v-model="reviews.reivewStar"
               v-bind:increment="0.5"
               v-bind:star-size="15"
             ></star-rating>
           </span>
-          <span class="ml-lg-2">Đánh giá sản phẩm</span>
+          <a href="#" class="ml-lg-2" v-scroll-to="'#element'">Đánh giá sản phẩm</a>
         </div>
       </div>
       <div class="detailProduct pt-lg-3">
@@ -84,21 +85,90 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-9">
+          <div class="col-lg-9" id="element">
             <el-tabs v-model="activeName">
               <el-tab-pane label="Mô tả" name="first">
                 <div class="full-description" v-html="products.fullDescription"></div>
               </el-tab-pane>
-              <el-tab-pane label="Nhận xét sản phẩm" name="second">Đánh giá sản phẩm</el-tab-pane>
+              <el-tab-pane label="Nhận xét sản phẩm" name="second">
+                <div class="border-bottom py-lg-2">
+                  <span class="titleReview">Đánh giá sản phẩm</span>
+                </div>
+                <div class="d-flex py-lg-3">
+                  <div v-if="totalReviews > 0" class="d-flex align-items-start">
+                    <h3 class="pr-3 mb-0">{{totalStars}}</h3>
+                    <div>
+                      <span>
+                        <star-rating
+                          :show-rating="false"
+                          :read-only="true"
+                          v-model="totalStars"
+                          v-bind:increment="1"
+                          v-bind:star-size="22"
+                        ></star-rating>
+                      </span>
+                      <div class="d-flex align-items-center mt-lg-1">
+                        <h5 class="pr-1 mb-0">{{totalReviews}}</h5>
+                        <span>
+                          <i class="fa fa-users" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ml-auto">
+                    <a
+                      class="btn btnSendContact font-weight-bolder text-uppercase"
+                      @click="centerDialogVisible = true"
+                    >Viết đánh giá</a>
+                  </div>
+                </div>
+              </el-tab-pane>
             </el-tabs>
           </div>
         </div>
       </div>
       <GenericProduct :categoryProductId="categoryProductId"></GenericProduct>
     </div>
+    <el-dialog title="Đánh giá sản phẩm" :visible.sync="centerDialogVisible" width="25%" center>
+      <el-form ref="reviews" :rules="rules" :model="reviews" class="pt-lg-3">
+        <span class="d-flex justify-content-center pb-lg-3">
+          <star-rating
+            :border-width="4"
+            :show-rating="false"
+            v-bind:star-size="20"
+            v-model="reviews.reviewStar"
+            border-color="#FFD055"
+            :rounded-corners="true"
+          ></star-rating>
+        </span>
+        <el-form-item prop="name" class="pb-lg-2">
+          <el-input placeholder="Nhập tên của bạn" v-model="reviews.name"></el-input>
+        </el-form-item>
+        <el-form-item prop="email" class="pb-lg-2">
+          <el-input placeholder="Nhập Email của bạn" type="email" v-model="reviews.email"></el-input>
+        </el-form-item>
+        <el-form-item prop="title" class="pb-lg-2">
+          <el-input placeholder="Tiêu đề" v-model="reviews.title"></el-input>
+        </el-form-item>
+        <el-form-item prop="content">
+          <el-input :rows="5" type="textarea" placeholder="Nội dung" v-model="reviews.content"></el-input>
+        </el-form-item>
+        <div class="d-flex justify-content-center pt-lg-3">
+          <el-button
+            @click="submitForm('reviews')"
+            class="btn btnSendReview font-weight-bolder text-uppercase"
+          >Gửi</el-button>
+        </div>
+      </el-form>
+      <!-- <span slot="footer" class="dialog-footer">
+        <el-button @click="centerDialogVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="centerDialogVisible = false">Confirm</el-button>
+      </span>-->
+    </el-dialog>
   </div>
 </template>
 <script>
+import ReviewAppService from "../api/review";
 import ProductAppService from "../api/product";
 import GenericProduct from "../components/GenericProduct";
 export default {
@@ -108,11 +178,67 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      totalReviews: 0,
+      totalStars: 0,
+      reviews: {
+        name: "",
+        title: "",
+        content: "",
+        email: "",
+        productId: this.$route.params.id,
+        reviewStar: 3
+      },
+      rules: {
+        name: [
+          {
+            required: true,
+            message: "Xin vui lòng nhập Họ Tên",
+            trigger: "blur"
+          },
+          {
+            min: 3,
+            message: "Xin vui nhập tối thiểu 3 ký tự",
+            trigger: "blur"
+          }
+        ],
+        email: [
+          {
+            required: true,
+            message: "Xin vui lòng nhập Email",
+            trigger: "blur"
+          },
+          {
+            type: "email",
+            message: "Xin vui lòng nhập đúng định dạng Email",
+            trigger: ["blur", "change"]
+          }
+        ],
+        title: [
+          {
+            required: true,
+            message: "Xin vui lòng nhập Tiêu đề",
+            trigger: "blur"
+          },
+          {
+            min: 3,
+            message: "Xin vui nhập tối thiểu 3 ký tự",
+            trigger: "blur"
+          }
+        ],
+        content: [
+          {
+            required: true,
+            message: "Xin vui lòng nhập Nội dung",
+            trigger: "blur"
+          }
+        ]
+      },
+      centerDialogVisible: false,
       products: [],
       gender: [],
+      allReivews: [],
       categoryProductId: Number,
       radio: 3,
-      rating: 3,
       activeName: "first",
       images: {
         thumbs: [
@@ -193,16 +319,60 @@ export default {
       }
     };
   },
+  mounted() {
+    this.getDetailProduct();
+    this.getAllReviewByProductId();
+  },
+  beforeDestroy() {
+    this.getAllReviewByProductId();
+  },
   methods: {
-    getDetailProduct(id) {
+    getDetailProduct() {
       ProductAppService.getDetailProduct(this.id).then(resp => {
         this.products = resp.data;
         this.categoryProductId = this.products.categoryProductId;
       });
+    },
+    getAllReviewByProductId() {
+      ReviewAppService.getAllReviewByProductId(this.id).then(resp => {
+        this.allReivews = resp.data;
+        this.totalReviews = this.allReivews.length;
+        this.averageStar(this.totalReviews);
+      });
+    },
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          ReviewAppService.postReview(this.reviews).then(resp => {
+            this.allReivews.push(resp.data);
+            this.totalReviews = this.allReivews.length;
+            this.averageStar(this.totalReviews);
+            this.$notify({
+              title: "Thành công!",
+              message: "Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi",
+              type: "success",
+              offset: 100
+            });
+            this.$refs[formName].resetFields();
+          });
+        } else {
+          this.$notify({
+            title: "Không thành công!",
+            message: "Đánh giá không thành công",
+            title: "Error",
+            offset: 100
+          });
+          return false;
+        }
+      });
+    },
+    averageStar(totalReivew) {
+      var result = this.allReivews.reduce(function(tot, arr) {
+        // return the sum with previous value
+        return tot + arr.reviewStar;
+      }, 0);
+      this.totalStars = parseFloat((result / totalReivew).toFixed(0));
     }
-  },
-  created() {
-    this.getDetailProduct(this.id);
   }
 };
 </script>
