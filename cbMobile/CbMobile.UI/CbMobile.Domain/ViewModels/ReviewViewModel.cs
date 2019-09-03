@@ -13,6 +13,7 @@ namespace CbMobile.Domain.ViewModels
         public string Content { get; set; }
         public string Email { get; set; }
         public int ReviewStar { get; set; }
+        public string CreateDate { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
     }

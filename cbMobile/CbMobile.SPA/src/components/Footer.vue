@@ -176,22 +176,79 @@
         <div class="footerSubscribe">
           <p class="font-weight-500 mb-2">Đăng ký nhận tin</p>
           <p class="mb-2">Nhận thông tin sản phẩm mới nhất, tin khuyến mãi và nhiều hơn nữa.</p>
-          <form>
+          <el-form ref="subscribe" :model="subscribe" :rules="rules">
+            <el-form-item prop="email" class="email">
+              <el-input placeholder="Email của bạn" type="email" v-model="subscribe.email"></el-input>
+            </el-form-item>
+            <el-form-item class="inputGroupBtn">
+              <el-button @click="submitForm('subscribe')" class="btn btnDefault">Gửi tin nhắn</el-button>
+            </el-form-item>
+          </el-form>
+          <!-- <form>
             <div class="input-group">
-              <input type="email" class="form-control" placeholder="Enter của bạn" />
+              <input type="email" class="form-control"  />
               <span class="inputGroupBtn">
                 <button type="submit" class="btn btnDefault">Submit</button>
               </span>
             </div>
-          </form>
+          </form>-->
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import SubscribeAppService from "../api/subscribe";
 export default {
   props: ["isActive"],
+  data() {
+    return {
+      subscribe: {
+        email: ""
+      },
+      result: [],
+      rules: {
+        email: [
+          {
+            required: true,
+            message: "Xin vui lòng nhập Email",
+            trigger: "blur"
+          },
+          {
+            type: "email",
+            message: "Xin vui lòng nhập đúng định dạng Email",
+            trigger: ["blur", "change"]
+          }
+        ]
+      }
+    };
+  },
+  methods: {
+    submitForm(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          SubscribeAppService.postSubscribe(this.subscribe).then(resp => {
+            this.result = resp.data;
+            this.$notify({
+              title: "Thành công!",
+              message: "Cảm ơn bạn đã liên hệ với chúng tôi",
+              type: "success",
+              offset: 100
+            });
+            this.$refs[formName].resetFields();
+          });
+        } else {
+          this.$notify({
+            title: "Không thành công!",
+            message: "Liên hệ không thành công",
+            title: "Error",
+            offset: 100
+          });
+          return false;
+        }
+      });
+    }
+  },
   computed: {
     classObject: function() {
       if (this.isActive) {

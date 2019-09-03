@@ -51,6 +51,10 @@ body {
   color: #000;
 }
 
+.color-white {
+  color: #fff !important;
+}
+
 a {
   display: block;
   color: #000;
@@ -324,6 +328,10 @@ h6 {
   color: #ff3300;
 }
 
+.fontSiteUserIcon {
+  font-size: 28px;
+}
+
 .homeBoxNews {
   border-bottom: 1px solid #efefef;
   background: #fff;
@@ -411,6 +419,28 @@ h6 {
 
 #footer .footerSubscribe .form-control:focus {
   border-color: #f30;
+}
+
+#footer .footerSubscribe .el-input__inner {
+  border-radius: 0;
+}
+
+#footer .footerSubscribe .el-form-item__content {
+  line-height: 0;
+}
+
+#footer .footerSubscribe .el-input {
+  width: 100%;
+}
+
+#footer .footerSubscribe .el-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#footer .footerSubscribe .email {
+  width: 100%;
 }
 
 #footer input {
@@ -849,5 +879,15 @@ iframe {
   text-align: left;
   float: none;
   line-height: 30px;
+}
+
+.titleCommentReview {
+  color: #999;
+  font-weight: 500;
+  padding-left: 16px;
+}
+
+.createDateReview {
+  padding-top: 0.2rem;
 }
 /*# sourceMappingURL=Style.css.map */

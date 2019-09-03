@@ -36,6 +36,10 @@ body {
   color: #000;
 }
 
+.color-white {
+  color: #fff !important;
+}
+
 a {
   display: block;
   color: #000;
@@ -260,6 +264,10 @@ h6 {
   }
 }
 
+.fontSiteUserIcon {
+  font-size: 28px;
+}
+
 .homeBoxNews {
   border-bottom: 1px solid #efefef;
   background: #fff;
@@ -319,6 +327,22 @@ h6 {
       &:focus {
         border-color: #f30;
       }
+    }
+    .el-input__inner {
+      border-radius: 0;
+    }
+    .el-form-item__content {
+      line-height: 0;
+    }
+    .el-input {
+      width: 100%;
+    }
+    .el-form {
+      display: flex;
+    }
+
+    .email {
+      width: 100%;
     }
   }
 
@@ -695,4 +719,14 @@ iframe {
   text-align: left;
   float: none;
   line-height: 30px;
+}
+
+.titleCommentReview {
+  color: #999;
+  font-weight: 500;
+  padding-left: 16px;
+}
+
+.createDateReview {
+  padding-top: 0.2rem;
 }

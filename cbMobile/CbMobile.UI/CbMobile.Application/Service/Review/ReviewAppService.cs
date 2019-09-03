@@ -1,6 +1,7 @@
 ﻿using CbMobile.Database;
 using CbMobile.Domain.Models;
 using CbMobile.Domain.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                 .Review
+                .AsNoTracking()
                 .Where(x => x.ProductId == id)
                 .Select(x => new ReviewViewModel
                 {
@@ -33,6 +35,7 @@ namespace CbMobile.Application.Service
                     ReviewStar = x.ReviewStar,
                     Email = x.Email,
                     Title = x.Title,
+                    CreateDate = x.CreatedDate.ToString("dd/MM/yyyy"),
                     Content = x.Content
                 })
                 .ToList();

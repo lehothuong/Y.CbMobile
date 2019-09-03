@@ -23,5 +23,6 @@ namespace CbMobile.Database
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Review> Review { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
     }
 }

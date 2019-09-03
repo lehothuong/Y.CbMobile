@@ -13,7 +13,7 @@
             <star-rating
               :show-rating="false"
               :read-only="true"
-              v-model="reviews.reivewStar"
+              v-model="totalStars"
               v-bind:increment="0.5"
               v-bind:star-size="15"
             ></star-rating>
@@ -117,9 +117,36 @@
                   </div>
                   <div class="ml-auto">
                     <a
-                      class="btn btnSendContact font-weight-bolder text-uppercase"
+                      class="btn btnSendContact font-weight-bolder text-uppercase color-white"
                       @click="centerDialogVisible = true"
                     >Viết đánh giá</a>
+                  </div>
+                </div>
+                <div
+                  v-for="(item,index) in allReivews"
+                  :key="index"
+                  class="border-top"
+                  :v-if="totalReviews > 0"
+                >
+                  <div class="d-flex align-items-center pt-lg-2">
+                    <i class="fa fa-user-circle-o fontSiteUserIcon pr-3" aria-hidden="true"></i>
+                    <div>
+                      <p class="mb-0">{{item.name}}</p>
+                      <div class="d-flex align-items-center">
+                        <star-rating
+                          :show-rating="false"
+                          :read-only="true"
+                          v-model="item.reviewStar"
+                          v-bind:increment="1"
+                          v-bind:star-size="16"
+                        ></star-rating>
+                        <p class="pl-lg-2 mb-0 createDateReview">{{item.createDate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pb-lg-2 pt-lg-1">
+                    <p class="mb-0 titleCommentReview">{{item.title}}</p>
+                    <p class="mb-0 pl-lg-3">{{item.content}}</p>
                   </div>
                 </div>
               </el-tab-pane>

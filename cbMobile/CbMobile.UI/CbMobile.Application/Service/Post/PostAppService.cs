@@ -16,7 +16,6 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
-
         public IEnumerable<PostViewModel> GetAboutUs()
         {
             var model = _dbContext.Posts
