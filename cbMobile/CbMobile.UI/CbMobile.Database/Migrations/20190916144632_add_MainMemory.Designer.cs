@@ -4,14 +4,16 @@ using CbMobile.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CbMobile.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190916144632_add_MainMemory")]
+    partial class add_MainMemory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,6 +157,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("DisplayOrder");
 
+                    b.Property<int>("IdProduct");
+
                     b.Property<int>("MainMemoryId");
 
                     b.Property<int?>("ProductsId");
@@ -268,7 +272,7 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<DateTime>("UpdatedOnUtc");
 
-                    b.Property<int>("Value");
+                    b.Property<decimal>("Value");
 
                     b.HasKey("Id");
 

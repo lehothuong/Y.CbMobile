@@ -74,5 +74,6 @@ new Vue({
   el: "#app",
   router: router,
   components: { Slick },
+
   render: h => h(MainApp)
 });

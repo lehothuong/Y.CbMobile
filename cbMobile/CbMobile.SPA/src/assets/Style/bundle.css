@@ -425,6 +425,24 @@ h6 {
   border-radius: 0;
 }
 
+#footer .footerSubscribe .el-form-item__content {
+  line-height: 0;
+}
+
+#footer .footerSubscribe .el-input {
+  width: 100%;
+}
+
+#footer .footerSubscribe .el-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#footer .footerSubscribe .email {
+  width: 100%;
+}
+
 #footer input {
   border-right: none;
   height: 40px;

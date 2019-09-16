@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="loading">
     <div>
       <div class="infoDetail pt-lg-3 pb-lg-2 border-bottom">
         <h2 class="mb-lg-3">{{products.name}}</h2>
@@ -33,35 +33,48 @@
                 />
               </div>
               <div class="col-lg-6">
-                <h2 class="color-red font-weight-500">{{products.value}}</h2>
-                <p>
-                  <span>Giá thị trường:</span>
-                  <span class="text-decoration font-weight-500">23.500.000đ</span>
-                </p>
+                <h2 class="color-red font-weight-500">{{formatPrice(products.valuePromotion)}}</h2>
+                <div class="d-flex justify-content-between">
+                  <p>
+                    <span>Giá thị trường:</span>
+                    <span class="text-decoration font-weight-500">{{formatPrice(products.value)}}</span>
+                  </p>
+                  <p class="color-green" v-if="priceSavings > 0">
+                    <span>Tiết kiệm:</span>
+                    <span class="text-decoration font-weight-500">{{formatPrice(priceSavings)}}</span>
+                  </p>
+                </div>
                 <p>
                   <span class="font-weight-500">Tình trạng:</span>
-                  <span class="color-green">Còn hàng</span>
+                  <span class="color-green" v-if="products.status">Còn hàng</span>
+                  <span class="color-red" v-else>Tạm thời hết hàng</span>
                 </p>
                 <p class>
                   <span class="font-weight-bold">Dung lượng:</span>
                 </p>
                 <div class="customRadio">
                   <div>
-                    <el-radio-group v-model="radio">
-                      <el-radio :label="3">Option A</el-radio>
-                      <el-radio :label="6">Option B</el-radio>
-                      <el-radio :label="9">Option C</el-radio>
+                    <el-radio-group
+                      v-for="(item,index) in convertStringToArray"
+                      :key="index"
+                      v-model="rom"
+                    >
+                      <el-radio-button :label="item"></el-radio-button>
                     </el-radio-group>
                   </div>
                 </div>
+
                 <p class>
                   <span class="font-weight-bold">Màu sắc:</span>
                 </p>
                 <div class="customRadio mb-lg-3">
                   <div>
-                    <el-radio-group v-model="radio">
-                      <el-radio :label="3">Option A</el-radio>
-                      <el-radio :label="6">Option B</el-radio>
+                    <el-radio-group
+                      v-for="(item,index) in convertStringToArrayColor"
+                      :key="index"
+                      v-model="checkColor"
+                    >
+                      <el-radio-button :label="item"></el-radio-button>
                     </el-radio-group>
                   </div>
                 </div>
@@ -207,6 +220,10 @@ export default {
       id: this.$route.params.id,
       totalReviews: 0,
       totalStars: 0,
+      priceSavings: 0,
+      loading: true,
+      rom: "",
+      checkColor: "",
       reviews: {
         name: "",
         title: "",
@@ -264,6 +281,8 @@ export default {
       products: [],
       gender: [],
       allReivews: [],
+      mainMemory: [],
+      color: [],
       categoryProductId: Number,
       radio: 3,
       activeName: "first",
@@ -353,11 +372,28 @@ export default {
   beforeDestroy() {
     this.getAllReviewByProductId();
   },
+  computed: {
+    convertStringToArray() {
+      return this.mainMemory.split(",");
+    },
+    convertStringToArrayColor() {
+      return this.color.split(",");
+    }
+  },
   methods: {
+    formatPrice(value) {
+      let val = (value / 1).toFixed(0).replace(".", ",");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
+    },
     getDetailProduct() {
+      this.loading = false;
       ProductAppService.getDetailProduct(this.id).then(resp => {
         this.products = resp.data;
+        this.mainMemory = this.products.mainMemory;
+        this.color = this.products.color;
         this.categoryProductId = this.products.categoryProductId;
+        this.priceSavings = this.products.value - this.products.valuePromotion;
+        this.loading = true;
       });
     },
     getAllReviewByProductId() {
@@ -398,6 +434,7 @@ export default {
         // return the sum with previous value
         return tot + arr.reviewStar;
       }, 0);
+
       this.totalStars = parseFloat((result / totalReivew).toFixed(0));
     }
   }

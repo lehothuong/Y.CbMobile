@@ -13,8 +13,10 @@ namespace CbMobile.Domain.ViewModels
         public string AvatarUrl { get; set; }
         public string FullDescription { get; set; }
         public decimal Value { get; set; }
+        public decimal ValuePromotion { get; set; }
         public int ManufacturerId { get; set; }
         public int CategoryProductId { get; set; }
+        public bool Status { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
     }

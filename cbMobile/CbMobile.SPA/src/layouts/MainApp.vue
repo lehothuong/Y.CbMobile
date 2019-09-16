@@ -19,6 +19,7 @@ export default {
       isActive: false
     };
   },
+
   watch: {
     $route: function(newV, oldV) {
       if (this.$route.path == "/") {

@@ -64,10 +64,12 @@ namespace CbMobile.Application.Service
                     Id = model.Id,
                     Name = model.Name,
                     Value = model.Value,
+                    ValuePromotion = model.ValuePromotion,
                     AvatarUrl = model.AvatarUrl,
                     FullDescription = model.FullDescription,
                     CategoryProductId = model.CategoryProductId,
                     ManufacturerId = model.ManufacturerId,
+                    Status = model.Status,
                 };
             }
             throw new KeyNotFoundException();

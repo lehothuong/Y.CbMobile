@@ -4,14 +4,16 @@ using CbMobile.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CbMobile.Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190904132801_product_Value")]
+    partial class product_Value
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -141,76 +143,6 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailMemory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOnUtc");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("DisplayOrder");
-
-                    b.Property<int>("MainMemoryId");
-
-                    b.Property<int?>("ProductsId");
-
-                    b.Property<bool>("Published");
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<DateTime>("UpdatedOnUtc");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MainMemoryId");
-
-                    b.HasIndex("ProductsId");
-
-                    b.ToTable("DetailMemory");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOnUtc");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("DisplayOrder");
-
-                    b.Property<int>("IdProduct");
-
-                    b.Property<int>("IdSpecification");
-
-                    b.Property<int?>("ProductsId");
-
-                    b.Property<bool>("Published");
-
-                    b.Property<int?>("SpecificationId");
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<DateTime>("UpdatedOnUtc");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductsId");
-
-                    b.HasIndex("SpecificationId");
-
-                    b.ToTable("DetailSpecification");
-                });
-
             modelBuilder.Entity("CbMobile.Domain.Models.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -244,35 +176,6 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.MainMemory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOnUtc");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("DisplayOrder");
-
-                    b.Property<string>("Name");
-
-                    b.Property<bool>("Published");
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<DateTime>("UpdatedOnUtc");
-
-                    b.Property<int>("Value");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("MainMemory");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Manufacturer", b =>
@@ -452,6 +355,12 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("AvatarUrl");
 
+                    b.Property<string>("BatteryCapacity");
+
+                    b.Property<string>("CameraAfter");
+
+                    b.Property<string>("CameraHead");
+
                     b.Property<int>("CategoryProductId");
 
                     b.Property<DateTime>("CreatedDate");
@@ -464,13 +373,23 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("FullDescription");
 
+                    b.Property<string>("GPU");
+
                     b.Property<bool>("Hot");
 
+                    b.Property<int>("MainMemory");
+
                     b.Property<int>("ManufacturerId");
+
+                    b.Property<int>("Memoryexception");
 
                     b.Property<string>("Name");
 
                     b.Property<bool>("Published");
+
+                    b.Property<int>("Ram");
+
+                    b.Property<string>("Screen");
 
                     b.Property<string>("ShortDescription");
 
@@ -530,33 +449,6 @@ namespace CbMobile.Database.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Review");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.Specification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOnUtc");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("DisplayOrder");
-
-                    b.Property<string>("Name");
-
-                    b.Property<bool>("Published");
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<DateTime>("UpdatedOnUtc");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Specification");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Subscribe", b =>
@@ -745,29 +637,6 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailMemory", b =>
-                {
-                    b.HasOne("CbMobile.Domain.Models.MainMemory", "MainMemory")
-                        .WithMany("DetailMemorys")
-                        .HasForeignKey("MainMemoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CbMobile.Domain.Models.Product", "Products")
-                        .WithMany("DetailMemorys")
-                        .HasForeignKey("ProductsId");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
-                {
-                    b.HasOne("CbMobile.Domain.Models.Product", "Products")
-                        .WithMany("DetailSpecifications")
-                        .HasForeignKey("ProductsId");
-
-                    b.HasOne("CbMobile.Domain.Models.Specification", "Specification")
-                        .WithMany("DetailSpecifications")
-                        .HasForeignKey("SpecificationId");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.OrderManuFacturer", b =>
