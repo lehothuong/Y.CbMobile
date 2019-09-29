@@ -24,5 +24,10 @@ namespace CbMobile.Database
         public DbSet<Banner> Banners { get; set; }
         public DbSet<Review> Review { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<DetailSpecification> DetailSpecifications { get; set; }
+        public DbSet<MainMemory> MainMemorys { get; set; }
+        public DbSet<Specification> Specifications { get; set; }
+        public DbSet<DetailMemory> DetailMemorys { get; set; }
+        public DbSet<Account> Accounts { get; set; }
     }
 }

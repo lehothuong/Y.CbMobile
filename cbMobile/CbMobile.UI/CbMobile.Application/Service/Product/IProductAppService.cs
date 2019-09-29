@@ -13,5 +13,6 @@ namespace CbMobile.Application.Service
         IEnumerable<ProductViewModel> GetGenericProduct(int id);
         IEnumerable<ProductViewModel> GetIndexProductById(int id);
         IEnumerable<ProductViewModel> GetIndexManufactureById(int id, int idCategory);
+        IEnumerable<MainMemoryViewModel> GetMainMemory(int id);
     }
 }

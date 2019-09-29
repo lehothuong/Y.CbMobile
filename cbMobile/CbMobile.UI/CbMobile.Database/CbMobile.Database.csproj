@@ -9,6 +9,36 @@
     <Compile Remove="Migrations\20190609043913_add_CategoryProduct.Designer.cs" />
     <Compile Remove="Migrations\20190609052059_add_CategoryProduct_1.cs" />
     <Compile Remove="Migrations\20190609052059_add_CategoryProduct_1.Designer.cs" />
+    <Compile Remove="Migrations\20190917141140_add_productIds.cs" />
+    <Compile Remove="Migrations\20190917141140_add_productIds.Designer.cs" />
+    <Compile Remove="Migrations\20190917141458_add_productIdss.cs" />
+    <Compile Remove="Migrations\20190917141458_add_productIdss.Designer.cs" />
+    <Compile Remove="Migrations\20190917142654_add_detailmainmemory.cs" />
+    <Compile Remove="Migrations\20190917142654_add_detailmainmemory.Designer.cs" />
+    <Compile Remove="Migrations\20190917142751_add_detailmainmemory.cs" />
+    <Compile Remove="Migrations\20190917142751_add_detailmainmemory.Designer.cs" />
+    <Compile Remove="Migrations\20190917143014_add_detailmainmemory.cs" />
+    <Compile Remove="Migrations\20190917143014_add_detailmainmemory.Designer.cs" />
+    <Compile Remove="Migrations\20190917143242_add_detailmainmemory.cs" />
+    <Compile Remove="Migrations\20190917143242_add_detailmainmemory.Designer.cs" />
+    <Compile Remove="Migrations\20190917143732_add_detail.cs" />
+    <Compile Remove="Migrations\20190917143732_add_detail.Designer.cs" />
+    <Compile Remove="Migrations\20190917143753_add_detail.cs" />
+    <Compile Remove="Migrations\20190917143753_add_detail.Designer.cs" />
+    <Compile Remove="Migrations\20190917143824_add_detail.cs" />
+    <Compile Remove="Migrations\20190917143824_add_detail.Designer.cs" />
+    <Compile Remove="Migrations\20190917144244_add_detail1.cs" />
+    <Compile Remove="Migrations\20190917144244_add_detail1.Designer.cs" />
+    <Compile Remove="Migrations\20190917144935_add_details.cs" />
+    <Compile Remove="Migrations\20190917144935_add_details.Designer.cs" />
+    <Compile Remove="Migrations\20190917145504_add_details.cs" />
+    <Compile Remove="Migrations\20190917145504_add_details.Designer.cs" />
+    <Compile Remove="Migrations\20190917145734_add_details.cs" />
+    <Compile Remove="Migrations\20190917145734_add_details.Designer.cs" />
+    <Compile Remove="Migrations\20190917150238_add_details.cs" />
+    <Compile Remove="Migrations\20190917150238_add_details.Designer.cs" />
+    <Compile Remove="Migrations\20190917150942_Initial.cs" />
+    <Compile Remove="Migrations\20190917150942_Initial.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />

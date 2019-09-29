@@ -75,6 +75,29 @@ namespace CbMobile.Application.Service
             throw new KeyNotFoundException();
         }
 
+        public IEnumerable<MainMemoryViewModel> GetMainMemory(int id)
+        {
+            var mainMemoryIds = _dbContext
+                .DetailMemorys
+                .Where(x => x.ProductId == id)
+                .Select(x => new
+                {
+                    MainMemoryId = x.MainMemoryId
+                })
+                .ToList();
+            var modelMainMemory = _dbContext
+                .MainMemorys
+                .Where(x => mainMemoryIds.Select(p => p.MainMemoryId).Contains(x.Id))
+                .Select(x => new MainMemoryViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Value = x.Value
+                })
+                .ToList();
+            return modelMainMemory;
+        }
+
         public IEnumerable<ProductViewModel> GetGenericProduct(int id)
         {
             var model = _dbContext

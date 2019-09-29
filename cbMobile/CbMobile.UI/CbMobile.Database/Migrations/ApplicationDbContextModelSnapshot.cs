@@ -19,6 +19,41 @@ namespace CbMobile.Database.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CbMobile.Domain.Models.Account", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Password");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<string>("Token");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Accounts");
+                });
+
             modelBuilder.Entity("CbMobile.Domain.Models.Banner", b =>
                 {
                     b.Property<int>("Id")
@@ -157,7 +192,7 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("MainMemoryId");
 
-                    b.Property<int?>("ProductsId");
+                    b.Property<int>("ProductId");
 
                     b.Property<bool>("Published");
 
@@ -169,9 +204,9 @@ namespace CbMobile.Database.Migrations
 
                     b.HasIndex("MainMemoryId");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("DetailMemory");
+                    b.ToTable("DetailMemorys");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
@@ -208,7 +243,7 @@ namespace CbMobile.Database.Migrations
 
                     b.HasIndex("SpecificationId");
 
-                    b.ToTable("DetailSpecification");
+                    b.ToTable("DetailSpecifications");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Location", b =>
@@ -272,7 +307,7 @@ namespace CbMobile.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MainMemory");
+                    b.ToTable("MainMemorys");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Manufacturer", b =>
@@ -556,7 +591,7 @@ namespace CbMobile.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Specification");
+                    b.ToTable("Specifications");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.Subscribe", b =>
@@ -756,7 +791,8 @@ namespace CbMobile.Database.Migrations
 
                     b.HasOne("CbMobile.Domain.Models.Product", "Products")
                         .WithMany("DetailMemorys")
-                        .HasForeignKey("ProductsId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>

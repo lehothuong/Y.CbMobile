@@ -19,5 +19,7 @@ namespace CbMobile.Domain.ViewModels
         public bool Status { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
+        public IEnumerable<DetailMemory> DetailMemorys { get; set; }
+        public IEnumerable<MainMemoryViewModel> ListMemory { get; set; }
     }
 }
