@@ -40,7 +40,8 @@ namespace CbMobile.Application.Service
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Username.ToString())
+                    new Claim(ClaimTypes.Name, user.Username.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role)
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -74,6 +75,7 @@ namespace CbMobile.Application.Service
         public object GetAccountByToken(string token)
         {
             string username = null;
+            string roles = null;
             ClaimsPrincipal principal = GetPrincipal(token);
             if (principal == null)
                 return null;
@@ -87,15 +89,24 @@ namespace CbMobile.Application.Service
                 return null;
             }
             Claim usernameClaim = identity.FindFirst(ClaimTypes.Name);
+            Claim roleClaim = identity.FindFirst(ClaimTypes.Role);
             username = usernameClaim.Value;
+            roles = roleClaim.Value;
             List<string> ls = new List<string>();
             ls.Add(username);
             return new
             {
                 roles = ls,
-                name = "Super Admin",
+                name = roles,
                 introduction = "I am a super administrator",
                 avatar = "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+            };
+        }
+        public object Logout()
+        {
+            return new
+            {
+                data = "success"
             };
         }
     }

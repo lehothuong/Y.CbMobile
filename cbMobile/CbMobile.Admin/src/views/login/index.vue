@@ -131,7 +131,7 @@ export default {
         const query = route.query;
         if (query) {
           this.redirect = query.redirect;
-          this.otherQuery = this.getOtherQuery(query);
+          // this.otherQuery = this.getOtherQuery(query);
         }
       },
       immediate: true
@@ -185,7 +185,6 @@ export default {
             .then(() => {
               this.$router.push({
                 path: this.redirect || "/",
-                query: this.otherQuery
               });
               this.loading = false;
             })
@@ -198,14 +197,14 @@ export default {
         }
       });
     },
-    getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== "redirect") {
-          acc[cur] = query[cur];
-        }
-        return acc;
-      });
-    }
+    // getOtherQuery(query) {
+    //   return Object.keys(query).reduce((acc, cur) => {
+    //     if (cur !== "redirect") {
+    //       acc[cur] = query[cur];
+    //     }
+    //     return acc;
+    //   });
+    // }
     // afterQRScan() {
     //   if (e.key === 'x-admin-oauth-code') {
     //     const code = getQueryObject(e.newValue)

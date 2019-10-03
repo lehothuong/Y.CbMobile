@@ -38,5 +38,12 @@ namespace CbMobile.UI.Controllers
             var users = _accountAppService.GetAccountByToken(token);
             return Ok(users);
         }
+
+        [HttpPost]
+        [Route("Logout")]
+        public IActionResult Logout()
+        {
+            return Ok(_accountAppService.Logout());
+        }
     }
 }

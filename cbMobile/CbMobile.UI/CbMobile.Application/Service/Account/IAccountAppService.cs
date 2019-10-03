@@ -11,5 +11,6 @@ namespace CbMobile.Application.Service
     {
         string Authenicate(string userName, string passWord);
         object GetAccountByToken(string token);
+        object Logout();
     }
 }

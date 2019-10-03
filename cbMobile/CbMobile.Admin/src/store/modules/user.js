@@ -51,7 +51,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token)
         .then(response => {
-          debugger;
           if (!response) {
             reject("Verification failed, please Login again.");
           }
