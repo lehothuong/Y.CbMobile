@@ -84,7 +84,9 @@ namespace CbMobile.UI
                     builder
                         .AllowAnyOrigin() //TODO: Will be replaced by above when Microsoft releases microsoft.aspnetcore.cors 2.0 - https://github.com/aspnet/CORS/pull/94
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod()
+                        .WithOrigins("http://localhost:9527",
+                                    "http://localhost:3000");
                 });
             });
             services.Configure<MvcOptions>(options =>

@@ -9,6 +9,9 @@ namespace CbMobile.Domain.ViewModels
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public virtual int DisplayOrder { get; set; } = 0;
+        public virtual DateTime CreatedDate { get; set; }
+        public virtual DateTime UpdatedDate { get; set; }
         public IEnumerable<ProductViewModel> Products { get; set; }
         public IEnumerable<OrderManufacturerViewModel> OrderManufacturers { get; set; }
     }

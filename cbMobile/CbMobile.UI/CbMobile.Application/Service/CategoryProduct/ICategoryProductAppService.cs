@@ -10,9 +10,9 @@ namespace CbMobile.Application.Service
     {
         IEnumerable<CategoryProductViewModel> GetMenuCategory();
         CategoryProductViewModel GetCategoryProductById(int id);
-        IEnumerable<CategoryProduct> GetAllCategory();
+        Object GetAllCategory(int page = 1, int pageSize = 10);
         CategoryProduct GetDetailsCategoryProduct(int id);
-        CategoryProduct CreateCategoryProduct(CategoryProduct categoryProduct);
+        bool CreateCategoryProduct(CategoryProduct categoryProduct);
         bool UpdateCategoryProduct(CategoryProduct categoryProduct);
         bool DeleteCategoryProduct(int id);
     }

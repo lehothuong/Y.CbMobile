@@ -1,11 +1,12 @@
 ﻿using CbMobile.Database;
 using CbMobile.Domain.Models;
 using CbMobile.Domain.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace CbMobile.Application.Service
 {
@@ -16,23 +17,24 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<CategoryProduct> GetAllCategory()
+        public Object GetAllCategory(int page = 1, int pageSize = 10)
         {
             var model = _dbContext
                   .CategoryProducts
                   .AsNoTracking()
-                  .Where(p => p.Deleted == false && p.Published)
+                   .Where(x => x.Deleted == false && x.Published)
                   .OrderBy(x => x.DisplayOrder)
-                  .ThenByDescending(x => x.CreatedDate)
-                  .Select(x => new CategoryProduct
-                  {
-                      Id = x.Id,
-                      Name = x.Name,
-                      DisplayOrder = x.DisplayOrder,
-                      CreatedDate = x.CreatedDate,
-                  })
-                  .ToList();
-            return model;
+                  .ThenByDescending(x => x.CreatedDate);
+            var totalCount = model.Count();
+            var results = model
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new
+            {
+                totalCount = totalCount,
+                data = results
+            };
         }
         public CategoryProduct GetDetailsCategoryProduct(int id)
         {
@@ -45,18 +47,18 @@ namespace CbMobile.Application.Service
             }
             throw new KeyNotFoundException();
         }
-        public CategoryProduct CreateCategoryProduct(CategoryProduct categoryProduct)
+        public bool CreateCategoryProduct(CategoryProduct categoryProduct)
         {
             _dbContext.CategoryProducts.Add(categoryProduct);
             _dbContext.SaveChanges();
-            return categoryProduct;
+            return true;
         }
         public bool UpdateCategoryProduct(CategoryProduct categoryProduct)
         {
             var model = _dbContext
                  .CategoryProducts
                  .FirstOrDefault(x => x.Id == categoryProduct.Id);
-            if(model != null)
+            if (model != null)
             {
                 model.Name = categoryProduct.Name;
                 model.DisplayOrder = categoryProduct.DisplayOrder;
@@ -74,7 +76,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                  .CategoryProducts
                  .FirstOrDefault(x => x.Id == id);
-            if(model != null)
+            if (model != null)
             {
                 model.Deleted = true;
                 _dbContext.SaveChanges();

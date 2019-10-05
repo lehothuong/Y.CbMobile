@@ -2,7 +2,7 @@ import request from "@/utils/request";
 
 export function fetchList(query) {
   return request({
-    url: "/api/AdminCategoryProduct/AdminGetAllCategoryProduct",
+    url: "/api/AdminManufacturer/AdminGetAllManufacturer",
     method: "get",
     params: query
   });
@@ -10,7 +10,7 @@ export function fetchList(query) {
 
 export function fetchArticle(id) {
   return request({
-    url: "/api/AdminCategoryProduct/AdminGetDetailCategoryProduct",
+    url: "/api/AdminManufacturer/AdminGetDetailManufacturer",
     method: "get",
     params: { id }
   });
@@ -26,7 +26,7 @@ export function fetchPv(pv) {
 
 export function createArticle(data) {
   return request({
-    url: "/api/AdminCategoryProduct/CreateCategoryProduct",
+    url: "/api/AdminManufacturer/CreateManufacturer",
     method: "post",
     data
   });
@@ -34,7 +34,7 @@ export function createArticle(data) {
 
 export function updateArticle(data) {
   return request({
-    url: "/api/AdminCategoryProduct/UpdateCategoryProduct",
+    url: "/api/AdminManufacturer/UpdateManufacturer",
     method: "put",
     data
   });
@@ -42,7 +42,7 @@ export function updateArticle(data) {
 
 export function deleteArticle(id) {
   return request({
-    url: "/api/AdminCategoryProduct/DeleteCategoryProduct",
+    url: "/api/AdminManufacturer/DeleteManufacturer",
     method: "post",
     params: { id }
   });

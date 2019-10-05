@@ -1,4 +1,5 @@
 ﻿using CbMobile.Database;
+using CbMobile.Domain.Models;
 using CbMobile.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,7 +16,73 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
-
+        public Object GetAllManufacturer(int page = 1, int pageSize = 10)
+        {
+            var model = _dbContext
+                  .Manufacturers
+                  .AsNoTracking()
+                   .Where(x => x.Deleted == false && x.Published)
+                  .OrderBy(x => x.DisplayOrder)
+                  .ThenByDescending(x => x.CreatedDate);
+            var totalCount = model.Count();
+            var results = model
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+            return new
+            {
+                totalCount = totalCount,
+                data = results
+            };
+        }
+        public Manufacturer GetDetailsManufacturer(int id)
+        {
+            var model = _dbContext
+                  .Manufacturers
+                  .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                return model;
+            }
+            throw new KeyNotFoundException();
+        }
+        public bool CreateManufacturer(Manufacturer manufacturer)
+        {
+            _dbContext.Manufacturers.Add(manufacturer);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        public bool UpdateManufacturer(Manufacturer manufacturer)
+        {
+            var model = _dbContext
+                 .Manufacturers
+                 .FirstOrDefault(x => x.Id == manufacturer.Id);
+            if (model != null)
+            {
+                model.Name = manufacturer.Name;
+                model.DisplayOrder = manufacturer.DisplayOrder;
+                model.UpdatedDate = manufacturer.UpdatedDate;
+                model.Published = manufacturer.Published;
+                model.ShortDescription = manufacturer.ShortDescription;
+                model.AvatarUrl = manufacturer.AvatarUrl;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public bool DeleteCategoryProduct(int id)
+        {
+            var model = _dbContext
+                 .Manufacturers
+                 .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                model.Deleted = true;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
         public IEnumerable<ManufacturerViewModel> GetManufacturerInHome()
         {
             var model = _dbContext.Manufacturers
@@ -36,14 +103,15 @@ namespace CbMobile.Application.Service
                  .Where(x => x.CategoryProductId == id)
                  .Select(x => new
                  {
-                    ManufacturerID = x.ManufacturerID
+                     ManufacturerID = x.ManufacturerID
                  })
                  .ToList();
 
             var modelManuFacturers = _dbContext
                  .Manufacturers
                  .Where(x => manuFacturerIds.Select(p => p.ManufacturerID).Contains(x.Id))
-                 .Select(x => new ManufacturerViewModel {
+                 .Select(x => new ManufacturerViewModel
+                 {
                      Id = x.Id,
                      Name = x.Name,
                  })
@@ -55,7 +123,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                  .Manufacturers
                  .FirstOrDefault(x => x.Id == id);
-            if(model != null)
+            if (model != null)
             {
                 return new ManufacturerViewModel()
                 {

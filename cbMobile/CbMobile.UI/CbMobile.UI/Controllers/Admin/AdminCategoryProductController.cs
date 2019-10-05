@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CbMobile.Application.Service;
 using CbMobile.Domain.Models;
+using CbMobile.Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,9 @@ namespace CbMobile.UI.Controllers
         }
         [HttpGet]
         [Route("AdminGetAllCategoryProduct")]
-        public IActionResult AdminGetAllCategoryProduct()
+        public IActionResult AdminGetAllCategoryProduct(int page = 1, int pageSize = 10)
         {
-            var model = _categoryProductAppService.GetAllCategory();
+            var model = _categoryProductAppService.GetAllCategory(page, pageSize);
             return Ok(model);
         }
         [HttpGet]
@@ -40,7 +41,7 @@ namespace CbMobile.UI.Controllers
             if (ModelState.IsValid)
             {
                 var model = _categoryProductAppService.CreateCategoryProduct(categoryProduct);
-                return NoContent();
+                return Ok(model);
             }
             return NotFound();
         }

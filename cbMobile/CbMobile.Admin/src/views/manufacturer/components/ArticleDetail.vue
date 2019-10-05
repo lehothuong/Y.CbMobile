@@ -38,9 +38,22 @@
               <MDinput
                 v-model="postForm.displayOrder"
                 :maxlength="100"
-                name="DisplayOrder"
+                name="Sắp xếp"
                 required
               >Sắp xếp</MDinput>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <!-- <Warning /> -->
+          <el-col :span="11">
+            <el-form-item>
+              <MDinput
+                v-model="postForm.shortDescription"
+                :maxlength="100"
+                name="Mô tả ngắn"
+                required
+              >Mô tả ngắn</MDinput>
             </el-form-item>
           </el-col>
         </el-row>
@@ -72,7 +85,7 @@ import {
   createArticle,
   updateArticle,
   deleteArticle
-} from "@/api/categoryProduct";
+} from "@/api/manufacturer";
 import { searchUser } from "@/api/remote-search";
 import Warning from "./Warning";
 import {
@@ -188,29 +201,12 @@ export default {
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
-          // just for test
-          // this.postForm.title += `   Article Id:${this.postForm.id}`
-          // this.postForm.content_short += `   Article Id:${this.postForm.id}`
-
-          // set tagsview title
-          //this.setTagsViewTitle();
-
-          // set page title
-          //this.setPageTitle();
         })
         .catch(err => {
           console.log(err);
         });
     },
-    // setTagsViewTitle() {
-    //   const title = 'Edit Article'
-    //   const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
-    //   this.$store.dispatch('tagsView/updateVisitedView', route)
-    // },
-    // setPageTitle() {
-    //   const title = 'Edit Article'
-    //   document.title = `${title} - ${this.postForm.id}`
-    // },
+
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -223,7 +219,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this.$router.push("/category-product/list");
+              this.$router.push("/manufacturer/list");
               this.loading = false;
             } else console.log("error submit!!");
           });

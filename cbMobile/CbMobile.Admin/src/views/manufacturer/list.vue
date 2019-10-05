@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="ID" width="87">
+      <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
-      <el-table-column width="300" align="center" label="Tên">
+      <el-table-column width="280" align="center" label="Tên">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-      <el-table-column width="150" align="center" label="Sắp xếp">
+      <el-table-column width="160" align="center" label="Sắp xếp">
         <template slot-scope="scope">
           <span>{{ scope.row.displayOrder }}</span>
         </template>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { fetchList, deleteArticle } from "@/api/categoryProduct";
+import { fetchList, deleteArticle } from "@/api/manufacturer";
 import Pagination from "@/components/Pagination"; // Secondary package based on el-pagination
 
 export default {

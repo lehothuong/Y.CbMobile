@@ -82,7 +82,7 @@ export const constantRoutes = [
         meta: { title: "Dashboard", icon: "dashboard", affix: true }
       }
     ]
-  },
+  }
   // {
   //   path: "/documentation",
   //   component: Layout,
@@ -239,15 +239,15 @@ export const asyncRoutes = [
       {
         path: "create",
         component: () => import("@/views/category-product/create"),
-        name: "CreateProduct",
-        meta: { title: "Create Product", icon: "edit" }
+        name: "CreateCategoryProduct",
+        meta: { title: "Create Category Product", icon: "edit" }
       },
       {
         path: "edit/:id(\\d+)",
         component: () => import("@/views/category-product/edit"),
-        name: "EditCategory",
+        name: "EditCategoryProduct",
         meta: {
-          title: "Edit Category",
+          title: "Edit Category Product",
           noCache: true,
           activeMenu: "/category-product/list"
         },
@@ -256,8 +256,44 @@ export const asyncRoutes = [
       {
         path: "list",
         component: () => import("@/views/category-product/list"),
-        name: "ListCategory",
-        meta: { title: "List Category", icon: "list" }
+        name: "ListCategoryProduct",
+        meta: { title: "List Category Product", icon: "list" }
+      }
+    ]
+  },
+
+  {
+    path: "/manufacturer",
+    component: Layout,
+    redirect: "/manufacturer/list",
+    name: "Manufacturer",
+    meta: {
+      title: "Manufacturer",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/manufacturer/create"),
+        name: "CreateManufacturer",
+        meta: { title: "Create Manufacturer", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/manufacturer/edit"),
+        name: "EditManufacturer",
+        meta: {
+          title: "Edit Manufacturer",
+          noCache: true,
+          activeMenu: "/manufacturer/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/manufacturer/list"),
+        name: "ListManufacturer",
+        meta: { title: "List Manufacturer", icon: "list" }
       }
     ]
   },
