@@ -178,39 +178,6 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Contacts");
                 });
 
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailMemory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("CreatedOnUtc");
-
-                    b.Property<bool>("Deleted");
-
-                    b.Property<int>("DisplayOrder");
-
-                    b.Property<int>("MainMemoryId");
-
-                    b.Property<int>("ProductId");
-
-                    b.Property<bool>("Published");
-
-                    b.Property<DateTime>("UpdatedDate");
-
-                    b.Property<DateTime>("UpdatedOnUtc");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MainMemoryId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("DetailMemorys");
-                });
-
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
                 {
                     b.Property<int>("Id")
@@ -503,6 +470,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<bool>("Hot");
 
+                    b.Property<string>("MainMemory");
+
                     b.Property<int>("ManufacturerId");
 
                     b.Property<string>("Name");
@@ -517,9 +486,9 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<DateTime>("UpdatedOnUtc");
 
-                    b.Property<decimal>("Value");
+                    b.Property<decimal?>("Value");
 
-                    b.Property<decimal>("ValuePromotion");
+                    b.Property<decimal?>("ValuePromotion");
 
                     b.HasKey("Id");
 
@@ -782,19 +751,6 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("CbMobile.Domain.Models.DetailMemory", b =>
-                {
-                    b.HasOne("CbMobile.Domain.Models.MainMemory", "MainMemory")
-                        .WithMany("DetailMemorys")
-                        .HasForeignKey("MainMemoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CbMobile.Domain.Models.Product", "Products")
-                        .WithMany("DetailMemorys")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>

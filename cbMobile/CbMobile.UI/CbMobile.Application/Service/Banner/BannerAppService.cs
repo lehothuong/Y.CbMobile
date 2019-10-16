@@ -1,4 +1,5 @@
 ﻿using CbMobile.Database;
+using CbMobile.Domain;
 using CbMobile.Domain.ViewModels;
 using System;
 using System.Collections.Generic;

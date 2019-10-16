@@ -21,7 +21,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                   .Manufacturers
                   .AsNoTracking()
-                   .Where(x => x.Deleted == false && x.Published)
+                  .GetPublished()
                   .OrderBy(x => x.DisplayOrder)
                   .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
@@ -34,6 +34,21 @@ namespace CbMobile.Application.Service
                 totalCount = totalCount,
                 data = results
             };
+        }
+        public Object GetListDropdownManufacturer()
+        {
+            return _dbContext
+                  .Manufacturers
+                  .AsNoTracking()
+                  .GetPublished()
+                  .OrderBy(x => x.DisplayOrder)
+                  .ThenByDescending(x => x.CreatedDate)
+                  .Select(x => new
+                  {
+                      Id = x.Id,
+                      Name = x.Name
+                  })
+                  .ToList();
         }
         public Manufacturer GetDetailsManufacturer(int id)
         {

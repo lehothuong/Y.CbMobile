@@ -28,7 +28,7 @@ namespace CbMobile.Application.Service
         {
             var user = _dbContext
                         .Accounts
-                        .SingleOrDefault(x => x.Username == userName && x.Password == passWord);
+                        .FirstOrDefault(x => x.Username == userName && x.Password == passWord);
             if (user == null)
             {
                 return null;

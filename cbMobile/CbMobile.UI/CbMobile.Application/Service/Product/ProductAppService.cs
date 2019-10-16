@@ -1,5 +1,7 @@
 ﻿using CbMobile.Application;
 using CbMobile.Database;
+using CbMobile.Domain;
+using CbMobile.Domain.Models;
 using CbMobile.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +17,117 @@ namespace CbMobile.Application.Service
         public ProductAppService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+        public Object GetAllProduct(int page = 1, int pageSize = 10)
+        {
+            var model = _dbContext
+                .Products
+                .AsNoTracking()
+                .GetPublished()
+                .OrderBy(x => x.DisplayOrder)
+                .ThenByDescending(x => x.CreatedDate)
+                .Select(x => new ProductViewModel
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    DisplayOrder = x.DisplayOrder,
+                    CreatedDate = x.CreatedDate
+                });
+            var totalCount = model.Count();
+            var results = model
+                 .Skip((page - 1) * pageSize)
+                 .Take(pageSize).ToList();
+            return new
+            {
+                totalCount = totalCount,
+                data = results
+            };
+        }
+        public ProductViewModel GetDetailsProduct(int id)
+        {
+            var model = _dbContext
+                  .Products
+                  .GetPublished()
+                  .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                return new ProductViewModel
+                {
+                    Id = model.Id,
+                    Name = model.Name,
+                    Published = model.Published,
+                    Status = model.Status,
+                    Hot = model.Hot,
+                    ShortDescription = model.ShortDescription,
+                    AvatarUrl = model.AvatarUrl,
+                    FullDescription = model.FullDescription,
+                    ManufacturerId = model.ManufacturerId,
+                    CategoryProductId = model.CategoryProductId,
+                    DisplayOrder = model.DisplayOrder,
+                    Value = model.Value,
+                    ValuePromotion = model.ValuePromotion,
+                    ListMemory = GetArrListMemory(model.MainMemory)
+                };
+            }
+            throw new KeyNotFoundException();
+        }
+        public List<int> GetArrListMemory(string strListMemoryId)
+        {
+            if (string.IsNullOrEmpty(strListMemoryId))
+            {
+                return new List<int> { };
+            }
+            var listId = strListMemoryId.Split(",").Select(x => int.Parse(x)).ToList();
+            return _dbContext
+                        .MainMemorys
+                        .GetPublished()
+                        .Where(x => listId.Contains(x.Id))
+                        .Select(x => x.Id)
+                        .ToList();
+        }
+        public bool CreateProduct(Product product)
+        {
+            _dbContext.Products.Add(product);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        public bool UpdateProduct(Product product)
+        {
+            var model = _dbContext
+                 .Products
+                 .FirstOrDefault(x => x.Id == product.Id);
+            if(model != null)
+            {
+                model.Name = product.Name;
+                model.DisplayOrder = product.DisplayOrder;
+                model.AvatarUrl = product.AvatarUrl;
+                model.UpdatedDate = product.UpdatedDate;
+                model.Status = product.Status;
+                model.ShortDescription = product.ShortDescription;
+                model.FullDescription = product.FullDescription;
+                model.Hot = product.Hot;
+                model.Value = product.Value;
+                model.ValuePromotion = product.ValuePromotion;
+                model.Published = product.Published;
+                model.MainMemory = product.MainMemory;
+
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public bool DeleteProduct(int id)
+        {
+            var model = _dbContext
+                 .Products
+                 .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                model.Deleted = true;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
         public IEnumerable<ProductViewModel> GetProduct()
         {
@@ -75,28 +188,28 @@ namespace CbMobile.Application.Service
             throw new KeyNotFoundException();
         }
 
-        public IEnumerable<MainMemoryViewModel> GetMainMemory(int id)
-        {
-            var mainMemoryIds = _dbContext
-                .DetailMemorys
-                .Where(x => x.ProductId == id)
-                .Select(x => new
-                {
-                    MainMemoryId = x.MainMemoryId
-                })
-                .ToList();
-            var modelMainMemory = _dbContext
-                .MainMemorys
-                .Where(x => mainMemoryIds.Select(p => p.MainMemoryId).Contains(x.Id))
-                .Select(x => new MainMemoryViewModel
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Value = x.Value
-                })
-                .ToList();
-            return modelMainMemory;
-        }
+        //public IEnumerable<MainMemoryViewModel> GetMainMemory(int id)
+        //{
+        //    var mainMemoryIds = _dbContext
+        //        .DetailMemorys
+        //        .Where(x => x.ProductId == id)
+        //        .Select(x => new
+        //        {
+        //            MainMemoryId = x.MainMemoryId
+        //        })
+        //        .ToList();
+        //    var modelMainMemory = _dbContext
+        //        .MainMemorys
+        //        .Where(x => mainMemoryIds.Select(p => p.MainMemoryId).Contains(x.Id))
+        //        .Select(x => new MainMemoryViewModel
+        //        {
+        //            Id = x.Id,
+        //            Name = x.Name,
+        //            Value = x.Value
+        //        })
+        //        .ToList();
+        //    return modelMainMemory;
+        //}
 
         public IEnumerable<ProductViewModel> GetGenericProduct(int id)
         {

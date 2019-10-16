@@ -1,5 +1,6 @@
 ﻿using CbMobile.Application;
 using CbMobile.Database;
+using CbMobile.Domain;
 using CbMobile.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;

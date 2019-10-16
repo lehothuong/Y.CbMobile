@@ -23,7 +23,7 @@
       </el-table-column>
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
-          <router-link :to="'/category-product/edit/'+scope.row.id">
+          <router-link :to="'/manufacturer/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
           </router-link>
         </template>
@@ -98,8 +98,7 @@ export default {
                 type: "success",
                 message: "Đã xóa"
               });
-              var index = this.list.findIndex(x => x.id === id);
-              if (index !== -1) this.list.splice(index, 1);
+              this.getList();
             } else {
               console.log("error update!!");
             }

@@ -16,5 +16,6 @@ namespace CbMobile.Application.Service
         bool CreateManufacturer(Manufacturer manufacturer);
         bool UpdateManufacturer(Manufacturer manufacturer);
         bool DeleteCategoryProduct(int id);
+        Object GetListDropdownManufacturer();
     }
 }

@@ -52,7 +52,7 @@
                 <p class>
                   <span class="font-weight-bold">Dung lượng:</span>
                 </p>
-                <div class="customRadio">
+                <!-- <div class="customRadio">
                   <div>
                     <el-radio-group
                       v-for="(item,index) in convertStringToArray"
@@ -62,12 +62,12 @@
                       <el-radio-button :label="item"></el-radio-button>
                     </el-radio-group>
                   </div>
-                </div>
+                </div>-->
 
                 <p class>
                   <span class="font-weight-bold">Màu sắc:</span>
                 </p>
-                <div class="customRadio mb-lg-3">
+                <!-- <div class="customRadio mb-lg-3">
                   <div>
                     <el-radio-group
                       v-for="(item,index) in convertStringToArrayColor"
@@ -77,7 +77,7 @@
                       <el-radio-button :label="item"></el-radio-button>
                     </el-radio-group>
                   </div>
-                </div>
+                </div>-->
                 <div class="shoppingProduct d-flex w-100">
                   <div
                     class="totalProduct d-flex w-40 justify-content-between font-weight-500 align-items-center"
@@ -373,12 +373,12 @@ export default {
     this.getAllReviewByProductId();
   },
   computed: {
-    convertStringToArray() {
-      return this.mainMemory.split(",");
-    },
-    convertStringToArrayColor() {
-      return this.color.split(",");
-    }
+    // convertStringToArray() {
+    //   return this.mainMemory.split(",");
+    // },
+    // convertStringToArrayColor() {
+    //   return this.color.split(",");
+    // }
   },
   methods: {
     formatPrice(value) {
@@ -389,7 +389,7 @@ export default {
       this.loading = false;
       ProductAppService.getDetailProduct(this.id).then(resp => {
         this.products = resp.data;
-        this.mainMemory = this.products.mainMemory;
+        // this.mainMemory = this.products.mainMemory;
         this.color = this.products.color;
         this.categoryProductId = this.products.categoryProductId;
         this.priceSavings = this.products.value - this.products.valuePromotion;

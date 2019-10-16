@@ -15,7 +15,7 @@ namespace CbMobile.Domain.Models
         }
         public virtual bool Deleted { get; set; }
 
-        public virtual bool Published { get; set; } = true;
+        public virtual bool Published { get; set; }
 
         public virtual int DisplayOrder { get; set; } = 0;
 

@@ -8,19 +8,18 @@ export function fetchList(query) {
   });
 }
 
+export function fetchListDropdownManufacturer() {
+  return request({
+    url: "/api/AdminManufacturer/AdminGetListDropdownManufacturer",
+    method: "get"
+  });
+}
+
 export function fetchArticle(id) {
   return request({
     url: "/api/AdminManufacturer/AdminGetDetailManufacturer",
     method: "get",
     params: { id }
-  });
-}
-
-export function fetchPv(pv) {
-  return request({
-    url: "/article/pv",
-    method: "get",
-    params: { pv }
   });
 }
 

@@ -2,9 +2,6 @@
   <div class="createPost-container">
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
-        <!-- <CommentDropdown v-model="postForm.comment_disabled" />
-        <PlatformDropdown v-model="postForm.platforms" />
-        <SourceUrlDropdown v-model="postForm.source_uri" />-->
         <el-button
           v-if="!this.isEdit"
           v-loading="loading"
@@ -24,16 +21,26 @@
 
       <div class="createPost-main-container">
         <el-row>
-          <!-- <Warning /> -->
-          <el-col :span="11">
+          <el-col :span="12">
+            <el-form-item label="Kích hoạt" label-width="120px" class="text-left">
+              <toggle-button
+                :value="postForm.published"
+                :sync="true"
+                :labels="true"
+                v-model="postForm.published"
+              />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
             <el-form-item prop="name">
               <MDinput v-model="postForm.name" :maxlength="100" name="Name" required>Tên</MDinput>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <!-- <Warning /> -->
-          <el-col :span="11">
+          <el-col :span="12">
             <el-form-item>
               <MDinput
                 v-model="postForm.displayOrder"
@@ -46,7 +53,7 @@
         </el-row>
         <el-row>
           <!-- <Warning /> -->
-          <el-col :span="11">
+          <el-col :span="12">
             <el-form-item>
               <MDinput
                 v-model="postForm.shortDescription"
@@ -138,24 +145,10 @@ export default {
         callback();
       }
     };
-    const validateSourceUri = (rule, value, callback) => {
-      if (value) {
-        if (validURL(value)) {
-          callback();
-        } else {
-          this.$message({
-            message: "外链url填写不正确",
-            type: "error"
-          });
-          callback(new Error("外链url填写不正确"));
-        }
-      } else {
-        callback();
-      }
-    };
     return {
       postForm: Object.assign({}, defaultForm),
       loading: false,
+      isActive: true,
       userListOptions: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
@@ -171,10 +164,6 @@ export default {
       return this.postForm.content_short.length;
     },
     displayTime: {
-      // set and get is useful when the data
-      // returned by the back end api is different from the front end
-      // back end return => "2013-06-25 06:59:25"
-      // front end need timestamp => 1372114765000
       get() {
         return +new Date(this.postForm.createdDate);
       },
@@ -196,6 +185,7 @@ export default {
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route);
   },
+  mounted() {},
   methods: {
     fetchData(id) {
       fetchArticle(id)
@@ -206,7 +196,6 @@ export default {
           console.log(err);
         });
     },
-
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -241,7 +230,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this, $router.go(-1);
+              this.$router.go(-1);
               this.loading = false;
             }
             return false;

@@ -28,6 +28,12 @@ namespace CbMobile.UI.Controllers
             return Ok(model);
         }
         [HttpGet]
+        [Route("AdminGetListDropdownCategoryProduct")]
+        public IActionResult AdminGetListDropdownCategoryProduct()
+        {
+            return Ok(_categoryProductAppService.GetListDropdownCategoryProduct());
+        }
+        [HttpGet]
         [Route("AdminGetDetailCategoryProduct")]
         public IActionResult AdminGetDetailCategoryProduct(int id)
         {
