@@ -76,7 +76,6 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <code>{{postForm.listMemory}}</code>
         <el-row>
           <el-col :span="12">
             <el-form-item label-width="120px" label="Dung lượng" class="text-left">

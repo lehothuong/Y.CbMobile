@@ -62,7 +62,7 @@ namespace CbMobile.UI.Controllers
             }
             return NotFound();
         }
-        [HttpPost]
+        [HttpDelete]
         [Route("DeleteCategoryProduct")]
         public IActionResult DeleteCategoryProduct(int id)
         {

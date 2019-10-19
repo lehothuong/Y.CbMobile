@@ -226,6 +226,41 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: "/banner",
+    component: Layout,
+    redirect: "/banner/list",
+    name: "Banner",
+    meta: {
+      title: "Banner",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/banner/create"),
+        name: "CreateBanner",
+        meta: { title: "Create", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/banner/edit"),
+        name: "EditBanner",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/banner/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/banner/list"),
+        name: "ListBanner",
+        meta: { title: "List", icon: "list" }
+      }
+    ]
+  },
   { path: "*", redirect: "/404", hidden: true }
 ];
 

@@ -2,6 +2,9 @@
   <div class="createPost-container">
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
+        <!-- <CommentDropdown v-model="postForm.comment_disabled" />
+        <PlatformDropdown v-model="postForm.platforms" />
+        <SourceUrlDropdown v-model="postForm.source_uri" />-->
         <el-button
           v-if="!this.isEdit"
           v-loading="loading"
@@ -48,12 +51,15 @@
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="Mô tả ngắn" label-width="120px" class="text-left">
-              <el-input
-                v-model="postForm.shortDescription"
-                placeholder="Mô tả ngắn"
-                :maxlength="100"
-              ></el-input>
+            <el-form-item label="Ảnh banner" label-width="120px" class="text-left">
+              <el-input v-model="postForm.bannerUrl" placeholder="Ảnh banner" :maxlength="100"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="Liên kết" label-width="120px" class="text-left">
+              <el-input v-model="postForm.url" placeholder="Liên kết" :maxlength="100"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -78,35 +84,20 @@
 import Tinymce from "@/components/Tinymce";
 import Upload from "@/components/Upload/SingleImage3";
 import MDinput from "@/components/MDinput";
-import Sticky from "@/components/Sticky"; // 粘性header组件
+import Sticky from "@/components/Sticky";
 import { validURL } from "@/utils/validate";
 import {
   fetchArticle,
   createArticle,
   updateArticle,
   deleteArticle
-} from "@/api/manufacturer";
-import { searchUser } from "@/api/remote-search";
+} from "@/api/banner";
 import Warning from "./Warning";
 import {
   CommentDropdown,
   PlatformDropdown,
   SourceUrlDropdown
 } from "./Dropdown";
-
-const defaultForm = {
-  status: "draft",
-  name: "", // 文章题目
-  content: "", // 文章内容
-  content_short: "", // 文章摘要
-  source_uri: "", // 文章外链
-  image_uri: "", // 文章图片
-  display_time: undefined, // 前台展示时间
-  id: undefined,
-  platforms: ["a-platform"],
-  comment_disabled: false,
-  importance: 0
-};
 
 export default {
   name: "ArticleDetail",
@@ -139,9 +130,8 @@ export default {
       }
     };
     return {
-      postForm: Object.assign({}, defaultForm),
+      postForm: Object.assign({}),
       loading: false,
-      isActive: true,
       userListOptions: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
@@ -156,6 +146,10 @@ export default {
       return this.postForm.content_short.length;
     },
     displayTime: {
+      // set and get is useful when the data
+      // returned by the back end api is different from the front end
+      // back end return => "2013-06-25 06:59:25"
+      // front end need timestamp => 1372114765000
       get() {
         return +new Date(this.postForm.createdDate);
       },
@@ -169,7 +163,7 @@ export default {
       const id = this.$route.params && this.$route.params.id;
       this.fetchData(id);
     } else {
-      this.postForm = Object.assign({}, defaultForm);
+      this.postForm = Object.assign({});
     }
 
     // Why need to make a copy of this.$route here?
@@ -177,7 +171,6 @@ export default {
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route);
   },
-  mounted() {},
   methods: {
     fetchData(id) {
       fetchArticle(id)
@@ -188,6 +181,15 @@ export default {
           console.log(err);
         });
     },
+    // setTagsViewTitle() {
+    //   const title = 'Edit Article'
+    //   const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
+    //   this.$store.dispatch('tagsView/updateVisitedView', route)
+    // },
+    // setPageTitle() {
+    //   const title = 'Edit Article'
+    //   document.title = `${title} - ${this.postForm.id}`
+    // },
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -200,7 +202,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this.$router.push("/manufacturer/list");
+              this.$router.push("/banner/list");
               this.loading = false;
             } else console.log("error submit!!");
           });
@@ -222,7 +224,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this.$router.go(-1);
+              this, $router.go(-1);
               this.loading = false;
             }
             return false;

@@ -15,7 +15,7 @@ namespace CbMobile.Application.Service
         IEnumerable<ProductViewModel> GetIndexProductById(int id);
         IEnumerable<ProductViewModel> GetIndexManufactureById(int id, int idCategory);
         Object GetAllProduct(int page = 1, int pageSize = 10);
-        ProductViewModel GetDetailsProduct(int id);
+        Product GetDetailsProduct(int id);
         bool CreateProduct(Product product);
         bool UpdateProduct(Product product);
         bool DeleteProduct(int id);

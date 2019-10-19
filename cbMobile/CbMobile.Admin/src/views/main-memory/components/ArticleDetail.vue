@@ -36,18 +36,6 @@
           </el-col>
         </el-row>
         <el-row>
-          <el-col :span="12">
-            <el-form-item label="Trạng thái" label-width="120px" class="text-left">
-              <toggle-button
-                :value="postForm.status"
-                :sync="true"
-                :labels="true"
-                v-model="postForm.status"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
           <!-- <Warning /> -->
           <el-col :span="12">
             <el-form-item prop="name" label="Tên" label-width="120px" class="text-left">

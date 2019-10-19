@@ -24,23 +24,28 @@
 
       <div class="createPost-main-container">
         <el-row>
-          <!-- <Warning /> -->
-          <el-col :span="11">
-            <el-form-item prop="name">
-              <MDinput v-model="postForm.name" :maxlength="100" name="Name" required>Tên</MDinput>
+          <el-col :span="12">
+            <el-form-item label="Kích hoạt" label-width="120px" class="text-left">
+              <toggle-button
+                :value="postForm.published"
+                :sync="true"
+                :labels="true"
+                v-model="postForm.published"
+              />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
-          <!-- <Warning /> -->
-          <el-col :span="11">
-            <el-form-item>
-              <MDinput
-                v-model="postForm.displayOrder"
-                :maxlength="100"
-                name="DisplayOrder"
-                required
-              >Sắp xếp</MDinput>
+          <el-col :span="12">
+            <el-form-item label="Tên" label-width="120px" class="text-left">
+              <el-input v-model="postForm.name" placeholder="Tên" :maxlength="100"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="Sắp xếp" label-width="120px" class="text-left">
+              <el-input v-model="postForm.displayOrder" placeholder="Sắp xếp" :maxlength="100"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -80,20 +85,6 @@ import {
   PlatformDropdown,
   SourceUrlDropdown
 } from "./Dropdown";
-
-const defaultForm = {
-  status: "draft",
-  name: "", // 文章题目
-  content: "", // 文章内容
-  content_short: "", // 文章摘要
-  source_uri: "", // 文章外链
-  image_uri: "", // 文章图片
-  display_time: undefined, // 前台展示时间
-  id: undefined,
-  platforms: ["a-platform"],
-  comment_disabled: false,
-  importance: 0
-};
 
 export default {
   name: "ArticleDetail",
@@ -177,10 +168,6 @@ export default {
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
-
-    // Why need to make a copy of this.$route here?
-    // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
-    // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route);
   },
   methods: {
@@ -188,29 +175,11 @@ export default {
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
-          // just for test
-          // this.postForm.title += `   Article Id:${this.postForm.id}`
-          // this.postForm.content_short += `   Article Id:${this.postForm.id}`
-
-          // set tagsview title
-          //this.setTagsViewTitle();
-
-          // set page title
-          //this.setPageTitle();
         })
         .catch(err => {
           console.log(err);
         });
     },
-    // setTagsViewTitle() {
-    //   const title = 'Edit Article'
-    //   const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
-    //   this.$store.dispatch('tagsView/updateVisitedView', route)
-    // },
-    // setPageTitle() {
-    //   const title = 'Edit Article'
-    //   document.title = `${title} - ${this.postForm.id}`
-    // },
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {

@@ -43,7 +43,7 @@ namespace CbMobile.Application.Service
                 data = results
             };
         }
-        public ProductViewModel GetDetailsProduct(int id)
+        public Product GetDetailsProduct(int id)
         {
             var model = _dbContext
                   .Products
@@ -51,23 +51,7 @@ namespace CbMobile.Application.Service
                   .FirstOrDefault(x => x.Id == id);
             if (model != null)
             {
-                return new ProductViewModel
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    Published = model.Published,
-                    Status = model.Status,
-                    Hot = model.Hot,
-                    ShortDescription = model.ShortDescription,
-                    AvatarUrl = model.AvatarUrl,
-                    FullDescription = model.FullDescription,
-                    ManufacturerId = model.ManufacturerId,
-                    CategoryProductId = model.CategoryProductId,
-                    DisplayOrder = model.DisplayOrder,
-                    Value = model.Value,
-                    ValuePromotion = model.ValuePromotion,
-                    ListMemory = GetArrListMemory(model.MainMemory)
-                };
+                return model;
             }
             throw new KeyNotFoundException();
         }
