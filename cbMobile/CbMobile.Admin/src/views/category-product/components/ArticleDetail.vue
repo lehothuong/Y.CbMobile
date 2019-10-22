@@ -132,7 +132,7 @@ export default {
       }
     };
     return {
-      postForm: Object.assign({}, defaultForm),
+      postForm: Object.assign({}),
       loading: false,
       userListOptions: [],
       rules: {
@@ -166,7 +166,7 @@ export default {
       const id = this.$route.params && this.$route.params.id;
       this.fetchData(id);
     } else {
-      this.postForm = Object.assign({}, defaultForm);
+      this.postForm = Object.assign({});
     }
     this.tempRoute = Object.assign({}, this.$route);
   },

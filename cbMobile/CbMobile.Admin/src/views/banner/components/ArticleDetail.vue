@@ -37,6 +37,26 @@
         </el-row>
         <el-row>
           <el-col :span="12">
+            <el-form-item label-width="120px" label="Loại" class="text-left">
+              <el-select
+                v-model="postForm.categoryId"
+                filterable
+                default-first-option
+                remote
+                placeholder="Loại"
+              >
+                <el-option
+                  v-for="(item,index) in categoryBannerListOptions"
+                  :key="item+index"
+                  :label="item.name"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
             <el-form-item label="Tên" label-width="120px" class="text-left">
               <el-input v-model="postForm.name" placeholder="Tên" :maxlength="100"></el-input>
             </el-form-item>
@@ -92,6 +112,7 @@ import {
   updateArticle,
   deleteArticle
 } from "@/api/banner";
+import { fetchGetListDropdownCategoryBanner } from "@/api/categoryBanner";
 import Warning from "./Warning";
 import {
   CommentDropdown,
@@ -133,6 +154,7 @@ export default {
       postForm: Object.assign({}),
       loading: false,
       userListOptions: [],
+      categoryBannerListOptions: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
         name: [{ validator: validateRequire }],
@@ -165,11 +187,8 @@ export default {
     } else {
       this.postForm = Object.assign({});
     }
-
-    // Why need to make a copy of this.$route here?
-    // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
-    // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route);
+    this.fetchGetListDropdownCategoryBanner();
   },
   methods: {
     fetchData(id) {
@@ -181,15 +200,6 @@ export default {
           console.log(err);
         });
     },
-    // setTagsViewTitle() {
-    //   const title = 'Edit Article'
-    //   const route = Object.assign({}, this.tempRoute, { title: `${title}-${this.postForm.id}` })
-    //   this.$store.dispatch('tagsView/updateVisitedView', route)
-    // },
-    // setPageTitle() {
-    //   const title = 'Edit Article'
-    //   document.title = `${title} - ${this.postForm.id}`
-    // },
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -212,6 +222,15 @@ export default {
         }
       });
     },
+    fetchGetListDropdownCategoryBanner() {
+      fetchGetListDropdownCategoryBanner()
+        .then(response => {
+          this.categoryBannerListOptions = response;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     updateForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {
@@ -224,7 +243,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this, $router.go(-1);
+              this.$router.go(-1);
               this.loading = false;
             }
             return false;
@@ -244,14 +263,13 @@ export default {
       })
         .then(() => {
           deleteArticle(this.postForm.id).then(resp => {
+            console.log("delêt");
             if (resp) {
               this.$message({
                 type: "success",
                 message: "Đã xóa"
               });
-              this.$router.push({
-                path: this.redirect || "/category-product/list"
-              });
+              this.$router.go(-1);
             } else {
               console.log("error update!!");
             }

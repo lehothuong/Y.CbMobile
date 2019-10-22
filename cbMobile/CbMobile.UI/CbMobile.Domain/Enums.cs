@@ -11,8 +11,9 @@ namespace CbMobile.Domain
 
     public enum CategoryPostType
     {
-        Topic = 1,
-        News = 2
+        Topic = 3,
+        News = 5,
+        Banners = 6,
     }
     public enum PulishType
     {

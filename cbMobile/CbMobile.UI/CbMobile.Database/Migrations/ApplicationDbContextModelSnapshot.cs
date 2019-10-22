@@ -66,6 +66,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("BannerUrl");
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<DateTime>("CreatedOnUtc");
@@ -86,6 +88,8 @@ namespace CbMobile.Database.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("Banners");
                 });
 
@@ -105,7 +109,7 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("ParentId");
+                    b.Property<int?>("ParentId");
 
                     b.Property<bool>("Published");
 
@@ -751,6 +755,14 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.Banner", b =>
+                {
+                    b.HasOne("CbMobile.Domain.Models.Categories", "Categories")
+                        .WithMany("Banners")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>

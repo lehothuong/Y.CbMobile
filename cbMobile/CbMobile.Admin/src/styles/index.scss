@@ -23,6 +23,10 @@ label {
   }
 }
 
+.el-table .cell {
+  word-break: break-word;
+}
+
 html {
   height: 100%;
   box-sizing: border-box;

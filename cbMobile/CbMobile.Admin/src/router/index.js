@@ -261,6 +261,111 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: "/category-banner",
+    component: Layout,
+    redirect: "/category-banner/list",
+    name: "CategoryBanner",
+    meta: {
+      title: "CategoryBanner",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/category-banner/create"),
+        name: "CreateCategoryBanner",
+        meta: { title: "Create", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/category-banner/edit"),
+        name: "EditCategoryBanner",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/category-banner/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/category-banner/list"),
+        name: "ListCategoryBanner",
+        meta: { title: "List", icon: "list" }
+      }
+    ]
+  },
+  {
+    path: "/category-post",
+    component: Layout,
+    redirect: "/category-post/list",
+    name: "CategoryPost",
+    meta: {
+      title: "CategoryPost",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/category-post/create"),
+        name: "CreateCategoryPost",
+        meta: { title: "Create", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/category-post/edit"),
+        name: "EditCategoryPost",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/category-post/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/category-post/list"),
+        name: "ListCategoryPost",
+        meta: { title: "List", icon: "list" }
+      }
+    ]
+  },
+  {
+    path: "/news",
+    component: Layout,
+    redirect: "/news/list",
+    name: "News",
+    meta: {
+      title: "News",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/news/create"),
+        name: "CreateNews",
+        meta: { title: "Create", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/news/edit"),
+        name: "EditNews",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/news/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/news/list"),
+        name: "ListNews",
+        meta: { title: "List", icon: "list" }
+      }
+    ]
+  },
   { path: "*", redirect: "/404", hidden: true }
 ];
 

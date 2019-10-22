@@ -39,6 +39,8 @@
     <Compile Remove="Migrations\20190917150238_add_details.Designer.cs" />
     <Compile Remove="Migrations\20190917150942_Initial.cs" />
     <Compile Remove="Migrations\20190917150942_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191020102442_add_BannerCategory.cs" />
+    <Compile Remove="Migrations\20191020102442_add_BannerCategory.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />

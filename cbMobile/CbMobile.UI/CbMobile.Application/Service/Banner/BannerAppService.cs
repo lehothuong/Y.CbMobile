@@ -36,8 +36,8 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                  .Banners
-                 .GetPublished()
                  .AsNoTracking()
+                 .Where(x => !x.Deleted)
                  .OrderBy(x => x.DisplayOrder)
                  .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
@@ -55,7 +55,6 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                 .Banners
-                .GetPublished()
                 .FirstOrDefault(x => x.Id == id);
             if(model != null)
             {
@@ -93,7 +92,6 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
               .Banners
-              .GetPublished()
               .FirstOrDefault(x => x.Id == id);
             if(model != null)
             {

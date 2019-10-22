@@ -1,6 +1,7 @@
 ﻿using CbMobile.Application;
 using CbMobile.Database;
 using CbMobile.Domain;
+using CbMobile.Domain.Models;
 using CbMobile.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -87,6 +88,80 @@ namespace CbMobile.Application.Service
                 };
             }
             throw new KeyNotFoundException();
+        }
+        public Object GetAllPost(int page = 1, int pageSize = 10)
+        {
+            var model = _dbContext
+                 .Posts
+                 .AsNoTracking()
+                 .Where(x => !x.Deleted)
+                 .OrderBy(x => x.DisplayOrder)
+                 .ThenByDescending(x => x.CreatedDate);
+            var totalCount = model.Count();
+            var results = model
+                 .Skip((page - 1) * pageSize)
+                 .Take(pageSize)
+                 .ToList();
+
+            return new
+            {
+                totalCount = totalCount,
+                data = results
+            };
+        }
+        public Post GetDetailsPost(int id)
+        {
+            var model = _dbContext
+                .Posts
+                .GetPublished()
+                .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                return model;
+            }
+            throw new KeyNotFoundException();
+        }
+        public bool CreatePost(Post post)
+        {
+            _dbContext.Posts.Add(post);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        public bool UpdatePost(Post post)
+        {
+            var model = _dbContext
+               .Posts
+               .GetPublished()
+               .FirstOrDefault(x => x.Id == post.Id);
+            if (model != null)
+            {
+                model.Name = post.Name;
+                model.Published = post.Published;
+                model.BannerUrl = post.BannerUrl;
+                model.AvatarUrl = post.AvatarUrl;
+                model.Deleted = post.Deleted;
+                model.UpdatedDate = post.UpdatedDate;
+                model.FullDescription = model.FullDescription;
+                model.ShortDescription = model.ShortDescription;
+                model.DisplayOrder = post.DisplayOrder;
+                model.CategoriesId = post.CategoriesId;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public bool DeletePost(int id)
+        {
+            var model = _dbContext
+              .Posts
+              .FirstOrDefault(x => x.Id == id);
+            if (model != null)
+            {
+                model.Deleted = true;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
