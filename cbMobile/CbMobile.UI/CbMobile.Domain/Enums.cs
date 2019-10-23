@@ -35,4 +35,9 @@ namespace CbMobile.Domain
     {
          public static string HomeTopBanner = "Home Top Banner";
     }
+    public static class PostType
+    {
+        public static string News = "NewsCategory";
+        public static string Topic = "TopicCategory";
+    }
 }

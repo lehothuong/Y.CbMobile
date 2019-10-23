@@ -95,6 +95,7 @@ namespace CbMobile.Application.Service
                  .Posts
                  .AsNoTracking()
                  .Where(x => !x.Deleted)
+                 .Where(x => x.CategoryPostType == PostType.News)
                  .OrderBy(x => x.DisplayOrder)
                  .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
@@ -113,7 +114,7 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                 .Posts
-                .GetPublished()
+                .AsNoTracking()
                 .FirstOrDefault(x => x.Id == id);
             if (model != null)
             {
@@ -123,6 +124,7 @@ namespace CbMobile.Application.Service
         }
         public bool CreatePost(Post post)
         {
+            post.CategoryPostType = PostType.News;
             _dbContext.Posts.Add(post);
             _dbContext.SaveChanges();
             return true;

@@ -366,6 +366,41 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: "/topic",
+    component: Layout,
+    redirect: "/topic/list",
+    name: "Topic",
+    meta: {
+      title: "Topic",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/topic/create"),
+        name: "CreateTopic",
+        meta: { title: "Create", icon: "edit" }
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/topic/edit"),
+        name: "EditTopic",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/topic/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/topic/list"),
+        name: "ListTopic",
+        meta: { title: "List", icon: "list" }
+      }
+    ]
+  },
   { path: "*", redirect: "/404", hidden: true }
 ];
 

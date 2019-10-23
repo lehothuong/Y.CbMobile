@@ -23,7 +23,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                 .MainMemorys
                 .AsNoTracking()
-                .GetPublished()
+                .Where(x => !x.Deleted)
                 .OrderBy(x => x.DisplayOrder)
                 .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
@@ -55,7 +55,6 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                   .MainMemorys
-                  .GetPublished()
                   .FirstOrDefault(x => x.Id == id);
             if (model != null)
             {

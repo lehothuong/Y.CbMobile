@@ -23,7 +23,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                 .Products
                 .AsNoTracking()
-                .GetPublished()
+                .Where(x => !x.Deleted)
                 .OrderBy(x => x.DisplayOrder)
                 .ThenByDescending(x => x.CreatedDate)
                 .Select(x => new ProductViewModel
@@ -47,7 +47,6 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                   .Products
-                  .GetPublished()
                   .FirstOrDefault(x => x.Id == id);
             if (model != null)
             {

@@ -21,7 +21,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                   .Manufacturers
                   .AsNoTracking()
-                  .GetPublished()
+                  .Where(x => !x.Deleted)
                   .OrderBy(x => x.DisplayOrder)
                   .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
