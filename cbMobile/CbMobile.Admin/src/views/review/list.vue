@@ -1,39 +1,40 @@
 <template>
   <div class="app-container">
     <el-table v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="Hot" width="50">
-        <template slot-scope="scope">
-          <span v-if="scope.row.hot">
-            <img src="@/assets/image/hot.png" width="30px" height="30px" />
-          </span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="ID" width="80">
-        <template slot-scope="scope">
-          <span>{{ scope.row.id }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column width="280" align="center" label="Tên">
+      <el-table-column width="120" align="center" label="Tên">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
+      <el-table-column width="150" align="center" label="Tiêu đề">
+        <template slot-scope="scope">
+          <span>{{ scope.row.title }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="220" align="center" label="Nội dung">
+        <template slot-scope="scope">
+          <span>{{ scope.row.content }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="100" align="center" label="Đánh giá">
+        <template slot-scope="scope">
+          <span>{{ scope.row.reviewStar }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column width="100" align="center" label="Email">
+        <template slot-scope="scope">
+          <span>{{ scope.row.email }}</span>
+        </template>
+      </el-table-column>
 
-      <el-table-column width="120" align="center" label="Sắp xếp">
+      <el-table-column width="100" align="center" label="Sắp xếp">
         <template slot-scope="scope">
           <span>{{ scope.row.displayOrder }}</span>
         </template>
       </el-table-column>
-      <el-table-column width="250" align="center" label="Ngày tạo">
+      <el-table-column width="100" align="center" label="Ngày tạo">
         <template slot-scope="scope">
           <span>{{ scope.row.createdDate | parseTime('{d}-{m}-{y} {h}:{i}') }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="Actions" width="120">
-        <template slot-scope="scope">
-          <router-link :to="'/product/edit/'+scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
-          </router-link>
         </template>
       </el-table-column>
       <el-table-column align="center" label="Actions" width="120">
@@ -61,11 +62,11 @@
 </template>
 
 <script>
-import { fetchList, deleteArticle } from "@/api/product";
+import { fetchList, deleteArticle } from "@/api/review";
 import Pagination from "@/components/Pagination"; // Secondary package based on el-pagination
 
 export default {
-  name: "Product",
+  name: "Banner",
   components: { Pagination },
   filters: {
     statusFilter(status) {
@@ -106,7 +107,8 @@ export default {
                 type: "success",
                 message: "Đã xóa"
               });
-              this.getList();
+              var index = this.list.findIndex(x => x.id === id);
+              if (index !== -1) this.list.splice(index, 1);
             } else {
               console.log("error update!!");
             }

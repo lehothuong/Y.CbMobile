@@ -27,8 +27,8 @@ export const routes = [
     component: DetailNews
   },
   {
-    path: "/details/:id",
-    name: "product-post",
+    path: "/chi-tiet-san-pham/:id",
+    name: "chi-tiet-san-pham",
     component: DetailProduct
   },
   {

@@ -6,7 +6,7 @@ namespace CbMobile.Domain
 {
     public enum CategoryProductType
     {
-       SmartPhone = 1
+       SmartPhone = 2
     }
 
     public enum CategoryPostType

@@ -13,10 +13,10 @@ namespace CbMobile.UI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminCategoryPost : ControllerBase
+    public class AdminCategoryPostController : ControllerBase
     {
         private readonly ICategoryPostAppService _categoryPostAppService;
-        public AdminCategoryPost(ICategoryPostAppService categoryPostAppService)
+        public AdminCategoryPostController(ICategoryPostAppService categoryPostAppService)
         {
             _categoryPostAppService = categoryPostAppService;
         }

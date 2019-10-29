@@ -31,7 +31,8 @@ namespace CbMobile.Application.Service
                     Id = x.Id,
                     Name = x.Name,
                     DisplayOrder = x.DisplayOrder,
-                    CreatedDate = x.CreatedDate
+                    CreatedDate = x.CreatedDate,
+                    Hot = x.Hot,
                 });
             var totalCount = model.Count();
             var results = model
@@ -114,36 +115,38 @@ namespace CbMobile.Application.Service
         }
         public IEnumerable<ProductViewModel> GetProduct()
         {
-            var model = _dbContext.Products
-                .Where(x => x.Hot == true && x.Status == true)
+            var model = _dbContext
+                .Products
+                .AsNoTracking()
+                .GetPublished()
+                .OrderBy(x => x.DisplayOrder)
+                .ThenByDescending(x => x.CreatedDate)
+                .Take(6)
                 .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
                     AvatarUrl = x.AvatarUrl,
-                    Value = x.Value,
+                    ValuePromotion = x.ValuePromotion
                 })
                 .ToList();
             return model;
         }
-        public IEnumerable<CategoryProductViewModel> GetPhoneProductInHome()
+        public IEnumerable<ProductViewModel> GetPhoneProductInHome()
         {
-            var model = _dbContext.CategoryProducts
-                .Include(x => x.Products)
-                .Where(x => x.Id == (int)CategoryProductType.SmartPhone)
-                .Select(x => new CategoryProductViewModel
+            var model = _dbContext.Products
+                .AsNoTracking()
+                .GetPublished()
+                .OrderBy(x => x.DisplayOrder)
+                .ThenByDescending(x => x.CreatedDate)
+                .Where(x => x.CategoryProductId == (int)CategoryProductType.SmartPhone)
+                .Take(10)
+                .Select(x => new ProductViewModel
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Products = x.Products.Select(y => new ProductViewModel
-                    {
-                        Id = y.Id,
-                        Name = y.Name,
-                        ShortDescription = y.ShortDescription,
-                        AvatarUrl = y.AvatarUrl,
-                        FullDescription = y.FullDescription,
-                        Value = y.Value
-                    })
+                    AvatarUrl = x.AvatarUrl,
+                    ValuePromotion = x.ValuePromotion
                 })
                 .ToList();
             return model;
@@ -206,7 +209,8 @@ namespace CbMobile.Application.Service
                      ShortDescription = x.ShortDescription,
                      AvatarUrl = x.AvatarUrl,
                      FullDescription = x.FullDescription,
-                     Value = x.Value
+                     Value = x.Value,
+                     ValuePromotion = x.ValuePromotion
                  })
                  .ToList();
             return model;

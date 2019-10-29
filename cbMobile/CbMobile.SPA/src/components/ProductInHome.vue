@@ -3,14 +3,17 @@
     <div class="titleProductInHome">Giá sốc cuối tuần</div>
     <div class="gallery">
       <div v-for="(item,index) in products" :key="index">
-        <router-link v-bind:to="'/details/' + item.id " class="slickOption" :title="item.name">
-          <div
-            class="img-background img-1-1"
-            :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
-          ></div>
+        <router-link
+          v-bind:to="{ name: 'chi-tiet-san-pham', params: {id : item.id},target: '_blank'}"
+          class="slickOption"
+          :title="item.name"
+        >
+          <div class="img-1-1 slider">
+            <img class="img-small" :alt="item.name" :data-lazy="item.avatarUrl" />
+          </div>
           <p class="nameProductInHomeHot mt-lg-3 mb-0">{{item.name}}</p>
           <div class="priceProductInHomeHot mt-lg-2">
-            <p class="realPrice">{{item.value}}</p>
+            <p class="realPrice">{{formatPrice(item.valuePromotion)}}</p>
           </div>
         </router-link>
       </div>
@@ -55,6 +58,7 @@ export default {
       infinite: true,
       fade: false,
       arrows: true,
+      lazyLoad: "ondemand",
       responsive: [
         {
           breakpoint: 500,

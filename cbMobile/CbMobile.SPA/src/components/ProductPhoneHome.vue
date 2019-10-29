@@ -14,14 +14,13 @@
       <div class="row mx-0">
         <div class="col-lg-25 px-0" v-for="(item,index) in productPhoneInHome" :key="index">
           <div class="listProduct text-center">
-            <router-link class="borderRight borderBottom p-3" v-bind:to="'/details/' + item.id ">
-              <div
-                class="img-background img-1-1"
-                :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"
-              ></div>
+            <router-link class="borderRight borderBottom p-3"  v-bind:to="{ name: 'chi-tiet-san-pham', params: {id : item.id},target: '_blank'}">
+              <div class="img-1-1 slider">
+                <img class="img-small" :alt="item.name" :data-src="item.avatarUrl" />
+              </div>
               <p class="nameProductInHomeHot mt-lg-3 mb-0">{{item.name}}</p>
               <div class="priceProductInHomeHot mt-lg-2">
-                <p class="realPrice">{{item.value}}</p>
+                <p class="realPrice">{{formatPrice(item.valuePromotion)}}</p>
               </div>
             </router-link>
           </div>
@@ -49,7 +48,7 @@ export default {
     },
     getPhoneProductInHome() {
       ProductAppService.getPhoneProductInHome().then((resp, data) => {
-        this.productPhoneInHome = resp.data.find(element => element).products;
+        this.productPhoneInHome = resp.data;
       });
     }
   },

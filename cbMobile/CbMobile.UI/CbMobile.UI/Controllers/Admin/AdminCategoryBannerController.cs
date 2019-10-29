@@ -13,10 +13,10 @@ namespace CbMobile.UI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminCategoryBanner : ControllerBase
+    public class AdminCategoryBannerController : ControllerBase
     {
         private readonly ICategoryBannerAppService _categoryBannerAppService;
-        public AdminCategoryBanner(ICategoryBannerAppService categoryBannerAppService)
+        public AdminCategoryBannerController(ICategoryBannerAppService categoryBannerAppService)
         {
             _categoryBannerAppService = categoryBannerAppService;
         }

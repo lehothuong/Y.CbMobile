@@ -401,6 +401,38 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: "/contact",
+    component: Layout,
+    redirect: "/contact/list",
+    name: "Contact",
+    meta: {
+      title: "Contact",
+      icon: "example"
+    },
+    children: [
+      {
+        path: "list",
+        component: () => import("@/views/contact/list"),
+        name: "Contact",
+        meta: { title: "Contact", icon: "example" }
+      }
+    ]
+  },
+  {
+    path: "/review",
+    component: Layout,
+    redirect: "/review/list",
+    name: "Review",
+    children: [
+      {
+        path: "list",
+        component: () => import("@/views/review/list"),
+        name: "Review",
+        meta: { title: "Review", icon: "example" }
+      }
+    ]
+  },
   { path: "*", redirect: "/404", hidden: true }
 ];
 

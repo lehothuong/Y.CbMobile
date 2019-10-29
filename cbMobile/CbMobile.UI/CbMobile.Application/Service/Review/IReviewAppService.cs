@@ -10,5 +10,7 @@ namespace CbMobile.Application.Service
     {
         Review PostReview(Review review);
         IEnumerable<ReviewViewModel> GetAllReviewByProductId(int id);
+        Object AdminGetAllReview(int page = 1, int pageSize = 10);
+        bool DeleteReview(int id);
     }
 }

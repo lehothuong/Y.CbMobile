@@ -26,7 +26,7 @@ namespace CbMobile.Domain.Models
         {
             get
             {
-                return !string.IsNullOrEmpty(this.MainMemory) ? this.MainMemory.Split(',').Select(p => int.Parse(p)).ToList() : null;
+                return !string.IsNullOrEmpty(this.MainMemory) ? this.MainMemory.Split(',').Select(p => int.Parse(p)).ToList() : new List<int>();
             }
             set
             {

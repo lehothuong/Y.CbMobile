@@ -1,5 +1,6 @@
 <template>
   <div class="createPost-container">
+    <code>{{postForm}}</code>
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <el-button
@@ -44,6 +45,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <span class="notice">(Chỉ lấy 6 sản phẩm hot)</span>
         <el-row>
           <el-col :span="12">
             <el-form-item label="Hot" label-width="120px" class="text-left">
@@ -127,13 +129,13 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="Link hình ảnh" label-width="120px" class="text-left">
-              <el-input v-model="postForm.avatarUrl" placeholder="Link hình ảnh" :maxlength="100"></el-input>
+              <el-input v-model="postForm.avatarUrl" placeholder="Link hình ảnh"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="Giá" label-width="120px" class="text-left">
+            <el-form-item label="Giá thị trường" label-width="120px" class="text-left">
               <div class="el-input el-input--medium">
                 <cleave v-model="postForm.value" class="el-input__inner" :options="options.number"></cleave>
               </div>
@@ -265,6 +267,7 @@ export default {
     return {
       postForm: Object.assign({}, defaultForm),
       loading: false,
+      total: 0,
       userListOptions: [],
       manufacturerListOptions: [],
       mainMemoryListOptions: [],
