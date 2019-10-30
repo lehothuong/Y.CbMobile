@@ -23,7 +23,7 @@
       </el-table-column>
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
-          <router-link :to="'/category-product/edit/'+scope.row.id">
+          <router-link :to="'/category-banner/edit/'+scope.row.id">
             <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
           </router-link>
         </template>

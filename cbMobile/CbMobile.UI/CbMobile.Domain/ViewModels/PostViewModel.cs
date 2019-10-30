@@ -16,5 +16,6 @@ namespace CbMobile.Domain.ViewModels
         public DateTime CreateDate { get; set; }
         public int CategoriesId { get; set; }
         public Categories Categories { get; set; }
+        public string CategoryPostType { get; set; }
     }
 }

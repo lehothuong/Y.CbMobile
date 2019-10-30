@@ -11,6 +11,13 @@ export const NewAppService = {
     return Axios.get("/api/Post/GetNewTechnology").then(resp => {
       return resp;
     });
+  },
+  getListNewByIdCategory(id) {
+    return Axios.get("/api/Post/GetListNewByIdCategory", {
+      params: { id: id }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

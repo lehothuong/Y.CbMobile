@@ -1,5 +1,5 @@
 <template>
-  <div class="createPost-container">
+  <div class="createPost-container" v-loading="loading">
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <!-- <CommentDropdown v-model="postForm.comment_disabled" />
@@ -72,14 +72,14 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="Ảnh banner" label-width="120px" class="text-left">
-              <el-input v-model="postForm.bannerUrl" placeholder="Ảnh banner" :maxlength="100"></el-input>
+              <el-input v-model="postForm.bannerUrl" placeholder="Ảnh banner"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
             <el-form-item label="Liên kết" label-width="120px" class="text-left">
-              <el-input v-model="postForm.url" placeholder="Liên kết" :maxlength="100"></el-input>
+              <el-input v-model="postForm.url" placeholder="Liên kết"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -192,9 +192,11 @@ export default {
   },
   methods: {
     fetchData(id) {
+      this.loading = true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
+          this.loading = false;
         })
         .catch(err => {
           console.log(err);

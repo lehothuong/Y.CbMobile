@@ -11,6 +11,7 @@ namespace CbMobile.Application.Service
         IEnumerable<PostViewModel> GetAboutUs();
         IEnumerable<PostViewModel> GetAllNews();
         IEnumerable<PostViewModel> GetNewTechnology();
+        IEnumerable<PostViewModel> GetListNewByIdCategory(int id);
         PostViewModel GetDetails(int id);
         Object GetAllPost(int page = 1, int pageSize = 10);
         Post GetDetailsPost(int id);

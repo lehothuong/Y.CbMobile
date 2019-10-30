@@ -66,14 +66,14 @@
         <el-row>
           <el-col :span="12">
             <el-form-item label="Ảnh banner" label-width="120px" class="text-left">
-              <el-input v-model="postForm.bannerUrl" placeholder="Ảnh banner" :maxlength="100"></el-input>
+              <el-input v-model="postForm.bannerUrl" placeholder="Ảnh banner"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="12">
             <el-form-item label="Ảnh avatar" label-width="120px" class="text-left">
-              <el-input v-model="postForm.avatarUrl" placeholder="Ảnh avatar" :maxlength="100"></el-input>
+              <el-input v-model="postForm.avatarUrl" placeholder="Ảnh avatar"></el-input>
             </el-form-item>
           </el-col>
         </el-row>

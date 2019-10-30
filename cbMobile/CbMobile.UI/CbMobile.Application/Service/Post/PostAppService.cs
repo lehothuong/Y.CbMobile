@@ -21,6 +21,8 @@ namespace CbMobile.Application.Service
         public IEnumerable<PostViewModel> GetAboutUs()
         {
             var model = _dbContext.Posts
+                .GetPublished()
+                .AsNoTracking()
                 .Include(x => x.Categories)
                 .Where(x => x.CategoriesId == (int)CategoryPostType.Topic)
                 .Select(x => new PostViewModel
@@ -38,6 +40,8 @@ namespace CbMobile.Application.Service
         public IEnumerable<PostViewModel> GetAllNews()
         {
             var model = _dbContext.Posts
+                .GetPublished()
+                .AsNoTracking()
                 .Include(x => x.Categories)
                 .Where(x => x.CategoriesId == (int)CategoryPostType.News)
                 .Select(x => new PostViewModel
@@ -54,7 +58,10 @@ namespace CbMobile.Application.Service
 
         public IEnumerable<PostViewModel> GetNewTechnology()
         {
-            var model = _dbContext.Posts
+            var model = _dbContext
+                .Posts
+                .GetPublished()
+                .AsNoTracking()
                 .Include(x => x.Categories)
                 .Where(x => x.CategoriesId == (int)CategoryPostTypeNews.NewsTechnology)
                 .Take(3)
@@ -67,6 +74,25 @@ namespace CbMobile.Application.Service
                     ShortDescription = x.ShortDescription,
                     FullDescription = x.FullDescription,
                     CategoriesId = x.CategoriesId
+                })
+                .ToList();
+            return model;
+        }
+        public IEnumerable<PostViewModel> GetListNewByIdCategory(int id)
+        {
+            var model = _dbContext
+                .Posts
+                .GetPublished()
+                .AsNoTracking()
+                .Where(x => x.CategoriesId == id)
+                .Select(x => new PostViewModel
+                {
+                    Id = x.Id,
+                    BannerUrl = x.BannerUrl,
+                    AvatarUrl = x.AvatarUrl,
+                    Name = x.Name,
+                    CreateDate = x.CreatedDate,
+                    ShortDescription = x.ShortDescription,
                 })
                 .ToList();
             return model;

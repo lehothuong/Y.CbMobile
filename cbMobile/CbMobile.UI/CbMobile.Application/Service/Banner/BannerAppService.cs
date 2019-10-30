@@ -21,7 +21,9 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                  .Banners
-                 .Where(x => x.BannerCategory == BannerCategoryType.HomeTopBanner)
+                 .GetPublished()
+                 .AsNoTracking()
+                 .Where(x => x.CategoryId == (int)BannerCategoryType.HomeTopBanner)
                  .Select(x => new BannerViewModel
                  {
                      Id = x.Id,
@@ -72,13 +74,12 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                .Banners
-               .GetPublished()
                .FirstOrDefault(x => x.Id == banner.Id);
             if(model != null)
             {
                 model.Name = banner.Name;
                 model.Published = banner.Published;
-                model.BannerCategory = banner.BannerCategory;
+                model.CategoryId = banner.CategoryId;
                 model.BannerUrl = banner.BannerUrl;
                 model.Deleted = banner.Deleted;
                 model.DisplayOrder = banner.DisplayOrder;

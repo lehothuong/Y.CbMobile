@@ -35,11 +35,13 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                  .Categories
                  .Include(x => x.Posts)
+                 .GetPublished()
                  .Where(x => x.Id == id)
                  .Select(x => new CategoryPostViewModel
                  {
                      Name = x.Name,
-                     Posts = x.Posts.Select(y => new PostViewModel
+                     Posts = x.Posts
+                     .Select(y => new PostViewModel
                      {
                          Id = y.Id,
                          BannerUrl = y.BannerUrl,

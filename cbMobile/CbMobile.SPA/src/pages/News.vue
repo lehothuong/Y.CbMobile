@@ -2,21 +2,19 @@
   <div class="container">
     <div class="row mt-lg-5 mb-lg-5">
       <div class="col-lg-9">
-        <div v-for="(item,index) in posts" :key="index">
-          <div v-if="index == 0">
-            <router-link :to="{ name: 'chi-tiet-tin-tuc', params: {id : item.id}}">
-              <div class="featuredNews position-relative">
-                <div
-                  class="img-16-9 img-background"
-                  :style="{ backgroundImage: 'url(\'' + item.bannerUrl + '\')' }"
-                ></div>
-                <div class="overNewsContent">
-                  <h4 class="font-weight-500 mb-1" :title="item.name">{{item.name}}</h4>
-                  <div class="posts">Ngày đăng: {{item.createDate}}</div>
-                </div>
+        <div v-for="(item,index) in posts.slice(0, 1)" :key="index">
+          <router-link :to="{ name: 'chi-tiet-tin-tuc', params: {id : item.id}}">
+            <div class="featuredNews position-relative">
+              <div
+                class="img-16-9 img-background"
+                :style="{ backgroundImage: 'url(\'' + item.bannerUrl + '\')' }"
+              ></div>
+              <div class="overNewsContent">
+                <h4 class="font-weight-500 mb-1" :title="item.name">{{item.name}}</h4>
+                <div class="posts">Ngày đăng: {{item.createDate}}</div>
               </div>
-            </router-link>
-          </div>
+            </div>
+          </router-link>
         </div>
         <div class="blogLaterNews mt-lg-4">
           <h2 class="mb-lg-4">Tin tức mới nhất</h2>
@@ -50,6 +48,7 @@
 <script>
 import PostAppService from "../api/topic";
 import CategoryAppService from "../api/categories";
+import NewAppService from "../api/news";
 export default {
   data() {
     return {
@@ -66,9 +65,9 @@ export default {
       });
     },
     getListByIdCategory() {
-      CategoryAppService.getListByIdCategory(this.id).then(resp => {
-        this.categorys = resp.data;
-        this.posts = resp.data.find(element => element).posts;
+      NewAppService.getListNewByIdCategory(this.id).then(resp => {
+        this.posts = resp.data;
+        // this.posts = resp.data.find(element => element).posts;
       });
     }
   },

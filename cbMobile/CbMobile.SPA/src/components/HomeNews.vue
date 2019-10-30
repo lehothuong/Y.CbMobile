@@ -2,7 +2,7 @@
   <div class="mt-lg-3">
     <div class="headerTitleNews">
       <router-link :to="{name : 'tin-tuc', params: { id : categoriesId }}">
-        <p>Tin công nghệ</p>
+        <p class="mb-0">Tin công nghệ</p>
       </router-link>
     </div>
     <div v-for="(item,index) in newTechnology" :key="index">

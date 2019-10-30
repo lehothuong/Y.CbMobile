@@ -1,6 +1,5 @@
 <template>
   <div class="createPost-container">
-    <code>{{postForm}}</code>
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <el-button
@@ -321,6 +320,7 @@ export default {
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
+          this.loading = true;
         })
         .catch(err => {
           console.log(err);

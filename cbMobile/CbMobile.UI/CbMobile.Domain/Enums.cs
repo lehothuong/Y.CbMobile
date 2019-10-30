@@ -22,7 +22,7 @@ namespace CbMobile.Domain
     }
     public enum CategoryPostTypeNews
     {
-        NewsTechnology = 3,
+        NewsTechnology = 8,
     }
 
     public static class ListColor
@@ -31,9 +31,9 @@ namespace CbMobile.Domain
         public static string White = "Trắng";
         public static string Green = "Xanh";
     }
-    public static class BannerCategoryType
+    public enum BannerCategoryType
     {
-         public static string HomeTopBanner = "Home Top Banner";
+        HomeTopBanner = 7,
     }
     public static class PostType
     {

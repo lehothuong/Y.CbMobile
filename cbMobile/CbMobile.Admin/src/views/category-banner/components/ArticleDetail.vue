@@ -214,7 +214,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this, $router.go(-1);
+              this.$router.go(-1);
               this.loading = false;
             }
             return false;
@@ -239,9 +239,7 @@ export default {
                 type: "success",
                 message: "Đã xóa"
               });
-              this.$router.push({
-                path: this.redirect || "/category-banner/list"
-              });
+              this.$router.go(-1);
             } else {
               console.log("error update!!");
             }
