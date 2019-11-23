@@ -18,6 +18,7 @@ namespace CbMobile.Domain.Models
         public decimal? ValuePromotion { get; set; }
         public bool Hot { get; set; }
         public bool Status { get; set; }
+        [ForeignKey("Manufacturer")]
         public int ManufacturerId { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public string MainMemory { get; set; }
@@ -33,10 +34,12 @@ namespace CbMobile.Domain.Models
                 this.MainMemory = string.Join(",", value);
             }
         }
+        [ForeignKey("CategoryProduct")]
         public int CategoryProductId { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
         public IEnumerable<Review> Reivews { get; set; }
         public IEnumerable<DetailSpecification> DetailSpecifications { get; set; }
+        public IEnumerable<DetailAccessories> DetailAccessories { get; set; }
     }   
 
 }

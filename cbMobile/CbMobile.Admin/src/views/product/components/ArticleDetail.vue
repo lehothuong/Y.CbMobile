@@ -1,6 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
+    <el-form ref="postForm" v-if="!loading" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <el-button
           v-if="!this.isEdit"
@@ -77,7 +77,7 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-row>
+        <!-- <el-row>
           <el-col :span="12">
             <el-form-item label-width="120px" label="Dung lượng" class="text-left">
               <el-select v-model="postForm.listMemory" multiple placeholder="Dung lượng">
@@ -90,7 +90,7 @@
               </el-select>
             </el-form-item>
           </el-col>
-        </el-row>
+        </el-row> -->
         <el-row>
           <el-col :span="12">
             <el-form-item label-width="120px" label="Loại" class="text-left">
@@ -206,7 +206,7 @@ import {
 } from "@/api/product";
 import { fetchListDropdownManufacturer } from "@/api/manufacturer";
 import { fetchGetListDropdownCategoryProduct } from "@/api/categoryProduct";
-import { getListDropdownMainMemory } from "@/api/mainMemory";
+// import { getListDropdownMainMemory } from "@/api/mainMemory";
 import { searchUser } from "@/api/remote-search";
 import Warning from "./Warning";
 import {
@@ -269,7 +269,7 @@ export default {
       total: 0,
       userListOptions: [],
       manufacturerListOptions: [],
-      mainMemoryListOptions: [],
+      // mainMemoryListOptions: [],
       categoryProductListOptions: [],
       mainMemorys: [],
       rules: {
@@ -313,17 +313,20 @@ export default {
     this.tempRoute = Object.assign({}, this.$route);
     this.fetchListDropdownManufacturer();
     this.fetchGetListDropdownCategoryProduct();
-    this.getListDropdownMainMemory();
+    // this.getListDropdownMainMemory();
   },
   methods: {
     fetchData(id) {
+      this.loading = true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
-          this.loading = true;
+          this.loading = false;
         })
         .catch(err => {
           console.log(err);
+        }).finally(()=>{
+          this.loading = false;
         });
     },
     fetchListDropdownManufacturer() {
@@ -344,17 +347,18 @@ export default {
           console.log(err);
         });
     },
-    getListDropdownMainMemory() {
-      getListDropdownMainMemory()
-        .then(response => {
-          this.mainMemoryListOptions = response;
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
+    // getListDropdownMainMemory() {
+    //   getListDropdownMainMemory()
+    //     .then(response => {
+    //       this.mainMemoryListOptions = response;
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
     submitForm() {
       this.$refs.postForm.validate(valid => {
+        //Array to string list id [1,2,3,4] => 1,2,3,4
         this.postForm.mainMemory = this.postForm.listMemory.join(",");
         if (valid) {
           createArticle(this.postForm).then(resp => {

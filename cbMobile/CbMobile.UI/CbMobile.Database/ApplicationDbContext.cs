@@ -28,5 +28,7 @@ namespace CbMobile.Database
         public DbSet<MainMemory> MainMemorys { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<MainColor> MainColors { get; set; }
+        public DbSet<DetailAccessories> DetailAccessoriess { get; set; }
     }
 }

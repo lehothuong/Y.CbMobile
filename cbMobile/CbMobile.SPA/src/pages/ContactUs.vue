@@ -58,15 +58,25 @@
         </el-form>
       </div>
     </div>
-    <div class="mt-lg-4 pt-lg-2">
-      <h5 class="text-uppercase font-weight-500 text-center color-black-1">Bản đồ cửa hàng</h5>
-      <iframe
+    <div class="mt-lg-4 pt-lg-2 mb-5">
+      <h5 class="text-uppercase font-weight-500 text-center color-black-1 mb-4">Bản đồ cửa hàng</h5>
+      <GmapMap :center="center" :zoom="7" map-type-id="terrain" style="width: 100%; height: 500px">
+        <GmapMarker
+          :key="index"
+          v-for="(m, index) in markers"
+          :position="m.position"
+          :clickable="true"
+          :draggable="true"
+          @click="center=m.position"
+        />
+      </GmapMap>
+      <!-- <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.2498024603133!2d106.64038581452866!3d10.792169892310868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175294ce73d0759%3A0x99abb4bf92864687!2sThe+Coffee+House+-+B%C3%A0u+C%C3%A1t!5e0!3m2!1svi!2s!4v1565409816300!5m2!1svi!2s"
         height="450"
         frameborder="0"
         style="border:0; width:100%"
         allowfullscreen
-      ></iframe>
+      ></iframe>-->
     </div>
   </div>
 </template>
@@ -80,6 +90,9 @@ export default {
   },
   data() {
     return {
+      center: { lat: 45.508, lng: -73.587 },
+      markers: [],
+      places: [],
       contact: {
         name: "",
         email: "",

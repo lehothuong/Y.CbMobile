@@ -17,6 +17,7 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
+        #region Admin
         public Object GetAllCategory(int page = 1, int pageSize = 10)
         {
             var model = _dbContext
@@ -79,7 +80,7 @@ namespace CbMobile.Application.Service
                 model.DisplayOrder = categoryProduct.DisplayOrder;
                 model.UpdatedDate = categoryProduct.UpdatedDate;
                 model.Published = categoryProduct.Published;
-
+                model.ListManufacturer = categoryProduct.ListManufacturer;
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -94,28 +95,73 @@ namespace CbMobile.Application.Service
             if (model != null)
             {
                 model.Deleted = true;
+                model.Published = false;
                 _dbContext.SaveChanges();
                 return true;
             }
             return false;
         }
+        #endregion
+        #region UI
         public IEnumerable<CategoryProductViewModel> GetMenuCategory()
         {
             var model = _dbContext
                   .CategoryProducts
-                  .Include(x => x.OrderManuFacturers)
+                  .GetPublished()
+                  .AsNoTracking()
+                  .OrderBy(x => x.DisplayOrder)
+                  .ThenByDescending(x => x.CreatedDate)
                   .Select(x => new CategoryProductViewModel
                   {
                       Id = x.Id,
                       Name = x.Name,
-                      OrderManufacturers = x.OrderManuFacturers.Select(y => new OrderManufacturerViewModel
-                      {
-                          ManufacturerID = y.ManufacturerID,
-                          Manufacturers = y.Manufacturers
-                      })
+                      MainProductCategory = x.MainProductCategory,
                   })
                   .ToList();
+            foreach (var item in model)
+            {
+                item.ListManufacturer = !string.IsNullOrEmpty(item.MainProductCategory) ? GetStringCategoryProduct(item.MainProductCategory) : null;
+            }
+
             return model;
+        }
+        public List<ManufacturerViewModel> GetStringCategoryProduct(string mainProductCategory)
+        {
+            var listManufacturer = mainProductCategory.Split(",").Select(p => int.Parse(p)).ToList();
+            return _dbContext
+                        .Manufacturers
+                        .Where(x => listManufacturer.Contains(x.Id))
+                        .Select(x => new ManufacturerViewModel
+                        {
+                            Id = x.Id,
+                            Name = x.Name
+                        })
+                        .ToList();
+        }
+        public IEnumerable<ManufacturerViewModel> GetManuByProductId(int categoryProductid)
+        {
+            var listManuFacturerId = _dbContext
+                 .Products
+                 .Where(x => x.CategoryProductId == categoryProductid)
+                 .Select(x => new
+                 {
+                     ManufacturerId = x.ManufacturerId
+                 })
+                 .Distinct()
+                 .ToList();
+
+            var listManFacturer = _dbContext
+                 .Manufacturers
+                 .GetPublished()
+                 .AsNoTracking()
+                 .Where(x => listManuFacturerId.Select(p => p.ManufacturerId).Contains(x.Id))
+                 .Select(x => new ManufacturerViewModel
+                 {
+                     Id = x.Id,
+                     Name = x.Name
+                 })
+                 .ToList();
+            return listManFacturer;
         }
         public CategoryProductViewModel GetCategoryProductById(int id)
         {
@@ -131,5 +177,6 @@ namespace CbMobile.Application.Service
             }
             throw new KeyNotFoundException();
         }
+        #endregion
     }
 }

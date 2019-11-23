@@ -34,7 +34,7 @@ export const constantRoutes = [
       {
         path: "dashboard",
         component: () => import("@/views/dashboard/index"),
-        name: "Dashboard",
+        name: "Trang chủ",
         meta: { title: "Dashboard", icon: "dashboard", affix: true }
       }
     ]
@@ -87,17 +87,12 @@ export const asyncRoutes = [
   {
     path: "/category-product",
     component: Layout,
-    redirect: "/category-product/list",
-    name: "CategoryProduct",
-    meta: {
-      title: "CategoryProduct",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/category-product/create"),
         name: "CreateCategoryProduct",
+        hidden: true,
         meta: { title: "Create", icon: "edit" }
       },
       {
@@ -115,97 +110,20 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-product/list"),
         name: "ListCategoryProduct",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Loại sản phẩm", icon: "list" }
       }
     ]
   },
-  {
-    path: "/main-memory",
-    component: Layout,
-    redirect: "/main-memory/list",
-    name: "MainMemory",
-    meta: {
-      title: "MainMemory",
-      icon: "example"
-    },
-    children: [
-      {
-        path: "create",
-        component: () => import("@/views/main-memory/create"),
-        name: "CreateMainMemory",
-        meta: { title: "Create", icon: "edit" }
-      },
-      {
-        path: "edit/:id(\\d+)",
-        component: () => import("@/views/main-memory/edit"),
-        name: "EditMainMemory",
-        meta: {
-          title: "Edit",
-          noCache: true,
-          activeMenu: "/main-memory/list"
-        },
-        hidden: true
-      },
-      {
-        path: "list",
-        component: () => import("@/views/main-memory/list"),
-        name: "ListMainMemory",
-        meta: { title: "List", icon: "list" }
-      }
-    ]
-  },
-
-  {
-    path: "/manufacturer",
-    component: Layout,
-    redirect: "/manufacturer/list",
-    name: "Manufacturer",
-    meta: {
-      title: "Manufacturer",
-      icon: "example"
-    },
-    children: [
-      {
-        path: "create",
-        component: () => import("@/views/manufacturer/create"),
-        name: "CreateManufacturer",
-        meta: { title: "Create", icon: "edit" }
-      },
-      {
-        path: "edit/:id(\\d+)",
-        component: () => import("@/views/manufacturer/edit"),
-        name: "EditManufacturer",
-        meta: {
-          title: "Edit",
-          noCache: true,
-          activeMenu: "/manufacturer/list"
-        },
-        hidden: true
-      },
-      {
-        path: "list",
-        component: () => import("@/views/manufacturer/list"),
-        name: "ListManufacturer",
-        meta: { title: "List", icon: "list" }
-      }
-    ]
-  },
-
   {
     path: "/product",
     component: Layout,
-    redirect: "/product/list",
-    name: "Product",
-    meta: {
-      title: "Product",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/product/create"),
         name: "CreateProduct",
-        meta: { title: "Create", icon: "edit" }
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
@@ -222,60 +140,112 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/product/list"),
         name: "ListProduct",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Sản phẩm", icon: "list" }
       }
     ]
   },
   {
-    path: "/banner",
+    path: "/main-memory",
     component: Layout,
-    redirect: "/banner/list",
-    name: "Banner",
-    meta: {
-      title: "Banner",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
-        component: () => import("@/views/banner/create"),
-        name: "CreateBanner",
-        meta: { title: "Create", icon: "edit" }
+        component: () => import("@/views/main-memory/create"),
+        name: "CreateMainMemory",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
-        component: () => import("@/views/banner/edit"),
-        name: "EditBanner",
+        component: () => import("@/views/main-memory/edit"),
+        name: "EditMainMemory",
         meta: {
           title: "Edit",
           noCache: true,
-          activeMenu: "/banner/list"
+          activeMenu: "/main-memory/list"
         },
         hidden: true
       },
       {
         path: "list",
-        component: () => import("@/views/banner/list"),
-        name: "ListBanner",
-        meta: { title: "List", icon: "list" }
+        component: () => import("@/views/main-memory/list"),
+        name: "ListMainMemory",
+        meta: { title: "Bộ nhớ", icon: "list" }
       }
     ]
   },
   {
+    path: "/main-color",
+    component: Layout,
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/main-color/create"),
+        name: "CreateMainColor",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/main-color/edit"),
+        name: "EditMainColor",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/main-color/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/main-color/list"),
+        name: "ListMaincolor",
+        meta: { title: "Màu sắc", icon: "list" }
+      }
+    ]
+  },
+
+  {
+    path: "/manufacturer",
+    component: Layout,
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/manufacturer/create"),
+        name: "CreateManufacturer",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/manufacturer/edit"),
+        name: "EditManufacturer",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/manufacturer/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/manufacturer/list"),
+        name: "Bộ nhớ",
+        meta: { title: "Nhà sản xuất", icon: "list" }
+      }
+    ]
+  },
+
+  {
     path: "/category-banner",
     component: Layout,
-    redirect: "/category-banner/list",
-    name: "CategoryBanner",
-    meta: {
-      title: "CategoryBanner",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/category-banner/create"),
         name: "CreateCategoryBanner",
-        meta: { title: "Create", icon: "edit" }
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
@@ -292,25 +262,51 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-banner/list"),
         name: "ListCategoryBanner",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Loại Banner", icon: "list" }
       }
     ]
   },
   {
+    path: "/banner",
+    component: Layout,
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/banner/create"),
+        name: "CreateBanner",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/banner/edit"),
+        name: "EditBanner",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/banner/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/banner/list"),
+        name: "ListBanner",
+        meta: { title: "Banner", icon: "list" }
+      }
+    ]
+  },
+
+  {
     path: "/category-post",
     component: Layout,
-    redirect: "/category-post/list",
-    name: "CategoryPost",
-    meta: {
-      title: "CategoryPost",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/category-post/create"),
         name: "CreateCategoryPost",
-        meta: { title: "Create", icon: "edit" }
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
@@ -327,25 +323,20 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-post/list"),
         name: "ListCategoryPost",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Loại tin tức", icon: "list" }
       }
     ]
   },
   {
     path: "/news",
     component: Layout,
-    redirect: "/news/list",
-    name: "News",
-    meta: {
-      title: "News",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/news/create"),
         name: "CreateNews",
-        meta: { title: "Create", icon: "edit" }
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
@@ -362,25 +353,20 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/news/list"),
         name: "ListNews",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Tin tức", icon: "list" }
       }
     ]
   },
   {
     path: "/topic",
     component: Layout,
-    redirect: "/topic/list",
-    name: "Topic",
-    meta: {
-      title: "Topic",
-      icon: "example"
-    },
     children: [
       {
         path: "create",
         component: () => import("@/views/topic/create"),
         name: "CreateTopic",
-        meta: { title: "Create", icon: "edit" }
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
       },
       {
         path: "edit/:id(\\d+)",
@@ -397,39 +383,60 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/topic/list"),
         name: "ListTopic",
-        meta: { title: "List", icon: "list" }
+        meta: { title: "Bài viết", icon: "list" }
       }
     ]
   },
   {
     path: "/contact",
     component: Layout,
-    redirect: "/contact/list",
-    name: "Contact",
+    name: "Liên hệ",
     meta: {
-      title: "Contact",
+      title: "Liên hệ",
       icon: "example"
     },
     children: [
       {
-        path: "list",
+        path: "contact",
         component: () => import("@/views/contact/list"),
         name: "Contact",
         meta: { title: "Contact", icon: "example" }
+      },
+      {
+        path: "review",
+        component: () => import("@/views/review/list"),
+        name: "Review",
+        meta: { title: "Review", icon: "example" }
       }
     ]
   },
   {
-    path: "/review",
+    path: "/location",
     component: Layout,
-    redirect: "/review/list",
-    name: "Review",
     children: [
       {
+        path: "create",
+        component: () => import("@/views/location/create"),
+        name: "CreateLocation",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/location/edit"),
+        name: "EditLocation",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/location/list"
+        },
+        hidden: true
+      },
+      {
         path: "list",
-        component: () => import("@/views/review/list"),
-        name: "Review",
-        meta: { title: "Review", icon: "example" }
+        component: () => import("@/views/location/list"),
+        name: "ListLocation",
+        meta: { title: "Địa chỉ", icon: "list" }
       }
     ]
   },

@@ -478,6 +478,31 @@ label {
   font-weight: 700;
 }
 
+.text-left .el-form-item__label {
+  text-align: left;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.notice {
+  color: red;
+  font-size: 0.875rem;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.bg-blue {
+  background: blue;
+}
+
+.el-table .cell {
+  word-break: break-word;
+}
+
 html {
   height: 100%;
   -webkit-box-sizing: border-box;

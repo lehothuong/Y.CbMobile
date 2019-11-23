@@ -4,11 +4,11 @@
       <router-link v-bind:to="'/products/' + item.id ">
         <h5 class="titleCategoryProduct">{{item.name}}</h5>
       </router-link>
-      <div v-for="(items,index) in item.orderManufacturers" :key="index">
+      <div v-for="(items,index) in item.listManufacturer" :key="index">
         <router-link
-          :to="{name: 'productManufacrurers', params:{id : items.manufacturers.id}, query: { idCategory : item.id }}"
+          :to="{name: 'productManufacrurers', params:{id : items.id}, query: { idCategory : item.id }}"
           class="itemCategoryProduct"
-        >{{items.manufacturers.name}}</router-link>
+        >{{items.name}}</router-link>
       </div>
     </div>
   </div>
@@ -25,8 +25,14 @@ export default {
     getMenuCategoryProduct() {
       CategoryProductAppService.getMenuCategoryProduct().then(resp => {
         this.categoryProduct = resp.data;
+        console.log(this.categoryProduct);
       });
     }
+    // getManuByCategoryProduct(id) {
+    //   CategoryProductAppService.getMenuCategoryProduct().then(resp => {
+    //     this.categoryProduct = resp.data;
+    //   });
+    // }
   },
 
   created() {

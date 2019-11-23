@@ -136,6 +136,8 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("DisplayOrder");
 
+                    b.Property<string>("MainProductCategory");
+
                     b.Property<string>("Name");
 
                     b.Property<bool>("Published");
@@ -180,6 +182,47 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.DetailAccessories", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<int>("MainColorId");
+
+                    b.Property<int>("MainMemoryId");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.Property<decimal?>("Value");
+
+                    b.Property<decimal?>("ValuePromotion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MainColorId");
+
+                    b.HasIndex("MainMemoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("DetailAccessoriess");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
@@ -252,6 +295,33 @@ namespace CbMobile.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.MainColor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MainColors");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.MainMemory", b =>
@@ -764,6 +834,24 @@ namespace CbMobile.Database.Migrations
                     b.HasOne("CbMobile.Domain.Models.Categories", "Categories")
                         .WithMany("Banners")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.DetailAccessories", b =>
+                {
+                    b.HasOne("CbMobile.Domain.Models.MainColor", "MainColor")
+                        .WithMany("DetailAccessories")
+                        .HasForeignKey("MainColorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CbMobile.Domain.Models.MainMemory", "MainMemory")
+                        .WithMany("DetailAccessories")
+                        .HasForeignKey("MainMemoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CbMobile.Domain.Models.Product", "Product")
+                        .WithMany("DetailAccessories")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

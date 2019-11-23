@@ -1,6 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
+    <el-form ref="postForm" v-if="!loading" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <!-- <CommentDropdown v-model="postForm.comment_disabled" />
         <PlatformDropdown v-model="postForm.platforms" />
@@ -32,6 +32,20 @@
                 :labels="true"
                 v-model="postForm.published"
               />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label-width="120px" label="Loại sản phẩm" class="text-left">
+              <el-select size="large" v-model="postForm.listManufacturer" multiple placeholder="Loại sản phẩm">
+                <el-option
+                  v-for="item in listDropdownManufacturer"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id"
+                />
+              </el-select>
             </el-form-item>
           </el-col>
         </el-row>
@@ -78,6 +92,8 @@ import {
   updateArticle,
   deleteArticle
 } from "@/api/categoryProduct";
+import { fetchListDropdownManufacturer } from "@/api/manufacturer";
+
 import { searchUser } from "@/api/remote-search";
 import Warning from "./Warning";
 import {
@@ -135,6 +151,7 @@ export default {
       postForm: Object.assign({}),
       loading: false,
       userListOptions: [],
+      listDropdownManufacturer: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
         name: [{ validator: validateRequire }],
@@ -169,12 +186,25 @@ export default {
       this.postForm = Object.assign({});
     }
     this.tempRoute = Object.assign({}, this.$route);
+    this.fetchListDropdownManufacturer();
   },
   methods: {
     fetchData(id) {
+      this.loading = true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
+        })
+        .catch(err => {
+          console.log(err);
+        }).finally(resp=>{
+          this.loading = false;
+        });
+    },
+    fetchListDropdownManufacturer() {
+      fetchListDropdownManufacturer()
+        .then(response => {
+          this.listDropdownManufacturer = response;
         })
         .catch(err => {
           console.log(err);
@@ -204,6 +234,9 @@ export default {
     },
     updateForm() {
       this.$refs.postForm.validate(valid => {
+        this.postForm.mainProductCategory = this.postForm.listManufacturer.join(
+          ","
+        );
         if (valid) {
           updateArticle(this.postForm).then(resp => {
             if (resp) {
@@ -214,7 +247,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this, $router.go(-1);
+              this.$router.go(-1);
               this.loading = false;
             }
             return false;

@@ -10,7 +10,7 @@
           ></div>
           <p class="nameProductInHomeHot mt-lg-3 mb-0">{{item.name}}</p>
           <div class="priceProductInHomeHot mt-lg-2">
-            <p class="realPrice">{{item.value}}</p>
+            <p class="realPrice">{{formatPrice(item.valuePromotion)}}</p>
           </div>
         </router-link>
       </div>

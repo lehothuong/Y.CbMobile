@@ -12,6 +12,7 @@ namespace CbMobile.Domain.ViewModels
         public string ShortDescription { get; set; }
         public string AvatarUrl { get; set; }
         public string FullDescription { get; set; }
+        public object ListMemory { get;set;}
         public decimal? Value { get; set; }
         public decimal? ValuePromotion { get; set; }
         public bool Hot { get; set; }
@@ -24,6 +25,5 @@ namespace CbMobile.Domain.ViewModels
         public virtual DateTime CreatedDate { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
-        public IList<int> ListMemory { get; set; }
     }
 }

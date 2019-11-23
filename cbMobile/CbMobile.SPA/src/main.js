@@ -18,8 +18,13 @@ Vue.component("star-rating", StarRating);
 global.jQuery = jQuery;
 global.$ = jQuery;
 import MainApp from "./layouts/MainApp.vue";
-//import * as VueGoogleMaps from "vue2-google-maps";
-
+import * as VueGoogleMaps from "vue2-google-maps";
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyAvZTey6bHMy0afi-U-AJuplsljH86bR5U",
+    libraries: "places"
+  }
+});
 import {
   RadioGroup,
   RadioButton,

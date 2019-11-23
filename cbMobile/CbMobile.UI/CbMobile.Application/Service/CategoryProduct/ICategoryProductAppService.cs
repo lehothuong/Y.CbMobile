@@ -14,6 +14,7 @@ namespace CbMobile.Application.Service
         CategoryProduct GetDetailsCategoryProduct(int id);
         bool CreateCategoryProduct(CategoryProduct categoryProduct);
         bool UpdateCategoryProduct(CategoryProduct categoryProduct);
+        IEnumerable<ManufacturerViewModel> GetManuByProductId(int categoryProductid);
         bool DeleteCategoryProduct(int id);
         Object GetListDropdownCategoryProduct();
     }

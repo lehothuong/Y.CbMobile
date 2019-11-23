@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+     <div class="mb-4">
+      <el-row >
+        <el-col class="align-right" :span="24">
+        <router-link :to="'/product/create'">
+          <el-button  type="success" size="small" icon="el-icon-circle-plus-outline">Tạo</el-button>
+        </router-link>
+        </el-col>
+      </el-row>
+    </div>
     <el-table v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="Hot" width="50">
         <template slot-scope="scope">
@@ -18,7 +27,6 @@
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
-
       <el-table-column width="120" align="center" label="Sắp xếp">
         <template slot-scope="scope">
           <span>{{ scope.row.displayOrder }}</span>

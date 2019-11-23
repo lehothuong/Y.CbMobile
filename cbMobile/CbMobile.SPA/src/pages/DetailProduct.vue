@@ -52,17 +52,13 @@
                 <p class>
                   <span class="font-weight-bold">Dung lượng:</span>
                 </p>
-                <!-- <div class="customRadio">
+                <div class="customRadio">
                   <div>
-                    <el-radio-group
-                      v-for="(item,index) in convertStringToArray"
-                      :key="index"
-                      v-model="rom"
-                    >
-                      <el-radio-button :label="item"></el-radio-button>
+                    <el-radio-group v-for="(item,index) in listMemory" :key="index" v-model="rom">
+                      <el-radio-button :label="item.name"></el-radio-button>
                     </el-radio-group>
                   </div>
-                </div>-->
+                </div>
 
                 <p class>
                   <span class="font-weight-bold">Màu sắc:</span>
@@ -281,7 +277,7 @@ export default {
       products: [],
       gender: [],
       allReivews: [],
-      mainMemory: [],
+      listMemory: [],
       color: [],
       categoryProductId: Number,
       radio: 3,
@@ -307,6 +303,26 @@ export default {
             id: 4,
             url:
               "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 5,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 6,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 7,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 8,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
           }
         ],
         normal_size: [
@@ -329,6 +345,26 @@ export default {
             id: 4,
             url:
               "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 5,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 6,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 7,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 8,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
           }
         ],
         large_size: [
@@ -349,6 +385,26 @@ export default {
           },
           {
             id: 4,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 5,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 6,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 7,
+            url:
+              "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
+          },
+          {
+            id: 8,
             url:
               "https://bizweb.dktcdn.net/thumb/compact/100/348/133/products/636863637628103338-ss-galaxy-s10-plus-den-4.png"
           }
@@ -375,7 +431,7 @@ export default {
   computed: {
     // convertStringToArray() {
     //   return this.mainMemory.split(",");
-    // },
+    // }
     // convertStringToArrayColor() {
     //   return this.color.split(",");
     // }
@@ -389,7 +445,7 @@ export default {
       this.loading = false;
       ProductAppService.getDetailProduct(this.id).then(resp => {
         this.products = resp.data;
-        // this.mainMemory = this.products.mainMemory;
+        this.listMemory = this.products.listMemory;
         this.color = this.products.color;
         this.categoryProductId = this.products.categoryProductId;
         this.priceSavings = this.products.value - this.products.valuePromotion;

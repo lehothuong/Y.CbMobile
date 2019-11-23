@@ -1,6 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
+    <el-form ref="postForm" v-if="!loading" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <el-button
           v-if="!this.isEdit"
@@ -32,6 +32,7 @@
             </el-form-item>
           </el-col>
         </el-row>
+
         <el-row>
           <el-col :span="12">
             <el-form-item label="Tên" label-width="120px" class="text-left">
@@ -142,6 +143,7 @@ export default {
       postForm: Object.assign({}, defaultForm),
       loading: false,
       isActive: true,
+      listDropdownCategoryProduct: [],
       userListOptions: [],
       rules: {
         image_uri: [{ validator: validateRequire }],
@@ -176,18 +178,23 @@ export default {
     // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
     // https://github.com/PanJiaChen/vue-element-admin/issues/1221
     this.tempRoute = Object.assign({}, this.$route);
+    this.fetchGetListDropdownCategoryProduct();
   },
   mounted() {},
   methods: {
     fetchData(id) {
+      this.loading = true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
         })
         .catch(err => {
           console.log(err);
+        }).finally(()=>{
+          this.loading = false;
         });
     },
+
     submitForm() {
       this.$refs.postForm.validate(valid => {
         if (valid) {

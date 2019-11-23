@@ -1,5 +1,5 @@
 <template>
-  <div class="createPost-container" v-loading="loading">
+  <div class="createPost-container" v-if="!loading">
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <!-- <CommentDropdown v-model="postForm.comment_disabled" />
@@ -196,10 +196,11 @@ export default {
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
-          this.loading = false;
         })
         .catch(err => {
           console.log(err);
+        }).finally(()=>{
+          this.loading = false;
         });
     },
     submitForm() {

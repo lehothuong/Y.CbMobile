@@ -18,6 +18,7 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
+        #region Admin
         public Object GetAllProduct(int page = 1, int pageSize = 10)
         {
             var model = _dbContext
@@ -94,6 +95,8 @@ namespace CbMobile.Application.Service
                 model.ValuePromotion = product.ValuePromotion;
                 model.Published = product.Published;
                 model.MainMemory = product.MainMemory;
+                model.CategoryProductId = product.CategoryProductId;
+                model.ManufacturerId = product.ManufacturerId;
 
                 _dbContext.SaveChanges();
                 return true;
@@ -108,11 +111,14 @@ namespace CbMobile.Application.Service
             if (model != null)
             {
                 model.Deleted = true;
+                model.Published = false;
                 _dbContext.SaveChanges();
                 return true;
             }
             return false;
         }
+        #endregion
+        #region UI
         public IEnumerable<ProductViewModel> GetProduct()
         {
             var model = _dbContext
@@ -169,34 +175,23 @@ namespace CbMobile.Application.Service
                     CategoryProductId = model.CategoryProductId,
                     ManufacturerId = model.ManufacturerId,
                     Status = model.Status,
+                    ListMemory = GetStringMainMemory(model.ListMemory),
                 };
             }
             throw new KeyNotFoundException();
         }
-
-        //public IEnumerable<MainMemoryViewModel> GetMainMemory(int id)
-        //{
-        //    var mainMemoryIds = _dbContext
-        //        .DetailMemorys
-        //        .Where(x => x.ProductId == id)
-        //        .Select(x => new
-        //        {
-        //            MainMemoryId = x.MainMemoryId
-        //        })
-        //        .ToList();
-        //    var modelMainMemory = _dbContext
-        //        .MainMemorys
-        //        .Where(x => mainMemoryIds.Select(p => p.MainMemoryId).Contains(x.Id))
-        //        .Select(x => new MainMemoryViewModel
-        //        {
-        //            Id = x.Id,
-        //            Name = x.Name,
-        //            Value = x.Value
-        //        })
-        //        .ToList();
-        //    return modelMainMemory;
-        //}
-
+        public object GetStringMainMemory(List<int> listMainMemory)
+        {
+            return _dbContext.MainMemorys
+                     .Where(x => listMainMemory
+                     .Contains(x.Id))
+                     .Select(x => new
+                     {
+                         Id = x.Id,
+                         Name = x.Name
+                     })
+                     .ToList();
+        }
         public IEnumerable<ProductViewModel> GetGenericProduct(int id)
         {
             var model = _dbContext
@@ -228,7 +223,8 @@ namespace CbMobile.Application.Service
                      ShortDescription = x.ShortDescription,
                      AvatarUrl = x.AvatarUrl,
                      FullDescription = x.FullDescription,
-                     Value = x.Value
+                     Value = x.Value,
+                     ValuePromotion = x.ValuePromotion,
                  })
                  .ToList();
             return model;
@@ -251,5 +247,6 @@ namespace CbMobile.Application.Service
                  .ToList();
             return model;
         }
+        #endregion
     }
 }

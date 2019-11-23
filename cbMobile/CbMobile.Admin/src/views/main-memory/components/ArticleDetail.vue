@@ -1,6 +1,6 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
+    <el-form ref="postForm" v-if="!loading" :model="postForm" :rules="rules" class="form-container">
       <sticky :z-index="10" :class-name="'sub-navbar '+postForm.published">
         <!-- <CommentDropdown v-model="postForm.comment_disabled" />
         <PlatformDropdown v-model="postForm.platforms" />
@@ -195,6 +195,7 @@ export default {
   },
   methods: {
     fetchData(id) {
+      this.loading = true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
@@ -210,6 +211,8 @@ export default {
         })
         .catch(err => {
           console.log(err);
+        }).finally(()=>{
+          this.loading = false;
         });
     },
     // setTagsViewTitle() {

@@ -97,6 +97,7 @@ namespace CbMobile.Application.Service
             if(model != null)
             {
                 model.Deleted = true;
+                model.Published = false;
                 _dbContext.SaveChanges();
                 return true;
             }

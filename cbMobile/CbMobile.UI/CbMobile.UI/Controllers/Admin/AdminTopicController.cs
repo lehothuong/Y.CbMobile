@@ -13,10 +13,10 @@ namespace CbMobile.UI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AdminTopic : ControllerBase
+    public class AdminTopicController : ControllerBase
     {
         private readonly ITopicAppService _TopicAppService;
-        public AdminTopic(ITopicAppService TopicAppService)
+        public AdminTopicController(ITopicAppService TopicAppService)
         {
             _TopicAppService = TopicAppService;
         }

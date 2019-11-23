@@ -70,8 +70,8 @@ namespace CbMobile.Application.Service
                 model.AvatarUrl = post.AvatarUrl;
                 model.Deleted = post.Deleted;
                 model.UpdatedDate = post.UpdatedDate;
-                model.FullDescription = model.FullDescription;
-                model.ShortDescription = model.ShortDescription;
+                model.FullDescription = post.FullDescription;
+                model.ShortDescription = post.ShortDescription;
                 model.DisplayOrder = post.DisplayOrder;
 
                 _dbContext.SaveChanges();

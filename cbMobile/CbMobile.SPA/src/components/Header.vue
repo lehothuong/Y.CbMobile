@@ -44,12 +44,12 @@
                   </div>
                 </li>
                 <li class="nav-item dropdown">
-                  <router-link class="nav-link pointer" to="/news">
+                  <div class="nav-link">
                     <div class="text-center">
                       <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                       <p class="nav-p dropdown-toggle">Tin tức</p>
                     </div>
-                  </router-link>
+                  </div>
                   <div class="dropdown-menu">
                     <MenuNews></MenuNews>
                   </div>

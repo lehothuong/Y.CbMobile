@@ -15,6 +15,10 @@ namespace CbMobile.Domain
         News = 5,
         Banners = 6,
     }
+    public enum CategoryPostTypeTopic
+    {
+        AboutUs = 8,
+    }
     public enum PulishType
     {
         No = 0,

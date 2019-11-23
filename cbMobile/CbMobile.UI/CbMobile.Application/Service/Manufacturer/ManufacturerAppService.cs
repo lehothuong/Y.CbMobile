@@ -16,6 +16,7 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
+        #region Admin
         public Object GetAllManufacturer(int page = 1, int pageSize = 10)
         {
             var model = _dbContext
@@ -93,14 +94,22 @@ namespace CbMobile.Application.Service
             if (model != null)
             {
                 model.Deleted = true;
+                model.Published = false;
                 _dbContext.SaveChanges();
                 return true;
             }
             return false;
         }
+        #endregion
+        #region UI
         public IEnumerable<ManufacturerViewModel> GetManufacturerInHome()
         {
-            var model = _dbContext.Manufacturers
+            var model = _dbContext
+                .Manufacturers
+                .GetPublished()
+                .AsNoTracking()
+                .OrderBy(x => x.DisplayOrder)
+                .ThenByDescending(x => x.CreatedDate)
                 .Select(x => new ManufacturerViewModel
                 {
                     Id = x.Id,
@@ -147,5 +156,6 @@ namespace CbMobile.Application.Service
             }
             throw new KeyNotFoundException();
         }
+        #endregion
     }
 }

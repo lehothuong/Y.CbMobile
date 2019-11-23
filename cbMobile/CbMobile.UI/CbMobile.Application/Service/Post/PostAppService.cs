@@ -23,8 +23,9 @@ namespace CbMobile.Application.Service
             var model = _dbContext.Posts
                 .GetPublished()
                 .AsNoTracking()
-                .Include(x => x.Categories)
-                .Where(x => x.CategoriesId == (int)CategoryPostType.Topic)
+                .OrderBy(x=>x.DisplayOrder)
+                .ThenByDescending(x=>x.CreatedDate)
+                .Where(x => x.Id == (int)CategoryPostTypeTopic.AboutUs)
                 .Select(x => new PostViewModel
                 {
                     Name = x.Name,
@@ -186,6 +187,7 @@ namespace CbMobile.Application.Service
             if (model != null)
             {
                 model.Deleted = true;
+                model.Published = false;
                 _dbContext.SaveChanges();
                 return true;
             }

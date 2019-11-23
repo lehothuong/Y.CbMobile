@@ -1,5 +1,14 @@
 <template>
   <div class="app-container">
+     <div class="mb-4">
+      <el-row >
+        <el-col class="align-right" :span="24">
+        <router-link :to="'/news/create'">
+          <el-button  type="success" size="small" icon="el-icon-circle-plus-outline">Tạo</el-button>
+        </router-link>
+        </el-col>
+      </el-row>
+    </div>
     <el-table v-loading="listLoading" :data="list" fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="87">
         <template slot-scope="scope">
