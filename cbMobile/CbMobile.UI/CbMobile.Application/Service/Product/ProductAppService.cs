@@ -24,6 +24,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                 .Products
                 .AsNoTracking()
+                .GetPublished()
                 .Where(x => !x.Deleted)
                 .OrderBy(x => x.DisplayOrder)
                 .ThenByDescending(x => x.CreatedDate)
@@ -117,6 +118,101 @@ namespace CbMobile.Application.Service
             }
             return false;
         }
+        public List<DropdownCategory> GetDropdownListProduct()
+        {
+            return _dbContext
+                    .Products
+                    .AsNoTracking()
+                    .GetPublished()
+                    .OrderByDescending(x => x.DisplayOrder)
+                    .ThenByDescending(x => x.CreatedDate)
+                    .Select(x => new DropdownCategory
+                    {
+                        Id = x.Id,
+                        Name = x.Name
+                    })
+                    .ToList();
+        }
+        public bool CreateAccessories(DetailAccessories detailAccessories)
+        {
+            _dbContext.DetailAccessoriess.Add(detailAccessories);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        public bool UpdateAccessories(DetailAccessories detailAccessories)
+        {
+            var model = _dbContext
+                          .DetailAccessoriess
+                          .FirstOrDefault(x => x.Id == detailAccessories.Id);
+            if(model != null)
+            {
+                model.UpdatedDate = DateTime.Now;
+                model.DisplayOrder = detailAccessories.DisplayOrder;
+                model.MainColorId = detailAccessories.MainColorId;
+                model.MainMemoryId = detailAccessories.MainMemoryId;
+                model.ProductId = detailAccessories.ProductId;
+                model.Published = detailAccessories.Published;
+                model.Value = detailAccessories.Value;
+                model.ValuePromotion = detailAccessories.ValuePromotion;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public bool DeleteAccessories(int id)
+        {
+            var model = _dbContext
+                          .DetailAccessoriess
+                          .FirstOrDefault(x => x.Id == id);
+            if(model != null)
+            {
+                model.Deleted = true;
+                model.Published = false;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public object GetAllDetailAccessories(int page = 1,int pageSize = 10)
+        {
+            var model = _dbContext
+                         .DetailAccessoriess
+                         .Include(x => x.MainColor)
+                         .Include(x => x.Product)
+                         .Include(x => x.MainMemory)
+                         .AsNoTracking()
+                         .GetPublished()
+                         .OrderBy(x => x.DisplayOrder)
+                         .ThenByDescending(x => x.CreatedDate)
+                         .Select(x => new DetailAccessoriesViewModel {
+                             Id = x.Id,
+                             ProductName = x.Product.Name,
+                             MainColorName = x.MainColor.Name,
+                             MainMemoryName = x.MainMemory.Name,
+                             DisplayOrder = x.DisplayOrder,
+                             CreatedDate = x.CreatedDate,
+                         });
+            var totalCount = model.Count();
+            var results = model
+                 .Skip((page - 1) * pageSize)
+                 .Take(pageSize).ToList();
+            return new
+            {
+                totalCount = totalCount,
+                data = results
+            };
+        }
+        public DetailAccessories GetDetailAccessories(int id)
+        {
+            var model = _dbContext
+                            .DetailAccessoriess
+                            .FirstOrDefault(x => x.Id == id);
+            if(model != null)
+            {
+                return model;
+            }
+            throw new KeyNotFoundException();
+        }
         #endregion
         #region UI
         public IEnumerable<ProductViewModel> GetProduct()
@@ -161,6 +257,7 @@ namespace CbMobile.Application.Service
         {
             var model = _dbContext
                 .Products
+                .Include(x => x.DetailAccessories)
                 .FirstOrDefault(x => x.Id == id);
             if (model != null)
             {
@@ -175,21 +272,64 @@ namespace CbMobile.Application.Service
                     CategoryProductId = model.CategoryProductId,
                     ManufacturerId = model.ManufacturerId,
                     Status = model.Status,
-                    ListMemory = GetStringMainMemory(model.ListMemory),
+                    ListMainMemory = GetListMainMemoryByID(model.Id),
+                    ListMainColor = GetListMainColorByID(model.Id),
+                    DetailAccessoriesDefaults = GetDetailAccessoriesDefaults(model.Id)
                 };
             }
             throw new KeyNotFoundException();
         }
-        public object GetStringMainMemory(List<int> listMainMemory)
+        public object GetDetailAccessoriesDefaults(int id)
         {
-            return _dbContext.MainMemorys
-                     .Where(x => listMainMemory
-                     .Contains(x.Id))
+            return _dbContext
+                     .DetailAccessoriess
+                     .Include(x => x.MainMemory)
+                     .Include(x => x.MainColor)
+                     .AsNoTracking()
+                     .GetPublished()
+                     .Where(x => x.ProductId == id)
                      .Select(x => new
                      {
-                         Id = x.Id,
-                         Name = x.Name
+                         MainMemoryId = x.MainMemoryId,
+                         MainColorId = x.MainColorId,
+                         MainMemoryName = x.MainMemory.Name,
+                         MainColorName = x.MainColor.Name,
+                         Value = x.Value,
                      })
+                     .FirstOrDefault();
+        }
+        public object GetListMainMemoryByID(int id)
+        {
+            return _dbContext
+                     .DetailAccessoriess
+                     .Include(x => x.MainMemory)
+                     .AsNoTracking()
+                     .GetPublished()
+                     .OrderBy(x => x.Id)
+                     .Where(x => x.ProductId == id)
+                     .Select(x => new
+                     {
+                         Id = x.MainMemoryId,
+                         Name = x.MainMemory.Name
+                     })
+                     .Distinct()
+                     .ToList();
+        }
+        public object GetListMainColorByID(int id)
+        {
+            return _dbContext
+                     .DetailAccessoriess
+                     .Include(x => x.MainColor)
+                     .AsNoTracking()
+                     .GetPublished()
+                     .OrderBy(x => x.Id)
+                     .Where(x => x.ProductId == id)
+                     .Select(x => new
+                     {
+                         Id = x.MainColorId,
+                         Name = x.MainColor.Name
+                     })
+                     .Distinct()
                      .ToList();
         }
         public IEnumerable<ProductViewModel> GetGenericProduct(int id)
@@ -245,6 +385,18 @@ namespace CbMobile.Application.Service
                      Value = x.Value
                  })
                  .ToList();
+            return model;
+        }
+        public object GetDetailAccessoriesById(int mainMemoryId,int mainColorId)
+        {
+            var model = _dbContext
+                         .DetailAccessoriess
+                         .AsNoTracking()
+                         .Where(x => x.MainMemoryId == mainMemoryId && x.MainColorId == mainColorId)
+                         .Select(x => new
+                         {
+                             Value = x.Value,
+                         }).FirstOrDefault();
             return model;
         }
         #endregion

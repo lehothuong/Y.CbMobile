@@ -21,5 +21,4 @@ namespace CbMobile.Domain.Models
         public decimal? Value { get; set; }
         public decimal? ValuePromotion { get; set; }
     }   
-
 }

@@ -8,6 +8,13 @@ export function fetchList(query) {
   });
 }
 
+export function fetchGetListDropdownProduct() {
+  return request({
+    url: "/api/AdminProduct/GetDropdownListProduct",
+    method: "get"
+  });
+}
+
 export function fetchArticle(id) {
   return request({
     url: "/api/AdminProduct/AdminGetDetailProduct",

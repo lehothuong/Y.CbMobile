@@ -67,5 +67,59 @@ namespace CbMobile.UI.Controllers
             }
             return NotFound();
         }
+        [HttpGet]
+        [Route("GetAllDetailAccessories")]
+        public IActionResult GetAllDetailAccessories(int page = 1,int pageSize = 10)
+        {
+            var model = _productAppService.GetAllDetailAccessories(page, pageSize);
+            return Ok(model);
+        }
+        [HttpGet]
+        [Route("GetDropdownListProduct")]
+        public IActionResult GetDropdownListProduct()
+        {
+            var model = _productAppService.GetDropdownListProduct();
+            return Ok(model);
+        }
+        [HttpGet]
+        [Route("AdminGetDetailAccessories")]
+        public IActionResult AdminGetDetailAccessories(int id)
+        {
+            var model = _productAppService.GetDetailAccessories(id);
+            return Ok(model);
+        }
+        [HttpPost]
+        [Route("CreateAccessories")]
+        public IActionResult CreateAccessories([FromBody]DetailAccessories detailAccessories)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _productAppService.CreateAccessories(detailAccessories);
+                return Ok(model);
+            }
+            return NotFound();
+        }
+        [HttpPut]
+        [Route("UpdateAccessories")]
+        public IActionResult UpdateAccessories([FromBody]DetailAccessories detailAccessories)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _productAppService.UpdateAccessories(detailAccessories);
+                return Ok(model);
+            }
+            return NotFound();
+        }
+        [HttpDelete]
+        [Route("DeleteAccessories")]
+        public IActionResult DeleteAccessories(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _productAppService.DeleteAccessories(id);
+                return Ok(model);
+            }
+            return NotFound();
+        }
     }
 }

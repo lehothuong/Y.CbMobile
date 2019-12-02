@@ -37,6 +37,12 @@ namespace CbMobile.UI.Controllers
             var model = _productAppService.GetDetails(id);
             return Ok(model);
         }
+        [HttpGet("GetDetailAccessoriesById")]
+        public ActionResult GetDetailAccessoriesById(int mainMemoryId, int mainColorId)
+        {
+            var model = _productAppService.GetDetailAccessoriesById(mainMemoryId, mainColorId);
+            return Ok(model);
+        }
         //[HttpGet("GetDetailMainMemory")]
         //public ActionResult GetDetailMainMemory(int id)
         //{

@@ -44,10 +44,10 @@ namespace CbMobile.Application.Service
                 .GetPublished()
                 .OrderBy(x => x.DisplayOrder)
                 .ThenByDescending(x => x.CreatedDate)
-                .Select(x => new
+                .Select(x => new DropdownCategory
                 {
-                    Text = x.Name,
-                    Value = x.Id,
+                    Name = x.Name,
+                    Id = x.Id,
                 })
                 .ToList();
         }

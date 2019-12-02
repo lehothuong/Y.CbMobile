@@ -34,10 +34,10 @@
               </div>
               <div class="col-lg-6">
                 <h2 class="color-red font-weight-500">{{formatPrice(products.valuePromotion)}}</h2>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between" v-if="value">
                   <p>
                     <span>Giá thị trường:</span>
-                    <span class="text-decoration font-weight-500">{{formatPrice(products.value)}}</span>
+                    <span class="text-decoration font-weight-500" >{{formatPrice(value)}}</span>
                   </p>
                   <p class="color-green" v-if="priceSavings > 0">
                     <span>Tiết kiệm:</span>
@@ -54,8 +54,8 @@
                 </p>
                 <div class="customRadio">
                   <div>
-                    <el-radio-group v-for="(item,index) in listMemory" :key="index" v-model="rom">
-                      <el-radio-button :label="item.name"></el-radio-button>
+                    <el-radio-group @change="postAccessories(mainMemoryId,mainColorId)" v-for="(item,index) in listMainMemory" :key="index" v-model="mainMemoryId">
+                      <el-radio-button :label="item.id">{{item.name}}</el-radio-button>
                     </el-radio-group>
                   </div>
                 </div>
@@ -63,17 +63,18 @@
                 <p class>
                   <span class="font-weight-bold">Màu sắc:</span>
                 </p>
-                <!-- <div class="customRadio mb-lg-3">
+                <div class="customRadio mb-lg-3">
                   <div>
                     <el-radio-group
-                      v-for="(item,index) in convertStringToArrayColor"
+                      @change="postAccessories(mainMemoryId,mainColorId)"
+                      v-for="(item,index) in listMainColor"
                       :key="index"
-                      v-model="checkColor"
+                      v-model="mainColorId"
                     >
-                      <el-radio-button :label="item"></el-radio-button>
+                      <el-radio-button id="isMainColor" :label="item.id">{{item.name}}</el-radio-button>
                     </el-radio-group>
                   </div>
-                </div>-->
+                </div>
                 <div class="shoppingProduct d-flex w-100">
                   <div
                     class="totalProduct d-flex w-40 justify-content-between font-weight-500 align-items-center"
@@ -163,7 +164,7 @@
           </div>
         </div>
       </div>
-      <GenericProduct :categoryProductId="categoryProductId"></GenericProduct>
+      <!-- <GenericProduct :categoryProductId="categoryProductId"></GenericProduct> -->
     </div>
     <el-dialog title="Đánh giá sản phẩm" :visible.sync="centerDialogVisible" width="25%" center>
       <el-form ref="reviews" :rules="rules" :model="reviews" class="pt-lg-3">
@@ -209,7 +210,7 @@ import ProductAppService from "../api/product";
 import GenericProduct from "../components/GenericProduct";
 export default {
   components: {
-    GenericProduct
+    // GenericProduct
   },
   data() {
     return {
@@ -218,8 +219,16 @@ export default {
       totalStars: 0,
       priceSavings: 0,
       loading: true,
+      listMainMemory:[],
+      listMainColor:[],
       rom: "",
       checkColor: "",
+      value:0,
+      valuePromotion:0,
+      mainMemoryName:'',
+      mainColorName:'',
+      mainMemoryId:0,
+      mainColorId:0,
       reviews: {
         name: "",
         title: "",
@@ -418,6 +427,10 @@ export default {
         move_by_click: true, // move image by click thumb image or by mouseover
         scroll_items: 4, // thumbs for scroll
         scroller_position: "bottom"
+      },
+      groupAcc:{
+        mainMemoryId:undefined,
+        mainColorId:undefined
       }
     };
   },
@@ -436,7 +449,27 @@ export default {
     //   return this.color.split(",");
     // }
   },
+  // watch:{
+  //   mainMemoryId:function(val){
+  //     this.groupAcc.mainMemoryId = val;
+  //     this.postAccessories(this.groupAcc)
+  //   },
+  //   mainColorId:function(val){
+  //     this.groupAcc.mainColorId = val;
+  //     this.postAccessories(this.groupAcc)
+  //   }
+  // },
   methods: {
+    postAccessories(mainMemoryId,mainColorId){
+      ProductAppService.getDetailAccessoriesById(mainMemoryId,mainColorId).then(resp=>{
+         this.value = resp.data.value;
+        this.priceSavings = this.value - this.products.valuePromotion;
+        // this.mainColorName = this.products.detailAccessoriesDefaults.mainColorName;
+        // this.mainMemoryName = this.products.detailAccessoriesDefaults.mainMemoryName;
+        // this.mainColorId = this.products.detailAccessoriesDefaults.mainColorId;
+        // this.mainMemoryId = this.products.detailAccessoriesDefaults.mainMemoryId;
+      })
+    },
     formatPrice(value) {
       let val = (value / 1).toFixed(0).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "₫";
@@ -445,10 +478,15 @@ export default {
       this.loading = false;
       ProductAppService.getDetailProduct(this.id).then(resp => {
         this.products = resp.data;
-        this.listMemory = this.products.listMemory;
-        this.color = this.products.color;
+        this.listMainMemory = this.products.listMainMemory;
+        this.listMainColor = this.products.listMainColor;
         this.categoryProductId = this.products.categoryProductId;
-        this.priceSavings = this.products.value - this.products.valuePromotion;
+        this.priceSavings = this.products.detailAccessoriesDefaults.value - this.products.valuePromotion;
+        this.value = this.products.detailAccessoriesDefaults.value,
+        this.mainColorName = this.products.detailAccessoriesDefaults.mainColorName;
+        this.mainMemoryName = this.products.detailAccessoriesDefaults.mainMemoryName;
+        this.mainColorId = this.products.detailAccessoriesDefaults.mainColorId;
+        this.mainMemoryId = this.products.detailAccessoriesDefaults.mainMemoryId;
         this.loading = true;
       });
     },
@@ -463,16 +501,16 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           ReviewAppService.postReview(this.reviews).then(resp => {
-            this.allReivews.push(resp.data);
-            this.totalReviews = this.allReivews.length;
-            this.averageStar(this.totalReviews);
-            this.$notify({
-              title: "Thành công!",
-              message: "Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi",
-              type: "success",
-              offset: 100
-            });
-            this.$refs[formName].resetFields();
+              this.allReivews.push(resp.data);
+              this.totalReviews = this.allReivews.length;
+              this.averageStar(this.totalReviews);
+              this.$refs[formName].resetFields();
+              this.$notify({
+                title: "Thành công!",
+                message: "Cảm ơn bạn đã đánh giá sản phẩm của chúng tôi",
+                type: "success",
+                offset: 100
+              });
           });
         } else {
           this.$notify({

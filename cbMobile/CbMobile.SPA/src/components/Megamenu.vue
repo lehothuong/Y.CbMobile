@@ -25,7 +25,6 @@ export default {
     getMenuCategoryProduct() {
       CategoryProductAppService.getMenuCategoryProduct().then(resp => {
         this.categoryProduct = resp.data;
-        console.log(this.categoryProduct);
       });
     }
     // getManuByCategoryProduct(id) {

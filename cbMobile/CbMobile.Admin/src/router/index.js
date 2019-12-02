@@ -204,6 +204,36 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: "/accessories",
+    component: Layout,
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/accessories/create"),
+        name: "CreateAccessories",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/accessories/edit"),
+        name: "EditAccessories",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/accessoriesr/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/accessories/list"),
+        name: "ListAccessories",
+        meta: { title: "Chi tiết sản phẩm", icon: "list" }
+      }
+    ]
+  },
 
   {
     path: "/manufacturer",

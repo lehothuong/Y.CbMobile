@@ -44,6 +44,13 @@ export const ProductAppService = {
     }).then(resp => {
       return resp;
     });
+  },
+  getDetailAccessoriesById(mainMemoryId,mainColorId){
+    return Axios.get("/api/Product/GetDetailAccessoriesById",{
+      params: { mainMemoryId: mainMemoryId, mainColorId: mainColorId }
+    }).then(resp => {
+      return resp;
+    });
   }
 };
 

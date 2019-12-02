@@ -23,4 +23,9 @@ namespace CbMobile.Application.Service
         public string Text { get; set; }
         public int Value { get; set; }
     }
+    public class DropdownCategory
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
 }

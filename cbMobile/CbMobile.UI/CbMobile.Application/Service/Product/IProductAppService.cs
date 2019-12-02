@@ -20,5 +20,12 @@ namespace CbMobile.Application.Service
         bool UpdateProduct(Product product);
         bool DeleteProduct(int id);
         List<int> GetArrListMemory(string strListMemoryId);
+        List<DropdownCategory> GetDropdownListProduct();
+        bool DeleteAccessories(int id);
+        bool UpdateAccessories(DetailAccessories detailAccessories);
+        bool CreateAccessories(DetailAccessories detailAccessories);
+        object GetAllDetailAccessories(int page = 1, int pageSize = 10);
+        DetailAccessories GetDetailAccessories(int id);
+        object GetDetailAccessoriesById(int mainMemoryId, int mainColorId);
     }
 }

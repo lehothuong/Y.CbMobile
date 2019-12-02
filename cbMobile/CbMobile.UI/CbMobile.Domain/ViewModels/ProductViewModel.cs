@@ -21,9 +21,13 @@ namespace CbMobile.Domain.ViewModels
         public bool Status { get; set; }
         public virtual bool Deleted { get; set; }
         public virtual bool Published { get; set; }
+        public object ListMainMemory { get; set; }
+        public object ListMainColor { get; set; }
         public virtual int DisplayOrder { get; set; } = 0;
         public virtual DateTime CreatedDate { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public CategoryProduct CategoryProduct { get; set; }
+        public IEnumerable<DetailAccessories> DetailAccessories { get; set; }
+        public object DetailAccessoriesDefaults { get; set; }
     }
 }

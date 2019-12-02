@@ -34,118 +34,86 @@
         </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="Trạng thái" label-width="120px" class="text-left">
-              <toggle-button
-                :value="postForm.status"
-                :sync="true"
-                :labels="true"
-                v-model="postForm.status"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <span class="notice">(Chỉ lấy 6 sản phẩm hot)</span>
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label="Hot" label-width="120px" class="text-left">
-              <toggle-button
-                :value="postForm.hot"
-                :sync="true"
-                :labels="true"
-                v-model="postForm.hot"
-              />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label-width="120px" label="Nhà sản xuất" class="text-left">
-              <el-select
-                v-model="postForm.manufacturerId"
-                filterable
-                default-first-option
-                remote
-                placeholder="Nhà sản xuất"
-              >
-                <el-option
-                  v-for="(item,index) in manufacturerListOptions"
-                  :key="item+index"
-                  :label="item.name"
-                  :value="item.id"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <!-- <el-row>
-          <el-col :span="12">
-            <el-form-item label-width="120px" label="Dung lượng" class="text-left">
-              <el-select v-model="postForm.listMemory" multiple placeholder="Dung lượng">
-                <el-option
-                  v-for="item in mainMemoryListOptions"
-                  :key="item.value"
-                  :label="item.text"
-                  :value="item.value"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row> -->
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label-width="120px" label="Loại" class="text-left">
-              <el-select
-                v-model="postForm.categoryProductId"
-                filterable
-                default-first-option
-                remote
-                placeholder="Loại"
-              >
-                <el-option
-                  v-for="(item,index) in categoryProductListOptions"
-                  :key="item+index"
-                  :label="item.name"
-                  :value="item.id"
-                />
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
-            <el-form-item label="Tên" label-width="120px" class="text-left">
-              <el-input v-model="postForm.name" placeholder="Tên" :maxlength="100"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="12">
             <el-form-item label="Sắp xếp" label-width="120px" class="text-left">
               <el-input v-model="postForm.displayOrder" placeholder="Sắp xếp" :maxlength="100"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
+         <el-row>
+          <el-col :span="12">
+            <el-form-item label-width="120px" label="Sản phẩm" class="text-left">
+              <el-select
+                v-model="postForm.productId"
+                filterable
+                default-first-option
+                remote
+                placeholder="Sản phẩm"
+              >
+                <el-option
+                  v-for="(item,index) in productListOptions"
+                  :key="item+index"
+                  :label="item.name"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-row>
           <el-col :span="12">
-            <el-form-item label="Link hình ảnh" label-width="120px" class="text-left">
-              <el-input v-model="postForm.avatarUrl" placeholder="Link hình ảnh"></el-input>
+            <el-form-item label-width="120px" label="Bộ nhớ" class="text-left">
+              <el-select
+                v-model="postForm.mainMemoryId"
+                filterable
+                default-first-option
+                remote
+                placeholder="Bộ nhớ"
+              >
+                <el-option
+                  v-for="(item,index) in mainMemoryListOptions"
+                  :key="item+index"
+                  :label="item.name"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+         <el-row>
+          <el-col :span="12">
+            <el-form-item label-width="120px" label="Màu sắc" class="text-left">
+              <el-select
+                v-model="postForm.mainColorId"
+                filterable
+                default-first-option
+                remote
+                placeholder="Màu sắc"
+              >
+                <el-option
+                  v-for="(item,index) in mainColorListOptions"
+                  :key="item+index"
+                  :label="item.name"
+                  :value="item.id"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="12">
+            <el-form-item label="Giá thị trường" label-width="120px" class="text-left">
+              <div class="el-input el-input--medium">
+                <cleave v-model="postForm.value" placeholder="Nhập giá" class="el-input__inner" :options="options.number"></cleave>
+              </div>
             </el-form-item>
           </el-col>
         </el-row>
         <!-- <el-row>
           <el-col :span="12">
-            <el-form-item label="Giá thị trường" label-width="120px" class="text-left">
-              <div class="el-input el-input--medium">
-                <cleave v-model="postForm.value" class="el-input__inner" :options="options.number"></cleave>
-              </div>
-            </el-form-item>
-          </el-col>
-        </el-row> -->
-        <el-row>
-          <el-col :span="12">
             <el-form-item label="Giá khuyến mãi" label-width="120px" class="text-left">
               <div class="el-input el-input--medium">
                 <cleave
+                  placeholder="Nhập giá"
                   v-model="postForm.valuePromotion"
                   class="el-input__inner"
                   :options="options.number"
@@ -153,49 +121,14 @@
               </div>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <el-form-item label="Mô tả ngắn" label-width="120px" class="text-left">
-              <el-input
-                type="textarea"
-                v-model="postForm.shortDescription"
-                placeholder="Mô tả ngắn"
-                :maxlength="300"
-                required
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="24">
-            <el-form-item
-              label="Mô tả dài"
-              label-width="120px"
-              class="text-left"
-              style="margin-bottom: 30px;"
-            >
-              <Tinymce ref="editor" v-model="postForm.fullDescription" :height="300" />
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <!-- <el-form-item style="margin-bottom: 40px;" label-width="70px" label="Summary:">
-          <el-input v-model="postForm.fullDescription" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" />
-          <span v-show="postForm.fullDescription" class="word-counter">{{ postForm.fullDescription }}</span>
-        </el-form-item>-->
-
-        <!--<el-form-item prop="image_uri" style="margin-bottom: 30px;">
-          <Upload v-model="postForm.avatarUrl" />
-        </el-form-item>-->
+        </el-row> -->
+        
       </div>
     </el-form>
   </div>
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce";
-import Upload from "@/components/Upload/SingleImage3";
-import MDinput from "@/components/MDinput";
 import Sticky from "@/components/Sticky";
 import { validURL } from "@/utils/validate";
 import {
@@ -203,10 +136,10 @@ import {
   createArticle,
   updateArticle,
   deleteArticle
-} from "@/api/product";
-import { fetchListDropdownManufacturer } from "@/api/manufacturer";
-import { fetchGetListDropdownCategoryProduct } from "@/api/categoryProduct";
-// import { getListDropdownMainMemory } from "@/api/mainMemory";
+} from "@/api/accessories";
+import { fetchGetListDropdownProduct } from "@/api/product";
+import { getListDropdownMainMemory } from "@/api/mainMemory";
+import { getListDropdownMainColor } from "@/api/mainColor";
 import { searchUser } from "@/api/remote-search";
 import Warning from "./Warning";
 import {
@@ -216,23 +149,13 @@ import {
 } from "./Dropdown";
 
 const defaultForm = {
-  name: "",
-  id: undefined,
-  value: 0,
-  valuePromotion: 0
+  name: ""
 };
 
 export default {
   name: "ArticleDetail",
-  components: {
-    Tinymce,
-    MDinput,
-    Upload,
+  components:{
     Sticky,
-    Warning,
-    CommentDropdown,
-    PlatformDropdown,
-    SourceUrlDropdown
   },
   props: {
     isEdit: {
@@ -252,32 +175,15 @@ export default {
         callback();
       }
     };
-    const validateRequireInt = (rule, value, callback) => {
-      if (value === "") {
-        this.$message({
-          message: "Xin vui lòng nhập giá",
-          type: "error"
-        });
-        callback(new Error("Xin vui lòng nhập giá"));
-      } else {
-        callback();
-      }
-    };
     return {
       postForm: Object.assign({}, defaultForm),
       loading: false,
-      total: 0,
-      userListOptions: [],
-      manufacturerListOptions: [],
-      // mainMemoryListOptions: [],
-      categoryProductListOptions: [],
-      mainMemorys: [],
-      rules: {
-        image_uri: [{ validator: validateRequire }],
+      productListOptions:[],
+      mainMemoryListOptions:[],
+      mainColorListOptions:[],
+       rules: {
         name: [{ validator: validateRequire }],
-        value: [{ validator: validateRequire }]
       },
-      tempRoute: {},
       options: {
         number: {
           numeral: true,
@@ -294,14 +200,6 @@ export default {
     contentShortLength() {
       return this.postForm.content_short.length;
     },
-    displayTime: {
-      get() {
-        return +new Date(this.postForm.createdDate);
-      },
-      set(val) {
-        this.postForm.createdDate = new Date(val);
-      }
-    }
   },
   created() {
     if (this.isEdit) {
@@ -310,56 +208,47 @@ export default {
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
-    this.tempRoute = Object.assign({}, this.$route);
-    this.fetchListDropdownManufacturer();
-    this.fetchGetListDropdownCategoryProduct();
-    // this.getListDropdownMainMemory();
+    this.fetchGetListDropdownProduct();
+    this.getListDropdownMainMemory();
+    this.getListDropdownMainColor();
   },
+  
   methods: {
     fetchData(id) {
-      this.loading = true;
+      this.loading=true;
       fetchArticle(id)
         .then(response => {
           this.postForm = response;
-          this.loading = false;
         })
         .catch(err => {
           console.log(err);
         }).finally(()=>{
-          this.loading = false;
+          this.loading=false;
         });
     },
-    fetchListDropdownManufacturer() {
-      fetchListDropdownManufacturer()
-        .then(response => {
-          this.manufacturerListOptions = response;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    fetchGetListDropdownProduct(){
+      fetchGetListDropdownProduct().then(resp => {
+        this.productListOptions = resp;
+      }).catch(errs => {
+        console.log(errs);
+      })
     },
-    fetchGetListDropdownCategoryProduct() {
-      fetchGetListDropdownCategoryProduct()
-        .then(response => {
-          this.categoryProductListOptions = response;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+    getListDropdownMainMemory(){
+      getListDropdownMainMemory().then(resp => {
+        this.mainMemoryListOptions = resp;
+      }).catch(errs => {
+        console.log(errs);
+      })
     },
-    // getListDropdownMainMemory() {
-    //   getListDropdownMainMemory()
-    //     .then(response => {
-    //       this.mainMemoryListOptions = response;
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //     });
-    // },
+    getListDropdownMainColor(){
+      getListDropdownMainColor().then(resp => {
+        this.mainColorListOptions = resp;
+      }).catch(errs => {
+        console.log(errs);
+      })
+    },
     submitForm() {
       this.$refs.postForm.validate(valid => {
-        //Array to string list id [1,2,3,4] => 1,2,3,4
-        this.postForm.mainMemory = this.postForm.listMemory.join(",");
         if (valid) {
           createArticle(this.postForm).then(resp => {
             if (resp) {
@@ -370,7 +259,7 @@ export default {
                 type: "success",
                 duration: 2000
               });
-              this.$router.push("/product/list");
+              this.$router.push("/accessories/list");
               this.loading = false;
             } else console.log("error submit!!");
           });
@@ -382,7 +271,6 @@ export default {
     },
     updateForm() {
       this.$refs.postForm.validate(valid => {
-        this.postForm.mainMemory = this.postForm.listMemory.join(",");
         if (valid) {
           updateArticle(this.postForm).then(resp => {
             if (resp) {
@@ -419,7 +307,7 @@ export default {
                 message: "Đã xóa"
               });
               this.$router.push({
-                path: this.redirect || "/category-product/list"
+                path: this.redirect || "/ac/list"
               });
             } else {
               console.log("error update!!");
@@ -437,7 +325,7 @@ export default {
       searchUser(query).then(response => {
         if (!response.data.items) return;
         this.userListOptions = response.data.items.map(v => v.name);
-      });
+      })
     }
   }
 };

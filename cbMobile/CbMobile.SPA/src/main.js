@@ -39,6 +39,7 @@ import {
   TabPane,
   Tabs
 } from "element-ui";
+Vue.prototype.$notify = Notification;
 
 Vue.component(RadioGroup.name, RadioGroup);
 Vue.component(RadioButton.name, RadioButton);
