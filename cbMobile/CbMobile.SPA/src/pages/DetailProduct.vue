@@ -516,7 +516,7 @@ export default {
           this.$notify({
             title: "Không thành công!",
             message: "Đánh giá không thành công",
-            title: "Error",
+            type: "Error",
             offset: 100
           });
           return false;

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <Header v-if="!$route.meta.hideHeaderFooter"></Header>
     <div class="content">
       <router-view :key="$route.fullPath" ref="router"></router-view>
     </div>
-    <Footer v-bind:isActive="isActive"></Footer>
+    <Footer v-if="!$route.meta.hideHeaderFooter" v-bind:isActive="isActive"></Footer>
   </div>
 </template>
 <script>

@@ -809,3 +809,39 @@ iframe {
   bottom: 50% !important;
   left: 50% !important;
 }
+
+.customRadio{
+  .el-radio-button__inner{
+    border: 1px solid #ccc !important;
+    background-color: #fff;
+    color: #363f4d;
+    padding: 0.75rem 0.5rem;
+    border-radius: 0 !important;
+    margin-right: 0.5rem;
+    font-weight: normal !important;
+    &::after{
+      content: '';
+      display: inline-block;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 14px;
+      height: 14px;
+      background-repeat: no-repeat;
+      background-image: url('https://bizweb.dktcdn.net/100/348/133/themes/709285/assets/select-pro.png?1574671143138');
+    }
+  }
+
+  .el-radio-button__orig-radio:checked+.el-radio-button__inner {
+    border: 1px solid #ccc !important;
+    background-color: #fff;
+    color: #363f4d !important;
+    border-color: #e6484a !important;
+    -webkit-box-shadow: -1px 0 0 0 #409EFF;
+    box-shadow: -1px 0 0 0 #409EFF;
+  }
+}
+
+.shopName{
+  color: #1f9cd0;
+}

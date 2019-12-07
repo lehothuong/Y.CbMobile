@@ -6,6 +6,7 @@ import IndexProduct from "../pages/IndexProduct.vue";
 import IndexProductManufacrurer from "../pages/IndexProductManufacrurer.vue";
 import DetailNews from "../pages/DetailNews.vue";
 import ContactUs from "../pages/ContactUs.vue";
+import Checkout from "../pages/Checkout.vue";
 export const routes = [
   {
     path: "/",
@@ -39,7 +40,13 @@ export const routes = [
   {
     path: "/lien-he",
     name: "contactus",
-    component: ContactUs
+    component: ContactUs,
+  },
+  {
+    path: "/dat-hang",
+    name: "checkout",
+    component: Checkout,
+    meta: { hideHeaderFooter: true }
   },
   {
     path: "/productManufacrurers/:id",

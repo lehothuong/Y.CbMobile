@@ -940,4 +940,13 @@ iframe {
   bottom: 50% !important;
   left: 50% !important;
 }
+
+.customRadio .el-radio-button__inner {
+  border: 1px solid red;
+  background-color: #fff;
+  color: red;
+  padding: 0.75rem 0.5rem;
+  border-radius: 0;
+  margin-right: 0.5rem;
+}
 /*# sourceMappingURL=bundle.css.map */
