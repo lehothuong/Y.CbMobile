@@ -7,6 +7,7 @@ import IndexProductManufacrurer from "../pages/IndexProductManufacrurer.vue";
 import DetailNews from "../pages/DetailNews.vue";
 import ContactUs from "../pages/ContactUs.vue";
 import Checkout from "../pages/Checkout.vue";
+import Cart from "../pages/Cart.vue";
 export const routes = [
   {
     path: "/",
@@ -55,5 +56,10 @@ export const routes = [
     props(route) {
       return route.query || {};
     }
-  }
+  },
+  {
+    path: "/cart",
+    name: "cart",
+    component: Cart,
+  },
 ];

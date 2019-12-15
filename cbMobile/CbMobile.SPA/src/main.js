@@ -25,34 +25,38 @@ Vue.use(VueGoogleMaps, {
     libraries: "places"
   }
 });
-import {
-  RadioGroup,
-  RadioButton,
-  Form,
-  FormItem,
-  Input,
-  Button,
-  Notification,
-  Dialog,
-  Option,
-  Select,
-  TabPane,
-  Tabs
-} from "element-ui";
-Vue.prototype.$notify = Notification;
+import Element from "element-ui";
+import locale from 'element-ui/lib/locale/lang/en'
+Vue.use(Element, { locale // set element-ui default size
+});
+// import {
+//   RadioGroup,
+//   RadioButton,
+//   Form,
+//   FormItem,
+//   Input,
+//   Button,
+//   Notification,
+//   Dialog,
+//   Option,
+//   Select,
+//   TabPane,
+//   Tabs
+// } from "element-ui";
+// Vue.prototype.$notify = Notification;
 
-Vue.component(RadioGroup.name, RadioGroup);
-Vue.component(RadioButton.name, RadioButton);
-Vue.component(Form.name, Form);
-Vue.component(FormItem.name, FormItem);
-Vue.component(Input.name, Input);
-Vue.component(Button.name, Button);
-Vue.component(Notification.name, Notification);
-Vue.component(Dialog.name, Dialog);
-Vue.component(Option.name, Option);
-Vue.component(Select.name, Select);
-Vue.component(TabPane.name, TabPane);
-Vue.component(Tabs.name, Tabs);
+// Vue.component(RadioGroup.name, RadioGroup);
+// Vue.component(RadioButton.name, RadioButton);
+// Vue.component(Form.name, Form);
+// Vue.component(FormItem.name, FormItem);
+// Vue.component(Input.name, Input);
+// Vue.component(Button.name, Button);
+// Vue.component(Notification.name, Notification);
+// Vue.component(Dialog.name, Dialog);
+// Vue.component(Option.name, Option);
+// Vue.component(Select.name, Select);
+// Vue.component(TabPane.name, TabPane);
+// Vue.component(Tabs.name, Tabs);
 
 Vue.use(VueRouter);
 Vue.use(VueScrollTo, {

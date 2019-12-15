@@ -76,16 +76,19 @@
                   </div>
                 </div>
                 <div class="shoppingProduct d-flex w-100">
-                  <div
+                  <!-- <div
                     class="totalProduct d-flex w-40 justify-content-between font-weight-500 align-items-center"
                   >
                     <button class="btn btnPlus" type="button">-</button>
                     <span>1</span>
                     <button class="btn btnPlus" type="button">+</button>
+                  </div> -->
+                  <div class="totalProduct">
+                    <el-input-number v-model="num"  :min="1" :max="99"></el-input-number>
                   </div>
                   <div class="checkProduct w-60">
-                    <button class="btn btnCheck text-uppercase font-weight-500">
-                      <i class="fa fa-cart-arrow-down mr-2" aria-hidden="true"></i>
+                    <button @click="addCart(products)" class="btn btnCheck text-uppercase font-weight-500">
+                      <i class="fa fa-cart-arrow-down mr-2"  aria-hidden="true"></i>
                       Mua ngay
                     </button>
                   </div>
@@ -166,6 +169,133 @@
       </div>
       <!-- <GenericProduct :categoryProductId="categoryProductId"></GenericProduct> -->
     </div>
+     <el-dialog class="cartDialog" :title="'Bạn đã thêm Samsung Galaxy S10+ (8 + 128GB) - 128GB / Đen vào giỏ hàng'" :visible.sync="cartDialog" width="70%" >
+       <router-link class="titleQuantityPopup" to="/cart">
+         Giỏ hàng của bạn có 3 sản phẩm
+       </router-link>
+       <table class="tableProduct">
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody class="summaryProduct">
+          <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+           <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+           <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+           <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+           <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+          <tr>
+            <td class="text-left d-flex">
+               <router-link to="/">
+                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                </router-link>
+              <div class="ml-2">
+                <router-link class="productCartTitle mb-1" to="/cart">
+                  Samsung Galaxy S10+ (8 + 128GB)
+                </router-link>
+                <p class="font-weight-normal fontSize13">128GB / Đen</p>
+                <a class="productRemove">Bỏ sản phẩm</a>
+              </div>
+            </td>
+            <td>22.990.000₫</td>
+            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
+            <td>229.900.000₫</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr class="my-0"/>
+      <div class="d-flex justify-content-between">
+        <router-link class="processCart mt-2" to="/">
+         Tiếp tục mua hàng
+       </router-link>
+       <p class="font-weight-600"><span>Thành tiền: </span><span class="color-main">275.880.000₫</span></p>
+      </div>
+      <button type="button" class="btn btnCheckout w-100 mt-lg-4">Thanh toán đơn hàng</button>
+    </el-dialog>
     <el-dialog title="Đánh giá sản phẩm" :visible.sync="centerDialogVisible" width="25%" center>
       <el-form ref="reviews" :rules="rules" :model="reviews" class="pt-lg-3">
         <span class="d-flex justify-content-center pb-lg-3">
@@ -215,6 +345,8 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      cart:[],
+      num:1,
       totalReviews: 0,
       totalStars: 0,
       priceSavings: 0,
@@ -283,6 +415,7 @@ export default {
         ]
       },
       centerDialogVisible: false,
+      cartDialog:false,
       products: [],
       gender: [],
       allReivews: [],
@@ -441,33 +574,24 @@ export default {
   beforeDestroy() {
     this.getAllReviewByProductId();
   },
-  computed: {
-    // convertStringToArray() {
-    //   return this.mainMemory.split(",");
-    // }
-    // convertStringToArrayColor() {
-    //   return this.color.split(",");
-    // }
-  },
-  // watch:{
-  //   mainMemoryId:function(val){
-  //     this.groupAcc.mainMemoryId = val;
-  //     this.postAccessories(this.groupAcc)
-  //   },
-  //   mainColorId:function(val){
-  //     this.groupAcc.mainColorId = val;
-  //     this.postAccessories(this.groupAcc)
-  //   }
-  // },
   methods: {
+    addCart(model){
+      console.log(model)
+      // this.cartDialog = true;
+      let obj = {
+        avatarUrl : model.avatarUrl,
+        name : model.name,
+        mainMemoryName : this.mainMemoryName
+      };
+      this.cart.push(obj)
+      let parsed = JSON.stringify(this.cart);
+      localStorage.setItem('cart', parsed);
+    },
     postAccessories(mainMemoryId,mainColorId){
       ProductAppService.getDetailAccessoriesById(mainMemoryId,mainColorId).then(resp=>{
-         this.value = resp.data.value;
+        this.value = resp.data.value;
+        this.mainMemoryName = resp.data.mainMemoryName;
         this.priceSavings = this.value - this.products.valuePromotion;
-        // this.mainColorName = this.products.detailAccessoriesDefaults.mainColorName;
-        // this.mainMemoryName = this.products.detailAccessoriesDefaults.mainMemoryName;
-        // this.mainColorId = this.products.detailAccessoriesDefaults.mainColorId;
-        // this.mainMemoryId = this.products.detailAccessoriesDefaults.mainMemoryId;
       })
     },
     formatPrice(value) {
@@ -525,7 +649,6 @@ export default {
     },
     averageStar(totalReivew) {
       var result = this.allReivews.reduce(function(tot, arr) {
-        // return the sum with previous value
         return tot + arr.reviewStar;
       }, 0);
 
@@ -534,4 +657,139 @@ export default {
   }
 };
 </script>
+<style scoped lang="scss">
+.tableProduct{
+    height: 268px;
+    position: relative;
+}
+.summaryProduct{
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+    transition:all 0.5s ease-in-out;
+    &::-webkit-scrollbar {
+      width:  4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #fff;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #fff;
+    }
+    &:hover{
+        transition:all 0.5s ease-in-out;
+        &::-webkit-scrollbar-thumb {
+        background: #a8a8a8;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #fff;
+        }
+    }
+    .summaryProductList{
+        padding: 1rem;
+    }
+}
+.btnCheckout{
+  background-color: #f30;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  &:hover{
+      background-color: #cc2900;
+  }
+}
+.color-main{
+  color: #f30;
+}
+.processCart{
+  color: #0657a3;
+  font-weight: 400;
+  transition: 0.4s all;
+  font-size: 0.9rem;
+
+  &:hover{
+    color: #f30;
+  }
+}
+.fontSize13{
+  font-size: 13px;
+}
+.productRemove{
+  color: #888 !important;
+  font-weight: 400;
+  font-size: 13px;
+}
+.productCartTitle{
+  color: #0657a3;
+  font-weight: 600;
+  transition: 0.4s all;
+  font-size: 0.9rem;
+  &:hover{
+    color: #f30;
+  }
+}
+.itemImage{
+    border: 1px solid #d2d2d2;
+    padding: 0.1rem;
+}
+.titleQuantityPopup{
+  color: #0657a3;
+  font-weight: 600;
+  transition: 0.4s all;
+  font-size: 1rem;
+  &:hover{
+    color: #f30;
+  }
+}
+
+
+table { 
+	width: 100%; 
+	border-collapse: collapse; 
+	margin:12px auto 2rem auto;
+	}
+
+  
+th:nth-child(1) { 
+    width: 55%;
+}
+  
+th:nth-child(2),th:nth-child(3),th:nth-child(4) { 
+  flex-grow: 1;
+  max-width: 100%;
+  text-align: center;
+}
+
+tr td { 
+	padding: 10px; 
+	border: 1px solid transparent; 
+	text-align: left; 
+  font-size: 12px;
+  text-align: center;
+  font-weight: 600; 
+}
+
+tr th { 
+	background: #f7f7f7; 
+	color: inherit; 
+  font-weight: 600; 
+  padding: 6px 5px;
+  font-size: 13px !important;
+  border: 1px solid #fff;
+	}
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+</style>
 
