@@ -84,7 +84,7 @@
                     <button class="btn btnPlus" type="button">+</button>
                   </div> -->
                   <div class="totalProduct">
-                    <el-input-number v-model="num"  :min="1" :max="99"></el-input-number>
+                    <el-input-number v-model="amount"  :min="1" :max="99"></el-input-number>
                   </div>
                   <div class="checkProduct w-60">
                     <button @click="addCart(products)" class="btn btnCheck text-uppercase font-weight-500">
@@ -171,7 +171,7 @@
     </div>
      <el-dialog class="cartDialog" :title="'Bạn đã thêm Samsung Galaxy S10+ (8 + 128GB) - 128GB / Đen vào giỏ hàng'" :visible.sync="cartDialog" width="70%" >
        <router-link class="titleQuantityPopup" to="/cart">
-         Giỏ hàng của bạn có 3 sản phẩm
+         Giỏ hàng của bạn có {{totalProduct}} sản phẩm
        </router-link>
        <table class="tableProduct">
         <thead>
@@ -183,107 +183,22 @@
           </tr>
         </thead>
         <tbody class="summaryProduct">
-          <tr>
+          <tr v-for="(item,index) in cart" :key="index">
             <td class="text-left d-flex">
                <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
+                  <img class="itemImage" width="80" height="80" :src="item.avatarUrl"/>
                 </router-link>
               <div class="ml-2">
                 <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
+                  {{item.name}}
                 </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
+                <p class="font-weight-normal fontSize13">{{item.mainMemoryName}} / {{item.mainColorName}}</p>
+                <a href="" @click.prevent="removeProduct(index,item)" class="productRemove">Bỏ sản phẩm</a>
               </div>
             </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
-          </tr>
-           <tr>
-            <td class="text-left d-flex">
-               <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
-                </router-link>
-              <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
-                </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
-              </div>
-            </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
-          </tr>
-           <tr>
-            <td class="text-left d-flex">
-               <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
-                </router-link>
-              <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
-                </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
-              </div>
-            </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
-          </tr>
-           <tr>
-            <td class="text-left d-flex">
-               <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
-                </router-link>
-              <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
-                </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
-              </div>
-            </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
-          </tr>
-           <tr>
-            <td class="text-left d-flex">
-               <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
-                </router-link>
-              <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
-                </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
-              </div>
-            </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
-          </tr>
-          <tr>
-            <td class="text-left d-flex">
-               <router-link to="/">
-                  <img class="itemImage" width="80" height="80" src="https://bizweb.dktcdn.net/thumb/1024x1024/100/348/133/products/636863636051023338-ss-galaxy-s10-plus-den-1.png"/>
-                </router-link>
-              <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
-                  Samsung Galaxy S10+ (8 + 128GB)
-                </router-link>
-                <p class="font-weight-normal fontSize13">128GB / Đen</p>
-                <a class="productRemove">Bỏ sản phẩm</a>
-              </div>
-            </td>
-            <td>22.990.000₫</td>
-            <td><el-input-number v-model="num"  :min="1" :max="99"></el-input-number></td>
-            <td>229.900.000₫</td>
+            <td>{{formatPrice(item.valuePromotion)}}</td>
+            <td><el-input-number @change="changePrice(index,item)" v-model="item.amount"  :min="1" :max="99"></el-input-number></td>
+            <td>{{formatPrice(item.totalPrice)}}</td>
           </tr>
         </tbody>
       </table>
@@ -292,7 +207,7 @@
         <router-link class="processCart mt-2" to="/">
          Tiếp tục mua hàng
        </router-link>
-       <p class="font-weight-600"><span>Thành tiền: </span><span class="color-main">275.880.000₫</span></p>
+       <p class="font-weight-600 mt-2 mb-0"><span>Thành tiền: </span><span class="color-main">275.880.000₫</span></p>
       </div>
       <button type="button" class="btn btnCheckout w-100 mt-lg-4">Thanh toán đơn hàng</button>
     </el-dialog>
@@ -345,8 +260,9 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      totalProduct:null,
       cart:[],
-      num:1,
+      amount:1,
       totalReviews: 0,
       totalStars: 0,
       priceSavings: 0,
@@ -355,6 +271,7 @@ export default {
       listMainColor:[],
       rom: "",
       checkColor: "",
+      num:1, 
       value:0,
       valuePromotion:0,
       mainMemoryName:'',
@@ -567,6 +484,11 @@ export default {
       }
     };
   },
+  computed:{
+    totalPrice(){
+      return this.amount * this.products.valuePromotion
+    }
+  },
   mounted() {
     this.getDetailProduct();
     this.getAllReviewByProductId();
@@ -575,22 +497,73 @@ export default {
     this.getAllReviewByProductId();
   },
   methods: {
-    addCart(model){
-      console.log(model)
-      // this.cartDialog = true;
-      let obj = {
-        avatarUrl : model.avatarUrl,
-        name : model.name,
-        mainMemoryName : this.mainMemoryName
-      };
-      this.cart.push(obj)
+    changePrice(value,object){
+      localStorage.removeItem('cart');
+      this.cart[value].totalPrice = object.amount * object.valuePromotion;
       let parsed = JSON.stringify(this.cart);
       localStorage.setItem('cart', parsed);
+    },
+    removeProduct(value,object){
+      localStorage.removeItem('cart');
+      this.cart.splice(value, 1);
+      let parsed = JSON.stringify(this.cart);
+      localStorage.setItem('cart', parsed);
+      if(this.cart.length == 0){
+         this.cartDialog = false;
+      }
+    },
+    addCart(model){
+      if (localStorage.getItem('cart')) {
+        this.cart = JSON.parse(localStorage.getItem('cart'));
+        localStorage.removeItem('cart');
+        const found = this.cart.find(find => find.id == this.products.id);
+        if(found){
+          found.amount += this.amount;
+          found.totalPrice = found.amount * this.products.valuePromotion;
+          let parsed = JSON.stringify(this.cart);
+          localStorage.setItem('cart', parsed);
+        }else{
+          let obj = {
+            id:model.id,
+            avatarUrl : model.avatarUrl,
+            name : model.name,
+            mainMemoryName : this.mainMemoryName,
+            mainColorName: this.mainColorName,
+            valuePromotion: model.valuePromotion,
+            amount:this.amount,
+            totalPrice: this.totalPrice
+          };
+          this.cart.push(obj)
+          let parsed = JSON.stringify(this.cart);
+          localStorage.setItem('cart', parsed);
+        }
+        
+      }
+      else{
+        let obj = {
+          id:model.id,
+          avatarUrl : model.avatarUrl,
+          name : model.name,
+          mainMemoryName : this.mainMemoryName,
+          mainColorName: this.mainColorName,
+          valuePromotion: model.valuePromotion,
+          amount:this.amount,
+          totalPrice: this.totalPrice
+        };
+        this.cart.push(obj)
+        let parsed = JSON.stringify(this.cart);
+        localStorage.setItem('cart', parsed);
+      }
+      this.totalProduct = this.cart.length;
+      this.cartDialog = true;
+      
+      
     },
     postAccessories(mainMemoryId,mainColorId){
       ProductAppService.getDetailAccessoriesById(mainMemoryId,mainColorId).then(resp=>{
         this.value = resp.data.value;
         this.mainMemoryName = resp.data.mainMemoryName;
+        this.mainColorName = resp.data.mainColorName;
         this.priceSavings = this.value - this.products.valuePromotion;
       })
     },
@@ -606,7 +579,7 @@ export default {
         this.listMainColor = this.products.listMainColor;
         this.categoryProductId = this.products.categoryProductId;
         this.priceSavings = this.products.detailAccessoriesDefaults.value - this.products.valuePromotion;
-        this.value = this.products.detailAccessoriesDefaults.value,
+        this.value = this.products.detailAccessoriesDefaults.value;
         this.mainColorName = this.products.detailAccessoriesDefaults.mainColorName;
         this.mainMemoryName = this.products.detailAccessoriesDefaults.mainMemoryName;
         this.mainColorId = this.products.detailAccessoriesDefaults.mainColorId;
@@ -669,6 +642,10 @@ export default {
     position: absolute;
     overflow: auto;
     transition:all 0.5s ease-in-out;
+    tr{
+      width: 100%;
+      display: inline-table;
+    }
     &::-webkit-scrollbar {
       width:  4px;
       height: 4px;

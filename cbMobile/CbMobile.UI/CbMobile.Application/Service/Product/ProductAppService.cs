@@ -396,7 +396,8 @@ namespace CbMobile.Application.Service
                          .Select(x => new
                          {
                              Value = x.Value,
-                             MainMemoryName = x.MainMemory.Name
+                             MainMemoryName = x.MainMemory.Name,
+                             MainColorName = x.MainColor.Name
                          }).FirstOrDefault();
             return model;
         }
