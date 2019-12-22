@@ -831,13 +831,41 @@ p {
   transform: scale(1);
 }
 
+.totalProduct .el-input-number__decrease:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled), .totalProduct .el-input-number__increase:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled) {
+  border-color: #DCDFE6 !important;
+}
+
+.totalProduct .el-input-number__decrease, .totalProduct .el-input-number__increase {
+  height: 50px;
+  background: #fff !important;
+  border: 0;
+}
+
+.totalProduct .el-input-number__decrease:hover, .totalProduct .el-input-number__increase:hover {
+  outline: none !important;
+  color: #000;
+}
+
+.totalProduct .el-input.is-active .el-input__inner, .totalProduct .el-input__inner:focus {
+  border-color: #DCDFE6;
+  outline: 0;
+}
+
 .totalProduct .el-input__inner {
   height: 52px !important;
   line-height: 52px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-right: 0;
 }
 
 .totalProduct .el-input-number {
   line-height: 52px !important;
+  width: 150px;
+}
+
+.totalProduct .el-input-number:focus {
+  outline: none !important;
 }
 
 .w-40 {
@@ -1032,6 +1060,10 @@ iframe {
   outline: none;
 }
 
+.wrap .el-form-item__error {
+  padding-bottom: 4px;
+}
+
 .wrap .promotionCode .el-form-item__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1142,7 +1174,7 @@ iframe {
 
 .cartDialog .el-dialog__header {
   border: 1px solid #e5e5e5;
-  padding: 10px 20px 10px;
+  padding: 10px 20px 10px 10px;
 }
 
 .cartDialog .el-dialog__header .el-dialog__title {

@@ -169,7 +169,8 @@
       </div>
       <!-- <GenericProduct :categoryProductId="categoryProductId"></GenericProduct> -->
     </div>
-     <el-dialog class="cartDialog" :title="'Bạn đã thêm Samsung Galaxy S10+ (8 + 128GB) - 128GB / Đen vào giỏ hàng'" :visible.sync="cartDialog" width="70%" >
+     <el-dialog class="cartDialog" :visible.sync="cartDialog" width="70%" >
+       <span slot="title" class="el-dialog__title">Bạn đã thêm <span class="color-red"> {{nameProductCart}} </span> vào giỏ hàng</span>
        <router-link class="titleQuantityPopup" to="/cart">
          Giỏ hàng của bạn có {{totalProduct}} sản phẩm
        </router-link>
@@ -252,6 +253,7 @@
 <script>
 import ReviewAppService from "../api/review";
 import ProductAppService from "../api/product";
+// import { AppMutations } from "../store/index";
 import GenericProduct from "../components/GenericProduct";
 export default {
   components: {
@@ -276,6 +278,8 @@ export default {
       valuePromotion:0,
       mainMemoryName:'',
       mainColorName:'',
+      nameProductCart:'',
+      totalQuantity:null,
       mainMemoryId:0,
       mainColorId:0,
       reviews: {
@@ -497,11 +501,16 @@ export default {
     this.getAllReviewByProductId();
   },
   methods: {
+    getTotalQuantity(){
+      this.totalQuantity = this.cart.map(p => p.amount).reduce((acc,curentValue) => acc + curentValue,0);
+      this.$store.commit('SET_TOTALQUANTITY',this.totalQuantity)
+    },
     changePrice(value,object){
       localStorage.removeItem('cart');
       this.cart[value].totalPrice = object.amount * object.valuePromotion;
       let parsed = JSON.stringify(this.cart);
       localStorage.setItem('cart', parsed);
+      this.getTotalQuantity();
     },
     removeProduct(value,object){
       localStorage.removeItem('cart');
@@ -511,6 +520,22 @@ export default {
       if(this.cart.length == 0){
          this.cartDialog = false;
       }
+      this.getTotalQuantity();
+    },
+    setCartSaveLocal(model){
+      let obj = {
+            id:model.id,
+            avatarUrl : model.avatarUrl,
+            name : model.name,
+            mainMemoryName : this.mainMemoryName,
+            mainColorName: this.mainColorName,
+            valuePromotion: model.valuePromotion,
+            amount:this.amount,
+            totalPrice: this.totalPrice
+          };
+      this.cart.push(obj)
+      let parsed = JSON.stringify(this.cart);
+      localStorage.setItem('cart', parsed);
     },
     addCart(model){
       if (localStorage.getItem('cart')) {
@@ -523,41 +548,16 @@ export default {
           let parsed = JSON.stringify(this.cart);
           localStorage.setItem('cart', parsed);
         }else{
-          let obj = {
-            id:model.id,
-            avatarUrl : model.avatarUrl,
-            name : model.name,
-            mainMemoryName : this.mainMemoryName,
-            mainColorName: this.mainColorName,
-            valuePromotion: model.valuePromotion,
-            amount:this.amount,
-            totalPrice: this.totalPrice
-          };
-          this.cart.push(obj)
-          let parsed = JSON.stringify(this.cart);
-          localStorage.setItem('cart', parsed);
+          this.setCartSaveLocal(model);
         }
-        
       }
       else{
-        let obj = {
-          id:model.id,
-          avatarUrl : model.avatarUrl,
-          name : model.name,
-          mainMemoryName : this.mainMemoryName,
-          mainColorName: this.mainColorName,
-          valuePromotion: model.valuePromotion,
-          amount:this.amount,
-          totalPrice: this.totalPrice
-        };
-        this.cart.push(obj)
-        let parsed = JSON.stringify(this.cart);
-        localStorage.setItem('cart', parsed);
+        this.setCartSaveLocal(model);
       }
       this.totalProduct = this.cart.length;
+      this.nameProductCart = this.cart.slice(-1).find(p=>p).name;
+      this.getTotalQuantity();
       this.cartDialog = true;
-      
-      
     },
     postAccessories(mainMemoryId,mainColorId){
       ProductAppService.getDetailAccessoriesById(mainMemoryId,mainColorId).then(resp=>{

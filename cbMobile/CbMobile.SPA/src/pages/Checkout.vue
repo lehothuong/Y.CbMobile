@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid wrap">
-        <el-form ref="form" :model="form" label-width="120px">
+        <el-form :rules="rules" ref="model" :model="model" label-width="120px">
             <div class="row h-100vh">
                 <div class="col-lg-8">
                     <router-link class="shopName d-inline-block" to="/">
@@ -9,28 +9,27 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <h5 class="font-weight-600 mb-3">Thông tin mua hàng</h5>
-                            <el-form-item class="mb-3" prop="name">
-                                <el-input placeholder="Email" v-model="model.email"></el-input>
+                            <el-form-item class="mb-4" prop="email">
+                                <el-input placeholder="Email" type="Email" v-model="model.email"></el-input>
                             </el-form-item>
-                            <el-form-item class="mb-3" prop="name">
+                            <el-form-item class="mb-4" prop="name">
                                 <el-input placeholder="Họ và tên" v-model="model.name"></el-input>
                             </el-form-item>
-                            <el-form-item class="mb-3" prop="name">
-                                <el-input placeholder="Số điện thoại" v-model="model.phoneNumber"></el-input>
+                            <el-form-item class="mb-4">
+                                <el-input type="number" placeholder="Số điện thoại" v-model="model.phoneNumber"></el-input>
                             </el-form-item>
-                             <el-form-item class="mb-3" prop="name">
+                             <el-form-item class="mb-4">
                                 <el-input placeholder="Địa chỉ" v-model="model.address"></el-input>
                             </el-form-item>
                             <el-form-item class="mb-3">
                                 <el-select
-                                    v-model="value"
-                                    multiple
+                                    v-model="model.value"
                                     filterable
-                                    allow-create
+                                    clearable
                                     default-first-option
                                     placeholder="Chọn tỉnh thành">
                                     <el-option
-                                    v-for="item in options"
+                                    v-for="item in province"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value">
@@ -39,38 +38,37 @@
                             </el-form-item>
                             <el-form-item class="mb-3">
                                 <el-select
-                                    v-model="value"
-                                    multiple
+                                    v-model="model.value"
                                     filterable
-                                    allow-create
+                                    clearable
                                     default-first-option
                                     placeholder="Chọn quận huyện">
                                     <el-option
-                                    v-for="item in options"
+                                    v-for="item in district"
                                     :key="item.value"
                                     :label="item.label"
                                     :value="item.value">
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                            <el-form-item class="mb-0" prop="name">
+                            <!-- <el-form-item class="mb-0" prop="name">
                                  <el-checkbox v-model="checked">Giao hàng đến địa chỉ khác</el-checkbox>
-                            </el-form-item>
-                            <el-form-item label="Activity form">
-                                <el-input type="textarea" placeholder="Ghi chú" v-model="model.content"></el-input>
+                            </el-form-item> -->
+                            <el-form-item>
+                                <el-input rows="3" type="textarea" placeholder="Ghi chú" v-model="model.content"></el-input>
                             </el-form-item>
                         </div>
                         <div class="col-lg-6">
                             <h5 class="font-weight-600 mb-3">Vận chuyển</h5>
-                            <el-form-item class="transport" prop="name">
+                            <el-form-item class="transport">
                                 <el-radio v-model="radio" label="1">
                                     <span class="font-weight-normal">Giao hàng tận nơi</span>
-                                    <span class="font-weight-bold">40.000₫</span>
+                                    <span class="font-weight-bold">{{formatPrice(transportFee)}}</span>
                                 </el-radio>
                             </el-form-item>
                             <h5 class="font-weight-600 mb-3">Thanh toán</h5>
                             <div class="payment">
-                                <el-form-item class="mb-0 transport boxShadow-none" prop="name">
+                                <el-form-item class="mb-0 transport boxShadow-none">
                                     <el-radio v-model="radio" label="1">
                                         <span class="font-weight-normal">Thanh toán khi giao hàng (COD)</span>
                                         <span class="font-weight-bold">
@@ -88,36 +86,36 @@
                 <div class="col-lg-4 px-0">
                     <div class="bgOrder h-100">
                         <div class="bgHeaderOrder">
-                            <h5 class="font-weight-600">Đơn hàng</h5>
+                            <h5 class="font-weight-600">Đơn hàng ({{totalAmount}} sản phẩm)</h5>
                         </div>
                         <div class="bgContentOrder">
                             <div class="summaryProduct">
                                 <div class="summaryProductList">
-                                    <div class=" d-flex align-items-center mb-4">
+                                    <div class="d-flex align-items-center mb-4" v-for="(item,index) in cart" :key="index">
                                         <div class="productThumbnail">
                                             <span class="productThumbnailWrapper">
-                                                <img src="https://bizweb.dktcdn.net/thumb/thumb/100/348/133/products/636737264632784078-nokia6plus-den-1.jpg?v=1551242185720" class="product-thumbnail__image">
+                                                <img width="50" height="50" :src="item.avatarUrl" class="product-thumbnail__image">
                                             </span>
                                             <span class="productThumbnailQuantity">
-                                                1
+                                                {{item.amount}}
                                             </span>
                                         </div>
                                         <div class="px-3">
-                                            <p>Nokia 6.1 Plus</p>
+                                            <p>{{item.name}}</p>
                                         </div>
                                         <div class="ml-auto">
-                                            <p>23.960.000₫</p>
+                                            <p>{{formatPrice(item.valuePromotion)}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr class="my-0 mx-3">
-                            <div class="promotionCode px-3 py-2">
+                            <!-- <div class="promotionCode px-3 py-2">
                                 <el-form-item class="mb-0" prop="name">
                                     <el-input placeholder="Email" v-model="model.email"></el-input>
                                     <el-button class="promotionCodeBtn">Áp dụng</el-button>
                                 </el-form-item>
-                            </div>
+                            </div> -->
                             <hr class="my-0 mx-3">
                             <div class="d-flex justify-content-between my-3 mx-3">
                                 <div>
@@ -125,17 +123,18 @@
                                     <p>Phí vận chuyển</p>
                                 </div>
                                 <div>
-                                    <p>69.940.000₫</p>
+                                    <p>{{formatPrice(totalPriceAll)}}</p>
+                                    <p>{{formatPrice(transportFee)}}</p>
                                 </div>
                             </div>
                             <hr class="my-0 mx-3">
                             <div class="d-flex align-items-center justify-content-between my-3 mx-3">
                                 <p>Tổng cộng</p>
-                                <h4>69.940.000₫</h4>
+                                <h4>{{formatPrice(totalPriceAllOther)}}</h4>
                             </div>
                             <div class="orderCheckout d-flex align-items-center justify-content-between my-3 mx-3">
                                <router-link class="orderCheckoutBtnBack" to="/cart"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>Quay về giỏ hàng</router-link>
-                                <el-button class="orderCheckoutBtnApply">Áp dụng</el-button>
+                                <el-button @click.native="sendCheckout('model')" class="checkoutBtn">Đặt hàng</el-button>
                             </div>
                         </div>
                     </div>
@@ -149,13 +148,75 @@
 export default {
     data(){
         return{
-            model:[],
-            radio:'1'
+            model:{},
+            cart:[],
+            radio:'1',
+            checked:'1',
+            totalAmount:0,
+            transportFee:40000,
+            province:[{label:'TPHCM',value:1}],
+            district:[{lable:'Quận 1',value:1}],
+            rules:{
+                email:[
+                    {required:true, message:'Vui lòng nhập Email',trigger:'blur'},
+                    {type:'email',message:'Vui lòng nhập email đúng định dạng',trigger:'blur'}
+                ],
+                name:[
+                    {required:true, message:'Vui lòng nhập họ và tên',trigger:'blur'},
+                ]
+            }
+        }
+    },
+    mounted() {
+        this.getAllCart();
+    },
+    computed: {
+        totalPriceAll(){
+            return this.cart.map(p => p.totalPrice).reduce((acc,curentValue) => acc + curentValue,0);
+        },
+        totalPriceAllOther(){
+            return this.totalPriceAll + this.transportFee
+        }
+    },
+    methods:{
+        getTotalQuantity(){
+            this.totalAmount = this.cart.map(p => p.amount).reduce((acc,curentValue) => acc + curentValue,0);
+        },
+        getAllCart(){
+            this.cart = JSON.parse(localStorage.getItem('cart'));
+            this.getTotalQuantity();
+        },
+        sendCheckout(formName){
+            this.$refs[formName].validate((valid) => {
+            if (valid) {
+                alert('submit!');
+            } else {
+                console.log('error submit!!');
+                return false;
+            }
+        });
         }
     }
 }
 </script>
 <style scoped lang="scss">
+.checkoutBtn{
+    height: 42px !important;
+    padding: 0.75rem 3rem !important;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: #357ebd;
+    border-color: #2f71a9;
+    transition: 0.4s all;
+    &:hover{
+        background-color: #2d6a9f;
+    }
+    &:focus{
+        outline: none;
+    }
+}
 .fa-angle-left{
     margin-right: 0.35rem;
 }

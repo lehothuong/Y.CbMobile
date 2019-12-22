@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Vuex from "vuex";
+
 //import Element from "element-ui";
 // import "./assets/Style/Style.css";
 import Slick from "vue-slick";
@@ -67,8 +67,9 @@ Vue.use(VueScrollTo, {
   force: true,
   cancelable: true
 });
-Vue.use(Vuex);
 Vue.use(Slick);
+
+import store from "./store";
 
 // Vue.use(VueGoogleMaps, {
 //   load: {
@@ -85,6 +86,6 @@ const router = new VueRouter({
 new Vue({
   el: "#app",
   router: router,
-
+  store,
   render: h => h(MainApp)
 });

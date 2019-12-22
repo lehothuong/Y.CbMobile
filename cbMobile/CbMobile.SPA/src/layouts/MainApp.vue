@@ -3,8 +3,8 @@
     <Header v-if="!$route.meta.hideHeaderFooter"></Header>
     <div class="content">
       <router-view :key="$route.fullPath" ref="router"></router-view>
-      <div class="support-cart">
-        <router-link to="cart">
+      <div v-if="!$route.meta.hideCart" class="support-cart">
+        <router-link to="/cart">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 435.104 435.104" style="enable-background:new 0 0 435.104 435.104;" xml:space="preserve" width="30px" height="30px">
             <g>
               <circle cx="154.112" cy="377.684" r="52.736" data-original="#000000" class="active-path" data-old_color="#Ffffff" fill="#FFFFFF"></circle>
@@ -15,7 +15,7 @@
           </svg>
           <div class="animated infinite pulse kenit-alo-circle-fill"></div>
           <div class="animatedCircle infinite circle "></div>
-          <div class="numberProduct">5</div>
+          <div class="numberProduct">{{totalQuantity}}</div>
         </router-link>
       </div>
     </div>
@@ -31,7 +31,9 @@ export default {
   components: { Header, Footer },
   data: function() {
     return {
-      isActive: false
+      isActive: false,
+      cart:[],
+      totalQuantitys:0
     };
   },
 
@@ -44,11 +46,28 @@ export default {
       }
     }
   },
+  mounted(){
+  },
   created() {
     if (this.$route.path == "/") {
       this.isActive = true;
     }
-  }
+  },
+  computed: {
+    totalQuantity(){
+      if(this.$store.state.totalQuantity){
+        return this.$store.state.totalQuantity;
+      }else{
+        this.cart = JSON.parse(localStorage.getItem('cart'));
+        if(this.cart){
+          this.totalQuantitys = this.cart.map(p => p.amount).reduce((acc,curentValue) => acc + curentValue,0);
+          this.$store.commit('SET_TOTALQUANTITY',this.totalQuantitys)
+          return this.$store.state.totalQuantity 
+        }
+        return 0;
+      }
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>

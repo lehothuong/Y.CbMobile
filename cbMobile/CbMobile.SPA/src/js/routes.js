@@ -47,7 +47,7 @@ export const routes = [
     path: "/dat-hang",
     name: "checkout",
     component: Checkout,
-    meta: { hideHeaderFooter: true }
+    meta: { hideHeaderFooter: true, hideCart: true }
   },
   {
     path: "/productManufacrurers/:id",
@@ -61,5 +61,6 @@ export const routes = [
     path: "/cart",
     name: "cart",
     component: Cart,
+    meta: { hideCart: true }
   },
 ];
