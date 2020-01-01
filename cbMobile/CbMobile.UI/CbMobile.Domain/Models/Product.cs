@@ -40,6 +40,7 @@ namespace CbMobile.Domain.Models
         public IEnumerable<Review> Reivews { get; set; }
         public IEnumerable<DetailSpecification> DetailSpecifications { get; set; }
         public IEnumerable<DetailAccessories> DetailAccessories { get; set; }
-    }   
+        public IEnumerable<DetailBill> DetailBills { get; set; }
+    }
 
 }

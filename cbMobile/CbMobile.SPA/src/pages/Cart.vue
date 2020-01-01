@@ -65,6 +65,9 @@ export default {
     },
     mounted(){
         this.getCart();
+        if(this.cart.length == 0){
+            this.$router.push('/')
+        }
     },
     methods:{
         getTotalQuantity(){

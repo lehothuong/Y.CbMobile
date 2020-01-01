@@ -22,14 +22,14 @@ namespace CbMobile.UI.Controllers
         }
         [HttpGet]
         [Route("AdminGetAllContact")]
-        public IActionResult AdminGetAllTopic(int page = 1, int pageSize = 10)
+        public IActionResult AdminGetAllContact(int page = 1, int pageSize = 10)
         {
             var model = _contactAppService.AdminGetAllContact(page, pageSize);
             return Ok(model);
         }
         [HttpDelete]
         [Route("DeleteContact")]
-        public IActionResult DeleteTopic(int id)
+        public IActionResult DeleteContact(int id)
         {
             if (ModelState.IsValid)
             {

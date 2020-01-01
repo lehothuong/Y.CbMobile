@@ -83,7 +83,29 @@ export const asyncRoutes = [
       }
     ]
   },
-
+  {
+    path: "/order",
+    component: Layout,
+    children: [
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/order/edit"),
+        name: "EditOrder",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/order/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/order/list"),
+        name: "ListOrder",
+        meta: { title: "Đơn hàng", icon: "list" }
+      }
+    ]
+  },
   {
     path: "/category-product",
     component: Layout,

@@ -171,7 +171,7 @@
     </div>
      <el-dialog class="cartDialog" :visible.sync="cartDialog" width="70%" >
        <span slot="title" class="el-dialog__title">Bạn đã thêm <span class="color-red"> {{nameProductCart}} </span> vào giỏ hàng</span>
-       <router-link class="titleQuantityPopup" to="/cart">
+       <router-link class="titleQuantityPopup" to="/gio-hang">
          Giỏ hàng của bạn có {{totalProduct}} sản phẩm
        </router-link>
        <table class="tableProduct">
@@ -190,7 +190,7 @@
                   <img class="itemImage" width="80" height="80" :src="item.avatarUrl"/>
                 </router-link>
               <div class="ml-2">
-                <router-link class="productCartTitle mb-1" to="/cart">
+                <router-link class="productCartTitle mb-1" to="/gio-hang">
                   {{item.name}}
                 </router-link>
                 <p class="font-weight-normal fontSize13">{{item.mainMemoryName}} / {{item.mainColorName}}</p>
@@ -529,6 +529,8 @@ export default {
             name : model.name,
             mainMemoryName : this.mainMemoryName,
             mainColorName: this.mainColorName,
+            mainColorId: this.mainColorId,
+            mainMemoryId: this.mainMemoryId,
             valuePromotion: model.valuePromotion,
             amount:this.amount,
             totalPrice: this.totalPrice

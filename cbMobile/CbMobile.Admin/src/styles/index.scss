@@ -16,6 +16,9 @@ body {
 label {
   font-weight: 700;
 }
+.el-form-item__content{
+  word-break: break-all;
+}
 
 .row{
   display: flex;

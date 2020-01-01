@@ -58,7 +58,7 @@ export const routes = [
     }
   },
   {
-    path: "/cart",
+    path: "/gio-hang",
     name: "cart",
     component: Cart,
     meta: { hideCart: true }

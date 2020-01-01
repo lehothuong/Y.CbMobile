@@ -93,6 +93,47 @@ namespace CbMobile.Database.Migrations
                     b.ToTable("Banners");
                 });
 
+            modelBuilder.Entity("CbMobile.Domain.Models.Bill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("IsPay");
+
+                    b.Property<int>("Payment");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<string>("TotalBill");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.Property<string>("UserName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bill");
+                });
+
             modelBuilder.Entity("CbMobile.Domain.Models.Categories", b =>
                 {
                     b.Property<int>("Id")
@@ -223,6 +264,49 @@ namespace CbMobile.Database.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("DetailAccessoriess");
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.DetailBill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount");
+
+                    b.Property<int>("BillId");
+
+                    b.Property<string>("ColorName");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("CreatedOnUtc");
+
+                    b.Property<bool>("Deleted");
+
+                    b.Property<int>("DisplayOrder");
+
+                    b.Property<string>("MemoryName");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("ProductId");
+
+                    b.Property<bool>("Published");
+
+                    b.Property<decimal>("TotalPrice");
+
+                    b.Property<DateTime>("UpdatedDate");
+
+                    b.Property<DateTime>("UpdatedOnUtc");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BillId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("DetailBill");
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.DetailSpecification", b =>
@@ -851,6 +935,19 @@ namespace CbMobile.Database.Migrations
 
                     b.HasOne("CbMobile.Domain.Models.Product", "Product")
                         .WithMany("DetailAccessories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CbMobile.Domain.Models.DetailBill", b =>
+                {
+                    b.HasOne("CbMobile.Domain.Models.Bill", "Bill")
+                        .WithMany("DetailBills")
+                        .HasForeignKey("BillId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CbMobile.Domain.Models.Product", "Product")
+                        .WithMany("DetailBills")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

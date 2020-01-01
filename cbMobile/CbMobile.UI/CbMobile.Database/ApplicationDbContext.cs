@@ -30,5 +30,7 @@ namespace CbMobile.Database
         public DbSet<Account> Accounts { get; set; }
         public DbSet<MainColor> MainColors { get; set; }
         public DbSet<DetailAccessories> DetailAccessoriess { get; set; }
+        public DbSet<DetailBill> DetailBill { get; set; }
+        public DbSet<Bill> Bill { get; set; }
     }
 }

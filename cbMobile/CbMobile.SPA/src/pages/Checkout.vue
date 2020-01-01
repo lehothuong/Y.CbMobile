@@ -12,8 +12,8 @@
                             <el-form-item class="mb-4" prop="email">
                                 <el-input placeholder="Email" type="Email" v-model="model.email"></el-input>
                             </el-form-item>
-                            <el-form-item class="mb-4" prop="name">
-                                <el-input placeholder="Họ và tên" v-model="model.name"></el-input>
+                            <el-form-item class="mb-4" prop="userName">
+                                <el-input placeholder="Họ và tên" v-model="model.userName"></el-input>
                             </el-form-item>
                             <el-form-item class="mb-4">
                                 <el-input type="number" placeholder="Số điện thoại" v-model="model.phoneNumber"></el-input>
@@ -61,20 +61,24 @@
                         <div class="col-lg-6">
                             <h5 class="font-weight-600 mb-3">Vận chuyển</h5>
                             <el-form-item class="transport">
-                                <el-radio v-model="radio" label="1">
-                                    <span class="font-weight-normal">Giao hàng tận nơi</span>
-                                    <span class="font-weight-bold">{{formatPrice(transportFee)}}</span>
-                                </el-radio>
+                                <el-radio-group v-model="transport">
+                                    <el-radio label="1">
+                                        <span class="font-weight-normal">Giao hàng tận nơi</span>
+                                        <span class="font-weight-bold">&nbsp;{{formatPrice(transportFee)}}</span>
+                                    </el-radio>
+                                </el-radio-group>
                             </el-form-item>
                             <h5 class="font-weight-600 mb-3">Thanh toán</h5>
                             <div class="payment">
                                 <el-form-item class="mb-0 transport boxShadow-none">
-                                    <el-radio v-model="radio" label="1">
-                                        <span class="font-weight-normal">Thanh toán khi giao hàng (COD)</span>
-                                        <span class="font-weight-bold">
-                                            <i class="fa fa-money payment-icon-fa" aria-hidden="true"></i>
-                                        </span>
-                                    </el-radio>
+                                    <el-radio-group v-model="model.payment">
+                                        <el-radio label="1">
+                                            <span class="font-weight-normal">Thanh toán khi giao hàng (COD)</span>
+                                            <span class="font-weight-bold">
+                                                <i class="fa fa-money payment-icon-fa" aria-hidden="true"></i>
+                                            </span>
+                                        </el-radio>
+                                    </el-radio-group>
                                 </el-form-item>
                             <div class="contentBackground">
                                 <p class="mb-0">Bạn chỉ phải thanh toán khi nhận được hàng</p>
@@ -133,7 +137,7 @@
                                 <h4>{{formatPrice(totalPriceAllOther)}}</h4>
                             </div>
                             <div class="orderCheckout d-flex align-items-center justify-content-between my-3 mx-3">
-                               <router-link class="orderCheckoutBtnBack" to="/cart"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>Quay về giỏ hàng</router-link>
+                               <router-link class="orderCheckoutBtnBack" to="/gio-hang"><i class="fa fa-angle-left fa-lg" aria-hidden="true"></i>Quay về giỏ hàng</router-link>
                                 <el-button @click.native="sendCheckout('model')" class="checkoutBtn">Đặt hàng</el-button>
                             </div>
                         </div>
@@ -145,23 +149,28 @@
 </template>
 
 <script>
+import CheckoutAppService from "../api/checkout";
 export default {
     data(){
         return{
-            model:{},
+            model:{
+                payment:'1',
+            },
             cart:[],
-            radio:'1',
             checked:'1',
+            transport:'1',
             totalAmount:0,
+            result:'',
+            totalPriceAll:0,
             transportFee:40000,
             province:[{label:'TPHCM',value:1}],
-            district:[{lable:'Quận 1',value:1}],
+            district:[{label:'Quận 1',value:1}],
             rules:{
                 email:[
                     {required:true, message:'Vui lòng nhập Email',trigger:'blur'},
                     {type:'email',message:'Vui lòng nhập email đúng định dạng',trigger:'blur'}
                 ],
-                name:[
+                userName:[
                     {required:true, message:'Vui lòng nhập họ và tên',trigger:'blur'},
                 ]
             }
@@ -169,11 +178,17 @@ export default {
     },
     mounted() {
         this.getAllCart();
+        console.log(this.cart)
+
+        if(!this.cart){
+            this.$router.push('/')
+        }
     },
     computed: {
-        totalPriceAll(){
-            return this.cart.map(p => p.totalPrice).reduce((acc,curentValue) => acc + curentValue,0);
-        },
+        // totalPriceAll(){
+        //     return 
+        // },
+
         totalPriceAllOther(){
             return this.totalPriceAll + this.transportFee
         }
@@ -184,12 +199,31 @@ export default {
         },
         getAllCart(){
             this.cart = JSON.parse(localStorage.getItem('cart'));
-            this.getTotalQuantity();
+            if(this.cart){
+                this.totalPriceAll = this.cart.map(p => p.totalPrice).reduce((acc,curentValue) => acc + curentValue,0);
+                this.getTotalQuantity();
+            }
         },
         sendCheckout(formName){
             this.$refs[formName].validate((valid) => {
             if (valid) {
-                alert('submit!');
+                this.model.cart = this.cart.map(obj =>
+                    ({productId : obj.id, amount :obj.amount, mainColorId : obj.mainColorId, mainMemoryId : obj.mainMemoryId, price: obj.valuePromotion,mainColorName : obj.mainColorName, mainMemoryName : obj.mainMemoryName,})
+                );
+                CheckoutAppService.postOrder(this.model).then(resp =>{
+                    console.log(resp)
+                        if(resp){
+                            this.$notify({
+                            title: "Thành công!",
+                            message: "Bạn đã đặt hàng thành công",
+                            type: "success",
+                            offset: 100
+                        });
+                        localStorage.removeItem('cart');
+                        this.$router.push('/');
+                    }
+                    
+                });
             } else {
                 console.log('error submit!!');
                 return false;

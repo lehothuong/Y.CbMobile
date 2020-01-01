@@ -4,7 +4,7 @@
     <div class="content">
       <router-view :key="$route.fullPath" ref="router"></router-view>
       <div v-if="!$route.meta.hideCart" class="support-cart">
-        <router-link to="/cart">
+        <router-link to="/gio-hang">
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 435.104 435.104" style="enable-background:new 0 0 435.104 435.104;" xml:space="preserve" width="30px" height="30px">
             <g>
               <circle cx="154.112" cy="377.684" r="52.736" data-original="#000000" class="active-path" data-old_color="#Ffffff" fill="#FFFFFF"></circle>
