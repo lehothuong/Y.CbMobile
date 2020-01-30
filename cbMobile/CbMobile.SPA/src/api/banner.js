@@ -1,7 +1,7 @@
 import { Axios } from "../api/axios";
 export const BannerAppService = {
-  getBannerHome() {
-    return Axios.get("/api/Banner/GetBannerHome").then(resp => {
+  getBannerHome(bannerId) {
+    return Axios.get("/api/Banner/GetBannerHome", {params : {idbannerHomeTop : bannerId}}).then(resp => {
       return resp;
     });
   },

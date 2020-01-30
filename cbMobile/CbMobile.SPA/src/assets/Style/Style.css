@@ -138,9 +138,7 @@ a:focus {
   border: none;
 }
 
-.search::after {
-  font-family: "FontAwesome";
-  content: "\f002";
+.search span {
   position: absolute;
   top: 0;
   right: 10px;
@@ -324,6 +322,25 @@ h6 {
 }
 
 .img-3-4 > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.img-370-102 {
+  position: relative;
+}
+
+.img-370-102:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 27.56757%;
+}
+
+.img-370-102 > .content {
   position: absolute;
   top: 0;
   left: 0;

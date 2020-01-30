@@ -7,6 +7,7 @@
         </div>
         <div class="col-lg-4">
           <HomeNews></HomeNews>
+          <BannerWelCome></BannerWelCome>
         </div>
       </div>
       <ProductInHome></ProductInHome>
@@ -17,6 +18,7 @@
 <script>
 import Banner from "../components/Banner";
 import HomeNews from "../components/HomeNews";
+import BannerWelCome from "../components/BannerWelCome";
 import ProductInHome from "../components/ProductInHome";
 import ProductPhoneHome from "../components/ProductPhoneHome";
 export default {
@@ -24,7 +26,8 @@ export default {
     Banner,
     HomeNews,
     ProductInHome,
-    ProductPhoneHome
+    ProductPhoneHome,
+    BannerWelCome
   }
 };
 </script>

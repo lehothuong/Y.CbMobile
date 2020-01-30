@@ -167,7 +167,7 @@
           </div>
         </div>
       </div>
-      <!-- <GenericProduct :categoryProductId="categoryProductId"></GenericProduct> -->
+      <GenericProduct :categoryProductId="categoryProductId"></GenericProduct>
     </div>
      <el-dialog class="cartDialog" :visible.sync="cartDialog" width="70%" >
        <span slot="title" class="el-dialog__title">Bạn đã thêm <span class="color-red"> {{nameProductCart}} </span> vào giỏ hàng</span>
@@ -208,7 +208,7 @@
         <router-link class="processCart mt-2" to="/">
          Tiếp tục mua hàng
        </router-link>
-       <p class="font-weight-600 mt-2 mb-0"><span>Thành tiền: </span><span class="color-main">275.880.000₫</span></p>
+       <p class="font-weight-600 mt-2 mb-0"><span>Thành tiền: </span><span class="color-main">{{formatPrice(totalPriceAll)}}</span></p>
       </div>
       <button type="button" class="btn btnCheckout w-100 mt-lg-4">Thanh toán đơn hàng</button>
     </el-dialog>
@@ -253,11 +253,11 @@
 <script>
 import ReviewAppService from "../api/review";
 import ProductAppService from "../api/product";
-// import { AppMutations } from "../store/index";
+import { AppMutations } from "../store/index";
 import GenericProduct from "../components/GenericProduct";
 export default {
   components: {
-    // GenericProduct
+    GenericProduct
   },
   data() {
     return {
@@ -342,7 +342,7 @@ export default {
       allReivews: [],
       listMemory: [],
       color: [],
-      categoryProductId: Number,
+      categoryProductId: null,
       radio: 3,
       activeName: "first",
       images: {
@@ -491,9 +491,13 @@ export default {
   computed:{
     totalPrice(){
       return this.amount * this.products.valuePromotion
+    },
+    totalPriceAll(){
+            return this.cart.map(p => p.totalPrice).reduce((acc,currentValue) => acc + currentValue,0)
     }
   },
   mounted() {
+
     this.getDetailProduct();
     this.getAllReviewByProductId();
   },

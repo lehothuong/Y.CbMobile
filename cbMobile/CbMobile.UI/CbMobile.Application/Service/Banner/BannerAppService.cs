@@ -17,13 +17,13 @@ namespace CbMobile.Application.Service
         {
             _dbContext = dbContext;
         }
-        public IEnumerable<BannerViewModel> GetBannerHome()
+        public IEnumerable<BannerViewModel> GetBannerHome(int idBannerHomeTop)
         {
             var model = _dbContext
                  .Banners
                  .GetPublished()
                  .AsNoTracking()
-                 .Where(x => x.CategoryId == (int)BannerCategoryType.HomeTopBanner)
+                 .Where(x => x.CategoryId == idBannerHomeTop)
                  .Select(x => new BannerViewModel
                  {
                      Id = x.Id,
@@ -34,7 +34,8 @@ namespace CbMobile.Application.Service
                  .ToList();
             return model;
         }
-        public Object GetAllBanner(int page = 1,int pageSize = 10)
+        #region Admin
+        public Object GetAllBanner(int page = 1, int pageSize = 10)
         {
             var model = _dbContext
                  .Banners
@@ -47,8 +48,9 @@ namespace CbMobile.Application.Service
                  .Skip((page - 1) * pageSize)
                  .Take(pageSize)
                  .ToList();
-            
-            return new {
+
+            return new
+            {
                 totalCount = totalCount,
                 data = results
             };
@@ -58,7 +60,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                 .Banners
                 .FirstOrDefault(x => x.Id == id);
-            if(model != null)
+            if (model != null)
             {
                 return model;
             }
@@ -75,7 +77,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                .Banners
                .FirstOrDefault(x => x.Id == banner.Id);
-            if(model != null)
+            if (model != null)
             {
                 model.Name = banner.Name;
                 model.Published = banner.Published;
@@ -94,7 +96,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
               .Banners
               .FirstOrDefault(x => x.Id == id);
-            if(model != null)
+            if (model != null)
             {
                 model.Deleted = true;
                 model.Published = false;
@@ -103,5 +105,7 @@ namespace CbMobile.Application.Service
             }
             return false;
         }
+        #endregion
+
     }
 }

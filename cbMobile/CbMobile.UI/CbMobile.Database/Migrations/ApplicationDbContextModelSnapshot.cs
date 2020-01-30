@@ -323,15 +323,11 @@ namespace CbMobile.Database.Migrations
 
                     b.Property<int>("DisplayOrder");
 
-                    b.Property<int>("IdProduct");
-
-                    b.Property<int>("IdSpecification");
-
-                    b.Property<int?>("ProductsId");
+                    b.Property<int>("ProductId");
 
                     b.Property<bool>("Published");
 
-                    b.Property<int?>("SpecificationId");
+                    b.Property<int>("SpecificationId");
 
                     b.Property<DateTime>("UpdatedDate");
 
@@ -339,7 +335,7 @@ namespace CbMobile.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductsId");
+                    b.HasIndex("ProductId");
 
                     b.HasIndex("SpecificationId");
 
@@ -956,11 +952,13 @@ namespace CbMobile.Database.Migrations
                 {
                     b.HasOne("CbMobile.Domain.Models.Product", "Products")
                         .WithMany("DetailSpecifications")
-                        .HasForeignKey("ProductsId");
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CbMobile.Domain.Models.Specification", "Specification")
                         .WithMany("DetailSpecifications")
-                        .HasForeignKey("SpecificationId");
+                        .HasForeignKey("SpecificationId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CbMobile.Domain.Models.OrderManuFacturer", b =>

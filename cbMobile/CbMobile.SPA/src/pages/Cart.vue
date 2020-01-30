@@ -5,7 +5,7 @@
                 <h5 class="pt-4"><span class="text-uppercase font-weight-500">Giỏ hàng</span>&nbsp;<span class="fontSize14">({{totalQuantity}} sản phẩm)</span></h5>
             </div>
         </div>
-        <div class="row mb-4">
+        <div v-if="cart.length>0" class="row mb-4">
             <div class="col-lg-9 px-5">
                 <div class="row py-3 shoppingCartItem" v-for="(item,index) in cart" :key="index">
                     <div class="col-lg-3">
@@ -43,6 +43,16 @@
                 <div class="mt-lg-4 pt-lg-2">
                     <router-link to="/dat-hang" class="btn btnCheckout w-100">Thanh toán ngay</router-link>
                     <button type="button" class="mt-3 btn btnProcessCheckout w-100">Tiếp tục mua hàng</button>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3 text-center">
+                    <div class="img-1-1 slider">
+                        <img class="img-small" src="../assets/Images/shopping-cart-empty.svg"/>
+                    </div>
+                     <button type="button" class="mt-lg-3 mb-lg-4 btn btnCheckout">Tiếp tục lựa chọn</button>
                 </div>
             </div>
         </div>

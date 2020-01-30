@@ -149,9 +149,7 @@ a {
     border: none;
   }
 
-  &::after {
-    font-family: "FontAwesome";
-    content: "\f002";
+  span {
     position: absolute;
     top: 0;
     right: 10px;
@@ -319,6 +317,10 @@ h6 {
 
 .img-3-4 {
   @include aspect-ratio(3, 4);
+}
+
+.img-370-102 {
+  @include aspect-ratio(370, 102);
 }
 
 .img-18-9 {

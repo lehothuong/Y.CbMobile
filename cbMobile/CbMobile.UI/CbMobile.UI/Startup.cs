@@ -82,6 +82,8 @@ namespace CbMobile.UI
             services.AddScoped<ITopicAppService, TopicAppService>();
             services.AddScoped<IMainColorAppService, MainColorAppService>();
             services.AddScoped<IBillAppService, BillAppService>();
+            services.AddScoped<ISearchAppService, SearchAppService>();
+            services.AddScoped<ISpecificationAppService, SpecificationAppService>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,

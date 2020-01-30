@@ -19,9 +19,9 @@ namespace CbMobile.UI.Controllers
         }
         [HttpGet]
         [Route("GetBannerHome")]
-        public ActionResult GetBannerHome()
+        public ActionResult GetBannerHome(int idBannerHomeTop)
         {
-            return Ok(_bannerAppService.GetBannerHome());
+            return Ok(_bannerAppService.GetBannerHome(idBannerHomeTop));
         }
     }
 }

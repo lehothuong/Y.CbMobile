@@ -14,7 +14,7 @@
       <div class="row mx-0">
         <div class="col-lg-25 px-0" v-for="(item,index) in products" :key="index">
           <div class="listProduct text-center">
-            <router-link v-bind:to="'/details/' + item.id " class="borderRight borderBottom p-3">
+            <router-link v-bind:to="'/chi-tiet-san-pham/' + item.id " class="borderRight borderBottom p-3">
               <div
                 class="img-background img-1-1"
                 :style="{ backgroundImage: 'url(\'' + item.avatarUrl + '\')' }"

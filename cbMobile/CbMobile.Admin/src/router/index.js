@@ -102,7 +102,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/order/list"),
         name: "ListOrder",
-        meta: { title: "Đơn hàng", icon: "list" }
+        meta: { title: "Đơn hàng", icon: "shopping" }
       }
     ]
   },
@@ -132,7 +132,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-product/list"),
         name: "ListCategoryProduct",
-        meta: { title: "Loại sản phẩm", icon: "list" }
+        meta: { title: "Loại sản phẩm", icon: "form" }
       }
     ]
   },
@@ -162,7 +162,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/product/list"),
         name: "ListProduct",
-        meta: { title: "Sản phẩm", icon: "list" }
+        meta: { title: "Sản phẩm", icon: "leaf" }
       }
     ]
   },
@@ -192,7 +192,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/main-memory/list"),
         name: "ListMainMemory",
-        meta: { title: "Bộ nhớ", icon: "list" }
+        meta: { title: "Bộ nhớ", icon: "memory" }
       }
     ]
   },
@@ -222,7 +222,37 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/main-color/list"),
         name: "ListMaincolor",
-        meta: { title: "Màu sắc", icon: "list" }
+        meta: { title: "Màu sắc", icon: "eglass-color" }
+      }
+    ]
+  },
+  {
+    path: "/specification",
+    component: Layout,
+    children: [
+      {
+        path: "create",
+        component: () => import("@/views/specification/create"),
+        name: "CreateSpecification",
+        meta: { title: "Create", icon: "edit" },
+        hidden: true
+      },
+      {
+        path: "edit/:id(\\d+)",
+        component: () => import("@/views/specification/edit"),
+        name: "EditSpecification",
+        meta: {
+          title: "Edit",
+          noCache: true,
+          activeMenu: "/specification/list"
+        },
+        hidden: true
+      },
+      {
+        path: "list",
+        component: () => import("@/views/specification/list"),
+        name: "ListSpecification",
+        meta: { title: "Thông số kỹ thuật", icon: "eglass-color" }
       }
     ]
   },
@@ -252,7 +282,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/accessories/list"),
         name: "ListAccessories",
-        meta: { title: "Chi tiết sản phẩm", icon: "list" }
+        meta: { title: "Chi tiết sản phẩm", icon: "details" }
       }
     ]
   },
@@ -283,7 +313,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/manufacturer/list"),
         name: "Bộ nhớ",
-        meta: { title: "Nhà sản xuất", icon: "list" }
+        meta: { title: "Nhà sản xuất", icon: "supplier_group" }
       }
     ]
   },
@@ -314,7 +344,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-banner/list"),
         name: "ListCategoryBanner",
-        meta: { title: "Loại Banner", icon: "list" }
+        meta: { title: "Loại Banner", icon: "form" }
       }
     ]
   },
@@ -344,7 +374,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/banner/list"),
         name: "ListBanner",
-        meta: { title: "Banner", icon: "list" }
+        meta: { title: "Banner", icon: "shuffling-banner" }
       }
     ]
   },
@@ -375,7 +405,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/category-post/list"),
         name: "ListCategoryPost",
-        meta: { title: "Loại tin tức", icon: "list" }
+        meta: { title: "Loại tin tức", icon: "clip-type-new" }
       }
     ]
   },
@@ -405,7 +435,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/news/list"),
         name: "ListNews",
-        meta: { title: "Tin tức", icon: "list" }
+        meta: { title: "Tin tức", icon: "News" }
       }
     ]
   },
@@ -435,7 +465,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/topic/list"),
         name: "ListTopic",
-        meta: { title: "Bài viết", icon: "list" }
+        meta: { title: "Bài viết", icon: "Post-a-Job" }
       }
     ]
   },
@@ -452,13 +482,13 @@ export const asyncRoutes = [
         path: "contact",
         component: () => import("@/views/contact/list"),
         name: "Contact",
-        meta: { title: "Contact", icon: "example" }
+        meta: { title: "Contact", icon: "contact" }
       },
       {
         path: "review",
         component: () => import("@/views/review/list"),
         name: "Review",
-        meta: { title: "Review", icon: "example" }
+        meta: { title: "Review", icon: "review" }
       }
     ]
   },
@@ -488,7 +518,7 @@ export const asyncRoutes = [
         path: "list",
         component: () => import("@/views/location/list"),
         name: "ListLocation",
-        meta: { title: "Địa chỉ", icon: "list" }
+        meta: { title: "Địa chỉ", icon: "icon-location" }
       }
     ]
   },
@@ -498,6 +528,7 @@ export const asyncRoutes = [
 const createRouter = () =>
   new Router({
     // mode: 'history', // require service support
+    mode: 'history',
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes
   });

@@ -13,6 +13,7 @@
 <script>
 import Slick from "vue-slick";
 import BannerAppService from '../api/banner'
+import { BannerCategory } from '../api/enum/enum'
 
 export default {
   components: { Slick },
@@ -40,7 +41,7 @@ export default {
       });
     },
     getBannerHome(){
-      BannerAppService.getBannerHome().then(resp => {
+      BannerAppService.getBannerHome(BannerCategory.BannerHomeTop).then(resp => {
         this.banners = resp.data;
       })
     }

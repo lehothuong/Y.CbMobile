@@ -8,6 +8,7 @@ import DetailNews from "../pages/DetailNews.vue";
 import ContactUs from "../pages/ContactUs.vue";
 import Checkout from "../pages/Checkout.vue";
 import Cart from "../pages/Cart.vue";
+import Search from "../pages/Search.vue";
 export const routes = [
   {
     path: "/",
@@ -42,6 +43,11 @@ export const routes = [
     path: "/lien-he",
     name: "contactus",
     component: ContactUs,
+  },
+  {
+    path: "/tim-kiem",
+    name: "search",
+    component: Search,
   },
   {
     path: "/dat-hang",

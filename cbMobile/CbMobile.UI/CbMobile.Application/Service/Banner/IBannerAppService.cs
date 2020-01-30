@@ -8,7 +8,7 @@ namespace CbMobile.Application.Service
 {
     public interface IBannerAppService
     {
-        IEnumerable<BannerViewModel> GetBannerHome();
+        IEnumerable<BannerViewModel> GetBannerHome(int idBannerHomeTop);
         Object GetAllBanner(int page = 1, int pageSize = 10);
         Banner GetDetailsBanner(int id);
         bool CreateBanner(Banner banner);

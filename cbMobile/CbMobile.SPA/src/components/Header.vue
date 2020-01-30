@@ -9,7 +9,14 @@
         </div>
         <div class="col-lg-3">
           <div class="search">
-            <input class="form-control" placeholder="Tìm kiếm" />
+            <form
+                  v-on:submit.prevent="search"
+                >
+              <input v-model="keyword" class="form-control" placeholder="Tìm kiếm" />
+            </form>
+            <a class="pointer" @click="search()">
+              <span><i class="fa fa-search" aria-hidden="true"></i></span>
+            </a>
           </div>
         </div>
         <div class="col-lg-7 menuHeader">
@@ -77,7 +84,19 @@ export default {
   components: {
     Megamenu,
     MenuNews
-  }
+  },
+  data(){
+    return{
+      keyword:''
+    }
+  },
+  methods: {
+    search(){
+      if(this.keyword){
+        this.$router.push(`/tim-kiem?key=${this.keyword}`);
+      }
+    }
+  },
 };
 </script>
 

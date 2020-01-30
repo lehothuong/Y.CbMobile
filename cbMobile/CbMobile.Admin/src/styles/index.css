@@ -478,6 +478,10 @@ label {
   font-weight: 700;
 }
 
+.el-form-item__content {
+  word-break: break-all;
+}
+
 .row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -499,7 +503,7 @@ label {
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .notice {

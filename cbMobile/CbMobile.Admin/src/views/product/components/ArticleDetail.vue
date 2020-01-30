@@ -179,6 +179,49 @@
             </el-form-item>
           </el-col>
         </el-row>
+        <div v-if="isEdit">
+          <label class="d-block mb-4">Thông số kỹ thuật</label>
+          <el-button class="mb-4" @click="dialogVisible = true" type="success" size="small" icon="el-icon-circle-plus-outline">Thêm mới</el-button>
+          <el-dialog title="Thông số kỹ thuật" :visible.sync="dialogVisible">
+            <el-form>
+              <el-form-item label="Thông số" label-width="200">
+                <el-select
+                  filterable
+                  default-first-option
+                  remote
+                  placeholder="Thông số kỹ thuật"
+                >
+                  <el-option
+                    v-for="(item,index) in listSpecification"
+                    :key="item+index"
+                    :label="item.name"
+                    :value="item.id"
+                  />
+                </el-select>
+              </el-form-item>
+              <!-- <el-form-item label="Promotion name" :label-width="formLabelWidth">
+                <el-input autocomplete="off"></el-input>
+              </el-form-item> -->
+              
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="dialogVisible = false">Cancel</el-button>
+              <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+            </span>
+          </el-dialog>
+          
+          <!-- <el-table
+            class="mt-3"
+            :data="listDetailBillItem"
+            border
+            style="width: 100%">
+            <el-table-column
+              prop="productName"
+              label="Tên sản phẩm"
+              width="250">
+            </el-table-column>
+          </el-table> -->
+        </div>
         <!-- <el-form-item style="margin-bottom: 40px;" label-width="70px" label="Summary:">
           <el-input v-model="postForm.fullDescription" :rows="1" type="textarea" class="article-textarea" autosize placeholder="Please enter the content" />
           <span v-show="postForm.fullDescription" class="word-counter">{{ postForm.fullDescription }}</span>
@@ -204,6 +247,10 @@ import {
   updateArticle,
   deleteArticle
 } from "@/api/product";
+
+import {
+  fetchGetListDropdownSpecification
+} from "@/api/specification";
 import { fetchListDropdownManufacturer } from "@/api/manufacturer";
 import { fetchGetListDropdownCategoryProduct } from "@/api/categoryProduct";
 // import { getListDropdownMainMemory } from "@/api/mainMemory";
@@ -266,7 +313,9 @@ export default {
     return {
       postForm: Object.assign({}, defaultForm),
       loading: false,
+      dialogVisible: false,
       total: 0,
+      listSpecification:[],
       userListOptions: [],
       manufacturerListOptions: [],
       // mainMemoryListOptions: [],
@@ -307,6 +356,7 @@ export default {
     if (this.isEdit) {
       const id = this.$route.params && this.$route.params.id;
       this.fetchData(id);
+      this.fetchGetListDropdownSpecification();
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
@@ -337,6 +387,15 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    fetchGetListDropdownSpecification(){
+      fetchGetListDropdownSpecification()
+      .then(response => {
+        this.listSpecification = response
+      })
+      .catch(err => {
+          console.log(err);
+      });
     },
     fetchGetListDropdownCategoryProduct() {
       fetchGetListDropdownCategoryProduct()
@@ -479,5 +538,8 @@ export default {
     border-radius: 0px;
     border-bottom: 1px solid #bfcbd9;
   }
+}
+.d-block{
+  display: block;
 }
 </style>
