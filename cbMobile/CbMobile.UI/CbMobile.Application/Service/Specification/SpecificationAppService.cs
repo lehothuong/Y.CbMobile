@@ -23,7 +23,7 @@ namespace CbMobile.Application.Service
             var model = _dbContext
                .Specifications
                .AsNoTracking()
-               .GetPublished()
+               .Where(x => !x.Deleted)
                .OrderBy(x => x.DisplayOrder)
                .ThenByDescending(x => x.CreatedDate);
             var totalCount = model.Count();
@@ -83,7 +83,6 @@ namespace CbMobile.Application.Service
             }
             return false;
         }
-
         public Object GetListDropdownSpecification()
         {
             return _dbContext
@@ -98,6 +97,86 @@ namespace CbMobile.Application.Service
                       Name = x.Name
                   })
                   .ToList();
+        }
+        public bool CreateDetailSpecification(DetailSpecification detailSpecification)
+        {
+            _dbContext.DetailSpecifications.Add(detailSpecification);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        public IEnumerable<Object> GetAllSpecificationById(int id)
+        {
+            var model = _dbContext
+                           .DetailSpecifications
+                           .Include(x => x.Specification)
+                           .AsNoTracking()
+                           .Where(x => !x.Deleted && x.ProductId == id)
+                           .Where(x => x.Specification.Published && !x.Specification.Deleted)
+                           .Select(x => new
+                           {
+                               Id = x.Id,
+                               SpecificationName = x.Specification.Name,
+                               Content = x.Content,
+                               SpecificationId = x.SpecificationId,
+                               DisplayOrder = x.DisplayOrder
+                           })
+                           .ToList();
+            return model;
+        }
+        public DetailSpecification GetSpecificationById(int id,int productId, int specificationId)
+        {
+            var model = _dbContext
+                            .DetailSpecifications
+                            .FirstOrDefault(x => x.ProductId == productId && x.Id == id && x.SpecificationId == specificationId);
+            if (model != null)
+            {
+                return model;
+            }
+            throw new KeyNotFoundException();
+        }
+        public bool UpdateDetailSpecification(DetailSpecification detailSpecification)
+        {
+            var model = _dbContext
+                 .DetailSpecifications
+                 .FirstOrDefault(x => x.ProductId == detailSpecification.ProductId && x.Id == detailSpecification.Id && x.SpecificationId == detailSpecification.SpecificationId);
+            if (model != null)
+            {
+                model.Content = detailSpecification.Content;
+                model.DisplayOrder = detailSpecification.DisplayOrder;
+                _dbContext.SaveChanges();
+                return true;
+            }
+
+            return false;
+        }
+        public bool DeleteDetailSpecification(int id,int productId, int specificationId)
+        {
+            var model = _dbContext
+                 .DetailSpecifications
+                 .FirstOrDefault(x => x.ProductId == productId && x.Id == id && x.SpecificationId == specificationId);
+            if (model != null)
+            {
+                model.Deleted = true;
+                _dbContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        public IEnumerable<ObjectKeyValue> GetUISpecificationById(int id)
+        {
+            var model = _dbContext
+                           .DetailSpecifications
+                           .Include(x => x.Specification)
+                           .AsNoTracking()
+                           .GetPublished()
+                           .Where(x => x.Specification.Published && !x.Specification.Deleted)
+                           .Select(x => new ObjectKeyValue
+                           {
+                               Name = x.Specification.Name,
+                               Text = x.Content,
+                           })
+                           .ToList();
+            return model;
         }
     }
 }

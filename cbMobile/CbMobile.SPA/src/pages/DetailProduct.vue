@@ -165,6 +165,13 @@
               </el-tab-pane>
             </el-tabs>
           </div>
+          <div class="col-lg-3">
+            <h5 class="titleSpecifications">Thông số kỹ thuật</h5>
+            <div v-for="(item,index) in listSpecification" :key="index" class="d-flex">
+              <p class="w-40">{{item.name}}:</p>
+              <p class="w-60">{{item.text}}</p>
+            </div>
+          </div>
         </div>
       </div>
       <GenericProduct :categoryProductId="categoryProductId"></GenericProduct>
@@ -253,6 +260,7 @@
 <script>
 import ReviewAppService from "../api/review";
 import ProductAppService from "../api/product";
+import SpecificationAppService from "../api/specification";
 import { AppMutations } from "../store/index";
 import GenericProduct from "../components/GenericProduct";
 export default {
@@ -345,6 +353,7 @@ export default {
       categoryProductId: null,
       radio: 3,
       activeName: "first",
+      listSpecification:[],
       images: {
         thumbs: [
           {
@@ -497,7 +506,7 @@ export default {
     }
   },
   mounted() {
-
+    this.getUISpecification();
     this.getDetailProduct();
     this.getAllReviewByProductId();
   },
@@ -505,6 +514,11 @@ export default {
     this.getAllReviewByProductId();
   },
   methods: {
+    getUISpecification(){
+      SpecificationAppService.getUISpecification(this.id).then(resp=>{
+        this.listSpecification = resp.data;
+      })
+    },
     getTotalQuantity(){
       this.totalQuantity = this.cart.map(p => p.amount).reduce((acc,curentValue) => acc + curentValue,0);
       this.$store.commit('SET_TOTALQUANTITY',this.totalQuantity)
@@ -773,6 +787,18 @@ Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
-
+.titleSpecifications{
+  line-height: 1.8;
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: #e3e3e3;
+    bottom: -4px;
+    left: 0;
+  }
+}
 </style>
 

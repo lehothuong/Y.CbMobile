@@ -14,5 +14,11 @@ namespace CbMobile.Application.Service
         bool UpdateSpecification(Specification specification);
         bool DeleteSpecification(int id);
         Object GetListDropdownSpecification();
+        bool CreateDetailSpecification(DetailSpecification detailSpecification);
+        IEnumerable<Object> GetAllSpecificationById(int id);
+        DetailSpecification GetSpecificationById(int id,int productId, int specificationId);
+        bool UpdateDetailSpecification(DetailSpecification detailSpecification);
+        bool DeleteDetailSpecification(int id, int productId, int specificationId);
+        IEnumerable<ObjectKeyValue> GetUISpecificationById(int id);
     }
 }

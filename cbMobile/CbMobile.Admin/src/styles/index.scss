@@ -159,10 +159,20 @@ aside {
     }
   }
 }
-
+.content{
+  display: flex;
+  .el-form-item__content{
+    width: 218px !important;
+    margin-left: 0 !important;
+  }
+}
 //main-container全局样式
 .app-container {
   padding: 20px;
+}
+
+.footer-dialog{
+  text-align: right;
 }
 
 .components-container {

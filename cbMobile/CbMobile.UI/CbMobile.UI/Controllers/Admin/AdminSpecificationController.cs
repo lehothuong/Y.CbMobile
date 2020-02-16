@@ -69,5 +69,51 @@ namespace CbMobile.UI.Controllers.Admin
         {
             return Ok(_specificationAppService.GetListDropdownSpecification());
         }
+        [HttpPost]
+        [Route("CreateDetailSpecification")]
+        public IActionResult CreateDetailSpecification(DetailSpecification detailSpecification)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _specificationAppService.CreateDetailSpecification(detailSpecification);
+                return Ok(model);
+            }
+            return NotFound();
+        }
+        [HttpGet]
+        [Route("GetAllSpecificationById")]
+        public IActionResult GetAllSpecificationById(int id)
+        {
+            return Ok(_specificationAppService.GetAllSpecificationById(id));
+        }
+        [HttpGet]
+        [Route("GetSpecificationById")]
+        public IActionResult GetSpecificationById(int id, int productId, int specificationId)
+        {
+            return Ok(_specificationAppService.GetSpecificationById(id, productId, specificationId));
+        }
+        [HttpPut]
+        [Route("UpdateDetailSpecification")]
+        public IActionResult UpdateDetailSpecification([FromBody]DetailSpecification detailSpecification)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _specificationAppService.UpdateDetailSpecification(detailSpecification);
+                return Ok(model);
+            }
+            return NotFound();
+        }
+        [HttpDelete]
+        [Route("DeleteDetailSpecification")]
+        public IActionResult DeleteDetailSpecification(int id, int productId, int specificationId)
+        {
+            if (ModelState.IsValid)
+            {
+                var model = _specificationAppService.DeleteDetailSpecification(id, productId, specificationId);
+                return Ok(model);
+            }
+            return NotFound();
+        }
+       
     }
 }

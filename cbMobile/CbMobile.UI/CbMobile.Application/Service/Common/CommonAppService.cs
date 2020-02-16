@@ -28,4 +28,10 @@ namespace CbMobile.Application.Service
         public int Id { get; set; }
         public string Name { get; set; }
     }
+
+    public class ObjectKeyValue
+    {
+        public string Text { get; set; }
+        public string Name { get; set; }
+    }
 }

@@ -15,6 +15,7 @@ namespace CbMobile.Domain.Models
         [ForeignKey("Specification")]
         public int SpecificationId { get; set; }
         public Specification Specification { get; set; }
+        public string Content { get; set; }
     }   
 
 }
